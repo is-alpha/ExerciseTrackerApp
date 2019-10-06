@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ExerciseTrackerApp</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Correo</string>
+    <string name="prompt_password">Contrasena</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="action_register">Registrar</string>
+    <string name="prompt_nombre">Nombre</string>
+    <string name="prompt_apellido">Apellido</string>
+    <string name="prompt_edad">Edad</string>
+    <string name="prompt_Genero">Genero</string>
+    <string name="prompt_masculino">Masculino</string>
+    <string name="prompt_femenino">Femenino</string>
+    <string name="prompt_altura">Altura</string>
+    <string name="prompt_peso">Peso</string>
+    <string name="prompt_fechaNac">FechaNacimiento</string>
+    <string name="prompt_passwordVal">Validar Contrasena</string>
+    <string name="prompt_datosRegistro">Ingresar</string>
+</resources>
