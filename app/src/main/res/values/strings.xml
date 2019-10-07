@@ -22,4 +22,5 @@
     <string name="prompt_fechaNac">FechaNacimiento</string>
     <string name="prompt_passwordVal">Validar Contrasena</string>
     <string name="prompt_datosRegistro">Ingresar</string>
+    <string name="prompt_ocupacion">Trabajo</string>
 </resources>
