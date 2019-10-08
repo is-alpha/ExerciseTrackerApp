@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "695098633304",
+    "firebase_url": "https://imagen-is.firebaseio.com",
+    "project_id": "imagen-is",
+    "storage_bucket": "imagen-is.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695098633304:android:e95a946e4ca3c744d52e2d",
+        "android_client_info": {
+          "package_name": "com.example.exercisetrackerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695098633304-lqrduhgu2he41qqpje3ktiglvv1r3rmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exercisetrackerapp",
+            "certificate_hash": "31a069fd81aae6eeab5ae90f86b537f59eb23f6b"
+          }
+        },
+        {
+          "client_id": "695098633304-kvr1kmcp1b5iosqo8laidpki336qheje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Qf739Q4_sgQfmZqcVG6GvgX2XffTXy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695098633304-kvr1kmcp1b5iosqo8laidpki336qheje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
