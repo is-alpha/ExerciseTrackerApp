@@ -1,26 +1,13 @@
 package com.example.exercisetrackerapp.ui.login;
 
-import android.app.Activity;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.ui.login.LoginViewModel;
-import com.example.exercisetrackerapp.ui.login.LoginViewModelFactory;
+import com.example.exercisetrackerapp.ui.registro.RegistroActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,6 +17,8 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        /*
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
@@ -113,8 +102,22 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+        */
+        Button mBtLaunchRegistro = (Button) findViewById(R.id.botonregistrar);
+        mBtLaunchRegistro.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Do something in response to button click
+                launchRegistro();
+            }
+        });
     }
 
+    private void launchRegistro() {
+        Intent intent = new Intent(this, RegistroActivity.class);
+        startActivity(intent);
+    }
+
+    /*
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
@@ -123,5 +126,5 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

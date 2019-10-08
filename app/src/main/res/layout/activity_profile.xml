@@ -19,30 +19,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/profile_header" />
+            android:background="#D1F2EB"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/imagen_perfil" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombreUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:text="Nombre del Usuario" />
+
+                <TextView
+                    android:id="@+id/correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Correo del Usuario" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/nombreUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombre del Usuario" />
-
-            <TextView
-                android:id="@+id/correo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Correo del Usuario" />
-
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
 
         <TextView
             android:id="@+id/label_Infogeneral"
@@ -50,45 +75,87 @@
             android:layout_height="wrap_content"
             android:text="Información General" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageViewGenero"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/genero" />
 
                 <TextView
                     android:id="@+id/genero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@string/prompt_Genero" />
+
+                <Space
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imageViewFechaNac"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/pastel" />
 
                 <TextView
                     android:id="@+id/fechaNac"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/prompt_fechaNac" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageViewAltura"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/altura" />
 
                 <TextView
                     android:id="@+id/altura"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/prompt_altura" />
+
+                <Space
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imageViewPeso"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/peso" />
 
                 <TextView
                     android:id="@+id/peso"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/prompt_peso" />
             </TableRow>
 
         </TableLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <TextView
             android:id="@+id/label_Trabajo"
@@ -96,11 +163,31 @@
             android:layout_height="wrap_content"
             android:text="Ocupación" />
 
-        <TextView
-            android:id="@+id/trabajoValor"
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/prompt_ocupacion" />
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageViewOcupacion"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/trabajo" />
+
+            <TextView
+                android:id="@+id/trabajoValor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="@string/prompt_ocupacion" />
+        </TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <TextView
             android:id="@+id/label_Actividad"
@@ -108,11 +195,137 @@
             android:layout_height="wrap_content"
             android:text="Nivel de Actividad" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageViewDePie"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/hombre_de_pie" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageViewEstiramiento"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/ejercicios_de_estiramiento" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="2" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/correr" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="3" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageViewLevanta"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/levantamiento_de_pesas" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/actividadValor"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/prompt_ocupacion" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/botonRegresarP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Regresar" />
+        </LinearLayout>
 
     </LinearLayout>
 

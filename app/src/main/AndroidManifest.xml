@@ -18,6 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.registro.RegistroActivity"
+            android:label="Registro"></activity>
+        <activity android:name=".ui.profile.ProfileActivity"
+            android:label="Profile"></activity>
     </application>
 
 </manifest>

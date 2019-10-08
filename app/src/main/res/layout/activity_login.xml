@@ -90,8 +90,8 @@
             android:text="@string/action_sign_in" />
 
         <Button
-            android:id="@+id/registrar"
-            android:layout_width="108dp"
+            android:id="@+id/botonregistrar"
+            android:layout_width="120dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
