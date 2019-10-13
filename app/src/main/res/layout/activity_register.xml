@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="clip_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,16 +99,18 @@
             android:text="Información General"
             android:textSize="14sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
+        <android.support.v7.widget.GridLayout
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_gravity="center"
+            app:columnCount="4"
+            app:rowCount="2">
 
             <ImageView
                 android:id="@+id/imageViewGenero"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:srcCompat="@drawable/pastel" />
+                app:srcCompat="@drawable/genero" />
 
             <Spinner
                 android:id="@+id/spinnerGenero"
@@ -119,51 +122,18 @@
                 android:scrollbarSize="4dp"
                 android:spinnerMode="dropdown" />
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
             <ImageView
                 android:id="@+id/imageViewNacimiento"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 app:srcCompat="@drawable/pastel" />
 
-            <EditText
-                android:id="@+id/fechaNac"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/prompt_fechaNac"
-                android:inputType="date"
-                android:textSize="14sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.constraint.Guideline
-                android:id="@+id/guideline"
+            <TextView
+                android:id="@+id/textViewFechaNac"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" />
-
-            <ImageView
-                android:id="@+id/imageViewAltura"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:srcCompat="@drawable/altura" />
-
-            <EditText
-                android:id="@+id/altura"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/prompt_altura"
-                android:inputType="numberDecimal"
-                android:textSize="14sp" />
+                android:layout_weight="1"
+                android:hint="@string/prompt_fechaNac" />
 
             <ImageView
                 android:id="@+id/imageViewPeso"
@@ -180,7 +150,22 @@
                 android:inputType="numberDecimal"
                 android:textSize="14sp" />
 
-        </TableRow>
+            <ImageView
+                android:id="@+id/imageViewAltura"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/altura" />
+
+            <EditText
+                android:id="@+id/altura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/prompt_altura"
+                android:inputType="numberDecimal"
+                android:textSize="14sp" />
+
+        </android.support.v7.widget.GridLayout>
 
         <EditText
             android:id="@+id/labelInfo2"
@@ -210,7 +195,12 @@
                 android:hint="@string/prompt_ocupacion"
                 android:inputType="textPersonName"
                 android:textSize="14sp" />
+
         </TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,11 +1,7 @@
 package com.example.exercisetrackerapp.ui.registro;
 
 import android.content.Intent;
-import android.icu.text.DateFormat;
-import android.icu.text.SimpleDateFormat;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,9 +13,6 @@ import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.profile.ProfileActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.sql.Date;
-import java.text.ParseException;
 
 public class RegistroActivity extends AppCompatActivity {
     private Button mBtRegresar;
@@ -41,7 +34,7 @@ public class RegistroActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         contrasena = (EditText) findViewById(R.id.contrasena);
         validacion = (EditText) findViewById(R.id.validacion);
-        fecha = (EditText) findViewById(R.id.fechaNac);
+        fecha = (EditText) findViewById(R.id.editTextFechaNac);
         altura = (EditText) findViewById(R.id.altura);
         peso = (EditText) findViewById(R.id.peso);
         ocupacion = (EditText) findViewById(R.id.editTextOcupacion);
@@ -61,6 +54,10 @@ public class RegistroActivity extends AppCompatActivity {
 
             }
         });
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerGenero);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genero, R.layout.spinner_item);
+
     }
 
 
@@ -87,6 +84,8 @@ public class RegistroActivity extends AppCompatActivity {
 */
     //adapter.setSpinnerMode(R.layout.dropdown);
    // spinner.setAdapter(adapter);
+
+
    private void launchProfile() {
        Intent intent = new Intent(this, ProfileActivity.class);
        startActivity(intent);
