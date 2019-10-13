@@ -24,6 +24,28 @@
     <string name="prompt_datosRegistro">Ingresar</string>
     <string name="prompt_ocupacion">Trabajo</string>
 
+
+    <string name="label_horasSueno">Horas de sueño</string>
+    <string name="hint_FechaSueno">Fecha</string>
+    <string name="hint_HoraSueno">#h</string>
+    <string name="label_totalHoras">Horas de sueño totales</string>
+    <string name="label_caloriasQuemadas">Calorías Quemadas</string>
+    <string name="hint_CantidadKCal">## KCal</string>
+    <string name="hint_HorasSDiarias">#h</string>
+    <string name="label_HorasSDiarias">Horas diarias de sueño</string>
+    <string name="hint_HorasPromedio">#:##</string>
+    <string name="label_HorasPromedio">Promedio de horas dormidas</string>
+
+
+    <string name="label_Cancelar">Cancelar</string>
+    <string name="label_Guardar">Guardar</string>
+
+    <string name="label_PreguntaHorasDormir">¿Cuántas horas acostumbra dormir?</string>
+    <string name="label_horasSuenoManual">Horas de sueño. Manual</string>
+
+    <string name="label_PreguntaHorasDormirManual">¿Cuántas horas durmió?</string>
+    <string name="label_PreguntaSiestas">Tiempo de siestas</string>
+
     <string-array name="genero">
         <item>Masculino</item>
         <item>Femenino</item>
