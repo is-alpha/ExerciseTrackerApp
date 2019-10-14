@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:background="#D1F2EB"
-                android:text="<" />
+                android:text="@string/regresar" />
 
             <TextView
                 android:id="@+id/textView7"

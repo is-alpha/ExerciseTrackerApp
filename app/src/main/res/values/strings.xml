@@ -46,6 +46,8 @@
     <string name="label_PreguntaHorasDormirManual">¿Cuántas horas durmió?</string>
     <string name="label_PreguntaSiestas">Tiempo de siestas</string>
 
+    <string name="regresar">"&lt;"</string>
+
     <string-array name="genero">
         <item>Masculino</item>
         <item>Femenino</item>
