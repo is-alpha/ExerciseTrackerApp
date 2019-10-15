@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "695098633304",
-    "firebase_url": "https://imagen-is.firebaseio.com",
-    "project_id": "imagen-is",
-    "storage_bucket": "imagen-is.appspot.com"
+    "project_number": "892175918434",
+    "firebase_url": "https://imagn-is.firebaseio.com",
+    "project_id": "imagn-is",
+    "storage_bucket": "imagn-is.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:695098633304:android:e95a946e4ca3c744d52e2d",
+        "mobilesdk_app_id": "1:892175918434:android:cda42eddd2ec7cc91e383b",
         "android_client_info": {
           "package_name": "com.example.exercisetrackerapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "695098633304-lqrduhgu2he41qqpje3ktiglvv1r3rmj.apps.googleusercontent.com",
+          "client_id": "892175918434-9lkhonsohghh5ht5r7ootfo7lukm7055.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.exercisetrackerapp",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "695098633304-kvr1kmcp1b5iosqo8laidpki336qheje.apps.googleusercontent.com",
+          "client_id": "892175918434-4ob3tm6cqum9huamd3gh42ncqc1gndlk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA5Qf739Q4_sgQfmZqcVG6GvgX2XffTXy4"
+          "current_key": "AIzaSyAwG74wepmLLn864zVVg823SeZA3MVLQWY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "695098633304-kvr1kmcp1b5iosqo8laidpki336qheje.apps.googleusercontent.com",
+              "client_id": "892175918434-4ob3tm6cqum9huamd3gh42ncqc1gndlk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
