@@ -2,22 +2,35 @@ package com.example.exercisetrackerapp.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.registro.RegistroActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-
+    EditText usernameEditText,passwordEditText;
+    private FirebaseAuth firebaseAuth;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+          usernameEditText = (EditText) findViewById(R.id.username);
+          passwordEditText = (EditText) findViewById(R.id.password);
         /*
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
@@ -104,17 +117,66 @@ public class LoginActivity extends AppCompatActivity {
         });
         */
         Button mBtLaunchRegistro = (Button) findViewById(R.id.botonregistrar);
+        Button logi = (Button) findViewById(R.id.login);
         mBtLaunchRegistro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
-                launchRegistro();
+
+                switch (v.getId()) {
+
+                    case R.id.botonregistrar:
+                        launchRegistro();
+                        break;
+                    case R.id.login:
+                        login();
+                        break;
+                }
             }
         });
+      /*
+        mBtLaunchRegistro.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Do something in response to button click
+                login();
+            }
+        });*/
     }
 
     private void launchRegistro() {
         Intent intent = new Intent(this, RegistroActivity.class);
         startActivity(intent);
+    }
+    private void login(){
+
+
+        String  correo = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        if(TextUtils.isEmpty(correo)){
+            Toast.makeText(this,"Ingrese correo",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Ingrese contraseña", Toast.LENGTH_LONG).show();
+            return;
+        }
+        firebaseAuth.signInWithEmailAndPassword(correo,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(LoginActivity.this,"Usuario Registrado",Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                    }
+                });
+      //  Toast.makeText(this,"Usuario Registrado",Toast.LENGTH_LONG).show();
     }
 
     /*
