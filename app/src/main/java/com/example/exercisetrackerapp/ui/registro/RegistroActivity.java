@@ -100,11 +100,14 @@ public class RegistroActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     Toast.makeText(RegistroActivity.this,"Usuario registrado",Toast.LENGTH_LONG).show();
-                } else {
+                }
+                else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(RegistroActivity.this,"Usuario Registrado",Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistroActivity.this,"Usuario YA Registrado Ingrese Otro",Toast.LENGTH_LONG).show();
+                        return;
                     } else {
                         Toast.makeText(RegistroActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                        return;
                     }
                 }
 
