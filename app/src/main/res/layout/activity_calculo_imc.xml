@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="30">
+            android:padding="30dp">
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="< 18.5" />
+                        android:text=" &lt; 18.5" />
                 </TableRow>
 
                 <TableRow
@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text=">= 25.0" />
+                        android:text="&lt;= 25.0" />
                 </TableRow>
 
                 <TableRow
@@ -223,7 +223,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text=">= 30.0" />
+                        android:text="&lt;= 30.0" />
                 </TableRow>
 
                 <TableRow
@@ -286,7 +286,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text=">= 40.0" />
+                        android:text="&lt;= 40.0" />
                 </TableRow>
             </TableLayout>
 
