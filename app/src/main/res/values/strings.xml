@@ -54,6 +54,11 @@
 
     <string name="label_LimiteEjercicio">Límite de Ejericio</string>
 
+    <string name="label_MetasEjercicio">Metas de Ejercicio </string>
+
+    <string name="label_Calculo_IMC">Cálculo del IMC</string>
+
+
     <string-array name="genero">
         <item>Masculino</item>
         <item>Femenino</item>
