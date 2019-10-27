@@ -48,9 +48,22 @@
 
     <string name="regresar">"&lt;"</string>
 
+    <string name="label_ComparacionCalorias">CALORÍAS CONSUMIDAS VS. GASTADAS </string>
+
+    <string name="label_PeriodoTiempo">Periodo de tiempo</string>
+
+    <string name="label_LimiteEjercicio">Límite de Ejericio</string>
+
     <string-array name="genero">
         <item>Masculino</item>
         <item>Femenino</item>
+    </string-array>
+
+    <string-array name="periodoTiempo">
+        <item>24hrs</item>
+        <item>Semana</item>
+        <item>Mes</item>
+        <item>Año</item>
     </string-array>
 
 </resources>
