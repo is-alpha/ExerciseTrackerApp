@@ -58,6 +58,7 @@
 
     <string name="label_Calculo_IMC">Cálculo del IMC</string>
 
+    <string name="label_Ejercicio">Ejercicio </string>
 
     <string-array name="genero">
         <item>Masculino</item>
