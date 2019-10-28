@@ -9,7 +9,7 @@ import com.example.exercisetrackerapp.data.LoginRepository;
 import com.example.exercisetrackerapp.data.Result;
 import com.example.exercisetrackerapp.data.model.LoggedInUser;
 import com.example.exercisetrackerapp.R;
-
+/*
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
@@ -67,3 +67,4 @@ public class LoginViewModel extends ViewModel {
         return password != null && password.trim().length() > 5;
     }
 }
+*/
