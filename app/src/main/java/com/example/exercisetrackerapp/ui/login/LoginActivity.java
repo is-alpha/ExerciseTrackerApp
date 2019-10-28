@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.SideMenuActivity;
 import com.example.exercisetrackerapp.ui.profile.ProfileActivity;
 import com.example.exercisetrackerapp.ui.registro.RegistroActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -161,6 +162,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
+
+    private void launchMain() {
+        Intent intent = new Intent(this, SideMenuActivity.class);
+        startActivity(intent);
+    }
     private void login(){
 
 
@@ -184,7 +190,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
-                            launchProfile();
+                            //launchProfile();
+                            launchMain();
                         }
                         else {
                                 Toast.makeText(LoginActivity.this,"Errorr",Toast.LENGTH_LONG).show();
