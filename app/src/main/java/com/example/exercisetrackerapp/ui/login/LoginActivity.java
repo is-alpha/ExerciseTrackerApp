@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.ui.profile.ProfileActivity;
 import com.example.exercisetrackerapp.ui.registro.RegistroActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     EditText usernameEditText,passwordEditText;
+    Button logi,mBtLaunchRegistro;
     private FirebaseAuth firebaseAuth;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,21 +118,28 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         */
-        Button mBtLaunchRegistro = (Button) findViewById(R.id.botonregistrar);
-        Button logi = (Button) findViewById(R.id.login);
+         mBtLaunchRegistro = (Button) findViewById(R.id.botonregistrar);
+         logi = (Button) findViewById(R.id.login);
+        logi.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                login();
+
+            }
+
+            });
         mBtLaunchRegistro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
-
-                switch (v.getId()) {
+                launchRegistro();
+                /*switch (v.getId()) {
 
                     case R.id.botonregistrar:
-                        launchRegistro();
+
                         break;
                     case R.id.login:
-                        login();
+
                         break;
-                }
+                }*/
             }
         });
       /*
@@ -146,6 +155,10 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegistroActivity.class);
         startActivity(intent);
     }
+    private void launchProfile() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
     private void login(){
 
 
@@ -159,23 +172,28 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingrese contraseña", Toast.LENGTH_LONG).show();
             return;
         }
+
         firebaseAuth.signInWithEmailAndPassword(correo,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+               .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
-                        } else {
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                Toast.makeText(LoginActivity.this,"Usuario Registrado",Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
-                            }
+                        }
+                        else {
+                            //if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(LoginActivity.this,"Errorr",Toast.LENGTH_LONG).show();
+                                return;
+                           // } else {
+                               // Toast.makeText(LoginActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                               // return;
+                            //}
                         }
 
                     }
                 });
+        launchProfile();
       //  Toast.makeText(this,"Usuario Registrado",Toast.LENGTH_LONG).show();
     }
 
