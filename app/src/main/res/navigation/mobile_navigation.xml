@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.exercisetrackerapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.exercisetrackerapp.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_exercises"
+        android:name="com.example.exercisetrackerapp.ui.exercises.ExercisesFragment"
+        android:label="@string/menu_exercises"
+        tools:layout="@layout/fragment_exercises" />
+
+    <fragment
+        android:id="@+id/nav_results"
+        android:name="com.example.exercisetrackerapp.ui.results.ResultsFragment"
+        android:label="@string/menu_results"
+        tools:layout="@layout/fragment_results" />
+
+    <fragment
+        android:id="@+id/nav_achievements"
+        android:name="com.example.exercisetrackerapp.ui.achievements.AchievementsFragment"
+        android:label="@string/menu_achievements"
+        tools:layout="@layout/fragment_achievements" />
+
+    <fragment
+        android:id="@+id/nav_goals"
+        android:name="com.example.exercisetrackerapp.ui.goals.GoalsFragment"
+        android:label="@string/menu_goals"
+        tools:layout="@layout/fragment_exercise_goals" />
+
+    <fragment
+        android:id="@+id/nav_information"
+        android:name="com.example.exercisetrackerapp.ui.information.InformationFragment"
+        android:label="@string/menu_information"
+        tools:layout="@layout/fragment_information" />
+</navigation>

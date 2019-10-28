@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/usuario"
+            android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/nav_exercises"
+            android:icon="@drawable/correr17"
+            android:title="@string/menu_exercises" />
+        <item
+            android:id="@+id/nav_results"
+            android:icon="@drawable/results"
+            android:title="@string/menu_results" />
+        <item
+            android:id="@+id/nav_achievements"
+            android:icon="@drawable/achievements"
+            android:title="@string/menu_achievements" />
+        <item
+            android:id="@+id/nav_goals"
+            android:icon="@drawable/goals"
+            android:title="@string/menu_goals" />
+        <item
+            android:id="@+id/nav_information"
+            android:icon="@drawable/information"
+            android:title="@string/menu_information" />
+    </group>
+
+</menu>

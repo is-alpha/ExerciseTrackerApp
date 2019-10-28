@@ -5,11 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.Calendar;
 
 import com.example.exercisetrackerapp.R;
 
@@ -23,7 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.fragment_profile);
 
         mRegresar = (Button) findViewById(R.id.botonRegresarP);
         mRegresar.setOnClickListener(new View.OnClickListener() {

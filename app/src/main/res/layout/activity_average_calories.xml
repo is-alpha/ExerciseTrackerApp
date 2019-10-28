@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="grafica"
-                app:srcCompat="@drawable/graficaFake2" />
+                app:srcCompat="@drawable/grafica_fake2" />
 
         </FrameLayout>
 

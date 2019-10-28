@@ -20,7 +20,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="@android:color/holo_green_light"
-            android:text="< Volver" />
+            android:text=" Volver" />
 
         <TextView
             android:id="@+id/textView41"

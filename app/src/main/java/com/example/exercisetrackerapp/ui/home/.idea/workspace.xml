@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aa396131-e54b-4815-844b-54f46098b3ec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../SideMenuActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../achievements/AchievementsFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../achievements/AchievementsViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exercises/ExercisesFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exercises/ExercisesViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goals/GoalsFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goals/GoalsViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HomeFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HomeViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../information/InformationFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../information/InformationViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../profile/ProfileFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../profile/ProfileViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../results/ResultsFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../results/ResultsViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v21/ic_menu_camera.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v21/ic_menu_gallery.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v21/ic_menu_manage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v21/ic_menu_send.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v21/ic_menu_share.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v21/ic_menu_slideshow.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v24/achievements.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v24/exercise.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v24/goals.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v24/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v24/information.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v24/results.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/drawable/side_nav_bar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_side_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/app_bar_side_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/content_side_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/fragment_achievements.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/fragment_home.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/fragment_information.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/fragment_results.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/layout/nav_header_side_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/menu/activity_side_menu_drawer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/menu/side_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/values-v21/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../res/values/drawables.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../profile/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../profile/ProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/drawable-v24/graficaFake2.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/drawable-v24/grafica_fake2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/drawable/graficaFake.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/drawable/grafica_fake.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_average_calories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_average_calories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_ejercicios.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/fragment_exercises.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_gasto_basal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_gasto_basal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_horas_sueno.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_hours_sleep.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_limite_ejercicio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_exercise_limit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_marcar_ejercicios.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_mark_exercises.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_metas_ejercicio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/fragment_exercise_goals.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/fragment_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_registro_horas_sueno.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_register_hours_sleep.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/layout/activity_registro_horas_sueno_manual.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/layout/activity_register_hours_sleep_manual.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../res/values/styles.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HomeViewModel.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HomeFragment.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../../../../.." />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="234" />
+    <option name="y" value="71" />
+    <option name="width" value="881" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="home" type="b2602c69:ProjectViewProjectNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa396131-e54b-4815-844b-54f46098b3ec" name="Default Changelist" comment="" />
+      <created>1572298522362</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572298522362</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="234" y="71" width="881" height="735" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.5255042" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeViewModel.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>
