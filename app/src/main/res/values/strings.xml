@@ -97,4 +97,19 @@
         <item>Pesas</item>
         <item>Bicicleta</item>
     </string-array>
+    <string name="title_activity_side_menu">SideMenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Principal</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_exercises">Ejercicio</string>
+    <string name="menu_results">Resultados</string>
+    <string name="menu_achievements">Logros</string>
+    <string name="menu_goals">Metas</string>
+    <string name="menu_information">Información</string>
 </resources>
