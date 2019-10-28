@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
@@ -21,16 +22,17 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
+    //private LoginViewModel loginViewModel;
     EditText usernameEditText,passwordEditText;
     Button logi,mBtLaunchRegistro;
-    private FirebaseAuth firebaseAuth;
+     private FirebaseAuth firebaseAuth;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        firebaseAuth = FirebaseAuth.getInstance();
           usernameEditText = (EditText) findViewById(R.id.username);
           passwordEditText = (EditText) findViewById(R.id.password);
         /*
@@ -173,6 +175,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+    
+
         firebaseAuth.signInWithEmailAndPassword(correo,password)
                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -180,20 +184,17 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
+                            launchProfile();
                         }
                         else {
-                            //if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(LoginActivity.this,"Errorr",Toast.LENGTH_LONG).show();
                                 return;
-                           // } else {
-                               // Toast.makeText(LoginActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
-                               // return;
-                            //}
+
                         }
 
                     }
                 });
-        launchProfile();
+
       //  Toast.makeText(this,"Usuario Registrado",Toast.LENGTH_LONG).show();
     }
 

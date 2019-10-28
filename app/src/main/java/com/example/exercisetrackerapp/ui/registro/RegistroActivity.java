@@ -116,6 +116,7 @@ public class RegistroActivity extends AppCompatActivity {
 
         DatosRegistro data = new DatosRegistro(id,name,correo,password,vcontrasena,trabajo,10,height,weight);
         mDatabase.child("users").child(id).setValue(data);
+
        // mDatabase reg = new mDatabase(id,name,correo,password,vcontrasena,trabajo,height,weight);
     }
    /* Spinner spinner = (Spinner) findViewById(R.id.spinnerGenero);
