@@ -72,30 +72,29 @@
         <item>Año</item>
     </string-array>
 
-    <!--Strings related to Comparison calories, average of calories and burned calories registrarion -->
-    <string name="registrar_calor_as_quemadas">Registrar Calorías Quemadas</string>
+    <!--Strings related to average of calories and burned calories registrarion -->
+    <string name="lblTitleRegistarC">Registrar Calorías Quemadas</string>
     <string name="ejercicio">Ejercicio</string>
     <string name="inicio">Inicio</string>
-    <string name="calor_as_quemadas">Calorías quemadas</string>
+    <string name="calor_as_quemadas">  Calorías quemadas</string>
     <string name="calories">Calories</string>
     <string name="kcal">Kcal</string>
-    <string name="fuego">fuego</string>
-    <string name="im_genes">Imágenes - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</string>
+    <string name="im_genes">Imágenes - - - - - - - - - - - - - - - - - - - - - - - -</string>
     <string name="caloriessubtitle">---------------Comparativa en Kcal---------------</string>
     <string name="notas">Notas:</string>
     <string name="cancelar">Cancelar</string>
     <string name="guardar">Guardar</string>
     <string name="up">up</string>
-    <string name="cmpcalories">Comparación caloríca</string>
-    <string name="titlecalories">CALORÍAS \n CONSUMIDAS VS. GASTADAS</string>
-    <string name="time">Periodo de tiempo</string>
-    <string name="Kcal">kcal</string>
-    <string name="numcal"> - - - - </string>
-    <string name="burned">GASTADAS</string>
-    <string name="consumed">CONSUMIDAS</string>
+
     <string name="avgCalories">Promedio Calorías</string>
     <string name="titleAvgCalories">PROMEDIO DE CALORÍAS \n GASTADAS</string>
     <string name="avg">Promedio</string>
     <string name="numAverage">800</string>
 
+    <string-array name="exercise">
+        <item>Correr</item>
+        <item>Caminar</item>
+        <item>Pesas</item>
+        <item>Bicicleta</item>
+    </string-array>
 </resources>
