@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-    
+
 
         firebaseAuth.signInWithEmailAndPassword(correo,password)
                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

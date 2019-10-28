@@ -29,7 +29,7 @@ public class RegistroActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;// Referencia a la base de Datos firebase
     private EditText nombre,email,contrasena,validacion,fecha,altura,peso,ocupacion;
-
+    boolean i=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,7 @@ public class RegistroActivity extends AppCompatActivity {
 
 
     private void registro(){
+
         String  name = nombre.getText().toString();
         final String  correo = email.getText().toString();
         String password = contrasena.getText().toString();
@@ -98,26 +99,51 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
+
                 if (task.isSuccessful()) {
+
                     Toast.makeText(RegistroActivity.this,"Usuario registrado",Toast.LENGTH_LONG).show();
+
+                    i=true;
                 }
                 else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(RegistroActivity.this,"Usuario YA Registrado Ingrese Otro",Toast.LENGTH_LONG).show();
                         return;
                     } else {
-                        Toast.makeText(RegistroActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                        if (contrasena.length() <= 5) {
+                            Toast.makeText(RegistroActivity.this, "La contraseña debe tener mas de 5 caracteres", Toast.LENGTH_LONG).show();
+                            return ;
+                        }
+                        if (!correo.contains("@gmail")) {
+                            Toast.makeText(RegistroActivity.this, "Ingrese correo @gmail ", Toast.LENGTH_LONG).show();
                         return;
+                        }
+                        else {
+
+                            Toast.makeText(RegistroActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                     }
                 }
 
             }
         });
+        if (contrasena.length() <= 5) {
+            return ;
+        }
+        if (!correo.contains("@gmail")) {
+            return;
+        }
+        else {
+            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight);
+            mDatabase.child("users").child(id).setValue(data);
+            launchProfile();
+        }
 
-        DatosRegistro data = new DatosRegistro(id,name,correo,password,vcontrasena,trabajo,10,height,weight);
-        mDatabase.child("users").child(id).setValue(data);
 
-       // mDatabase reg = new mDatabase(id,name,correo,password,vcontrasena,trabajo,height,weight);
+
+
     }
    /* Spinner spinner = (Spinner) findViewById(R.id.spinnerGenero);
     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genero, R.layout.spinner_item);
