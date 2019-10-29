@@ -27,12 +27,20 @@
                     <category android:name="android.intent.category.LAUNCHER" />
                 </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.registro.RegistroActivity"
             android:label="Registro" />
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:label="Profile" />
+        <activity
+            android:name=".ui.burnedCalories.BurnedCaloriesActivity"
+            android:label="Registrar Calorías Quemadas" />
+        <activity
+            android:name=".ui.sleep.RegisterSleepManualActivity"
+            android:label="Horas de sueño. Manual" />
+
     </application>
 
 </manifest>
