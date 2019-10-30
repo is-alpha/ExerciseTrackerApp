@@ -112,4 +112,13 @@
     <string name="menu_achievements">Logros</string>
     <string name="menu_goals">Metas</string>
     <string name="menu_information">Información</string>
+
+    <!-- Results -->
+    <string name="lbl_Results">RESULTADOS</string>
+    <string name="lbl_caloriasConsumidas">CALORÍAS CONSUMIDAS VS.   GASTADAS</string>
+    <string name="calor_as_de_ejercicio">CALORÍAS DE EJERCICIO</string>
+    <string name="promedio_de_calor_as_gastadas">PROMEDIO DE CALORÍAS GASTADAS</string>
+    <string name="peso_perdido">PESO PERDIDO</string>
+    <string name="todo">TODO</string>
+    <string name="c_lculo_de_imc">CÁLCULO DE IMC</string>
 </resources>
