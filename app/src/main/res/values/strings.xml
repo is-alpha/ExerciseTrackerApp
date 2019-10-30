@@ -128,4 +128,13 @@
     <string name="peso_inicial">Peso inicial</string>
     <string name="kg">## Kg</string>
     <string name="meta">Meta</string>
+    <string name="infA">Correr\n30/Octubre/19 8:00\n30 minutos</string>
+    <string name="titleUS11">CALORÍAS GASTADAS POR EJERCICIO</string>
+    <string name="infB">Cardio\n30/Octubre/19 13:00\n 30 minutos</string>
+    <string name="calB">300 cal</string>
+    <string name="infC">Correr \n30/Octubre/19 8:00\n 30 minutos</string>
+    <string name="calD">300 cal</string>
+    <string name="infD">Correr\n30/Octubre/19 8:00\n 30 minutos</string>
+    <string name="calC">300 cal</string>
+    <string name="calA">300 cal</string>
 </resources>
