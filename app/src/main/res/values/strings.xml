@@ -121,4 +121,11 @@
     <string name="peso_perdido">PESO PERDIDO</string>
     <string name="todo">TODO</string>
     <string name="c_lculo_de_imc">CÁLCULO DE IMC</string>
+    <string name="grafica">grafica</string>
+    <string name="peso_perdido2">Peso perdido</string>
+    <string name="historial">HISTORIAL</string>
+    <string name="estado">Estado</string>
+    <string name="peso_inicial">Peso inicial</string>
+    <string name="kg">## Kg</string>
+    <string name="meta">Meta</string>
 </resources>
