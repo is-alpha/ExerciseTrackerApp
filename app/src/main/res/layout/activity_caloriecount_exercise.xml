@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+
+                android:id="@+id/subtitleAvgSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/titleUS11"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/label_PeriodoTiempo" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/periodoTiempo" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:background="#DEDEDC"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/imageViewB"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/correr2"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/textViewC"
+                android:layout_width="wrap_content"
+                android:layout_height="105dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/infA"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textViewD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="@string/calA"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_dark"/>
+
+
+        </LinearLayout>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:background="#DEDEDC"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/imageViewE"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/cardio"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/textViewF"
+                android:layout_width="wrap_content"
+                android:layout_height="105dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/infB"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textViewG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="@string/calB"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_dark"/>
+
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:background="#DEDEDC"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/imageViewH"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/correr2"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/textViewI"
+                android:layout_width="wrap_content"
+                android:layout_height="105dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/infC"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textViewJ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="@string/calC"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_dark"/>
+
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:background="#DEDEDC"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/imageViewK"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/correr2"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/textViewL"
+                android:layout_width="wrap_content"
+                android:layout_height="105dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/infD"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textViewM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="@string/calC"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_dark"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
