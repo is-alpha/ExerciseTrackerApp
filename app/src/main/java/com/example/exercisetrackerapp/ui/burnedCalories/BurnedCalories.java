@@ -14,7 +14,6 @@ public class BurnedCalories extends Calorie {
     public String getExercise() {
         return exercise;
     }
-
     public void setExercise(String exercise) {
         this.exercise = exercise;
     }

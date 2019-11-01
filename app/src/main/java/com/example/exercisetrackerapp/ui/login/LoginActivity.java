@@ -1,6 +1,8 @@
 package com.example.exercisetrackerapp.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText usernameEditText,passwordEditText;
     Button logi,mBtLaunchRegistro;
      private FirebaseAuth firebaseAuth;
+    String  correo, password;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -164,14 +169,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void launchMain() {
+        /*
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("userID", correo);
+        editor.commit();
+        */
+
+        String userID = firebaseAuth.getCurrentUser().getUid();
+        DatabaseReference currentUser = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("userID", userID);
+        editor.commit();
+
         Intent intent = new Intent(this, SideMenuActivity.class);
         startActivity(intent);
     }
     private void login(){
 
-
-        String  correo = usernameEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
+        correo = usernameEditText.getText().toString();
+        password = passwordEditText.getText().toString();
         if(TextUtils.isEmpty(correo)){
             Toast.makeText(this,"Ingrese correo",Toast.LENGTH_LONG).show();
             return;

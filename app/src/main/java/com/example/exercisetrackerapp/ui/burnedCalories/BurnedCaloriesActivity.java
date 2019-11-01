@@ -1,6 +1,8 @@
 package com.example.exercisetrackerapp.ui.burnedCalories;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.data.model.Date;
+import com.example.exercisetrackerapp.ui.login.LoginActivity;
 import com.example.exercisetrackerapp.ui.profile.ProfileActivity;
 import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.example.exercisetrackerapp.ui.registro.RegistroActivity;
@@ -23,15 +26,23 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BurnedCaloriesActivity extends AppCompatActivity {
     private Button mBtCancelar;
     private Button mRegistrar;
     //private FirebaseAuth firebaseAuth;
-   // private DatabaseReference mDatabase;
+    // private DatabaseReference mDatabase;
     private EditText fechaInicio, caloriasQuemadas;
+    private Spinner spinner;
+    String correo;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -65,9 +76,28 @@ public class BurnedCaloriesActivity extends AppCompatActivity {
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerExercise);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.exercise, R.layout.spinner_item);
+        spinner = (Spinner) findViewById(R.id.spinnerExercise);
+        databaseReference.child("ejercicio").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> listaEjercicios = new ArrayList<String>();
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    String consultaEjercicios = areaSnapshot.child("nombre").getValue(String.class);
+                    listaEjercicios.add(consultaEjercicios);
+                }
 
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(BurnedCaloriesActivity.this, android.R.layout.simple_spinner_item, listaEjercicios);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(arrayAdapter);
+            }
+            // ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, listaEjercicios, R.layout.spinner_item);
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        }
+        );
     }
 
     private void inicializarFirebase(){
@@ -78,65 +108,50 @@ public class BurnedCaloriesActivity extends AppCompatActivity {
 
     private void registrarCaloriasManual(){
 
+        String sFechaInicio = fechaInicio.getText().toString();
+        String sCaloriasQuemadas = caloriasQuemadas.getText().toString();
+        String ejercicioSeleccionado = spinner.getSelectedItem().toString();
 
-        //String id = mDatabase.push().getKey();
+        validacion(sFechaInicio,sCaloriasQuemadas);
+        Toast.makeText(this,"fecha: " + sFechaInicio + " calorias: "+sCaloriasQuemadas + " ejercicio: " + ejercicioSeleccionado,Toast.LENGTH_LONG).show();
+        limpiarTextBox();
 
 
-        validacion();
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        String userID = sharedPref.getString("userID", "");
+        Toast.makeText(this,"userID: " + userID,Toast.LENGTH_LONG).show();
+
+
         /*
-         Persona p = new Persona();
-        p.setUid(UUID.randomUUID().toString());
-        p.setNombre(nombre);
-        p.setApellido(app);
-        p.setCorreo(correo);
-        p.setPassword(password);
-        databaseReference.child("Persona").child(p.getUid()).setValue(p);
-        Toast.makeText(this, "Agregado", Toast.LENGTH_LONG).show();
-        limpiarCajas();
+        DatabaseReference databaseReference =
+        DatabaseReference currentUser = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
         */
 
         /*
-        firebaseAuth.createUserWithEmailAndPassword(correo,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        databaseReference.child("users").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot areaSnapshot ;
+                correo = areaSnapshot.child("correo").getValue(String.class);
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    correo = areaSnapshot.child("correo").getValue(String.class);
 
-
-                if (task.isSuccessful()) {
-
-                    Toast.makeText(RegistroActivity.this,"Usuario registrado",Toast.LENGTH_LONG).show();
-
-                    i=true;
                 }
-                else {
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(RegistroActivity.this,"Usuario YA Registrado Ingrese Otro",Toast.LENGTH_LONG).show();
-                        return;
-                    } else {
-                        if (contrasena.length() <= 5) {
-                            Toast.makeText(RegistroActivity.this, "La contraseña debe tener mas de 5 caracteres", Toast.LENGTH_LONG).show();
-                            return ;
-                        }
-                        if (!correo.contains("@gmail")) {
-                            Toast.makeText(RegistroActivity.this, "Ingrese correo @gmail ", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        else {
-
-                            Toast.makeText(RegistroActivity.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                    }
-                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-      */
+
+
+        Toast.makeText(this,"correo: " + correo,Toast.LENGTH_LONG).show();
+        */
+
         /*
         BurnedCalories data = new BurnedCalories(sCaloriasQuemadas ,sFechaInicio,exercise);
         mDatabase.child("users").child(id).setValue(data);
         //launchProfile();
-
          */
 
     }
@@ -146,9 +161,7 @@ public class BurnedCaloriesActivity extends AppCompatActivity {
         caloriasQuemadas.setText("");
     }
 
-    private void validacion(){
-        String sFechaInicio = fechaInicio.getText().toString();
-        String sCaloriasQuemadas = caloriasQuemadas.getText().toString();
+    private void validacion(String sFechaInicio,String sCaloriasQuemadas){
 
         if(TextUtils.isEmpty(sFechaInicio)){
             Toast.makeText(this,"Ingrese Fecha de Inicio",Toast.LENGTH_LONG).show();

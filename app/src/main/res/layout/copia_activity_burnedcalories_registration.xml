@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,9 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
         <Space
             android:layout_width="match_parent"
@@ -30,16 +27,15 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/ejercicio"
-                android:textSize="19sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="19sp"/>
 
             <Spinner
                 android:id="@+id/spinnerExercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-                <!--android:entries="@array/exercise" -->
-
+                android:layout_weight="1"
+                android:entries="@array/exercise" />
 
         </LinearLayout>
 
@@ -54,11 +50,11 @@
 
             <TextView
                 android:id="@+id/txtView11"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/label_fecha"
+                android:text="@string/inicio"
                 android:textSize="19sp"
                 android:textStyle="bold" />
 
@@ -68,7 +64,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="dd/mm/aaaa"
                 android:inputType="date" />
 
 
@@ -87,8 +82,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:text="     Calorías quemadas"
                 android:textSize="19sp"
                 android:textStyle="bold" />
@@ -99,8 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Kcal"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="Kcal"/>
 
         </LinearLayout>
 
@@ -114,8 +109,8 @@
                 android:layout_width="61dp"
                 android:layout_height="37dp"
                 android:layout_gravity="end"
-                android:contentDescription="fuego"
-                app:srcCompat="@drawable/fuego" />
+                app:srcCompat="@drawable/fuego"
+                android:contentDescription="fuego"/>
 
 
         </LinearLayout>
@@ -124,9 +119,101 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/im_genes"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
         <Space
             android:layout_width="wrap_content"
             android:layout_height="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <Space
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView25"
+                android:layout_width="112dp"
+                android:layout_height="106dp"
+                app:srcCompat="@drawable/upload"
+                android:contentDescription="subir"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView30"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_gravity="end"
+                app:srcCompat="@drawable/notes"
+                android:contentDescription="notas"/>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Notas:"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/editText5"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:hint="Escribe tus notas"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,7 +226,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Cancelar"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <Button
                 android:id="@+id/botonRegistrarCalQuemadas"
@@ -147,8 +235,13 @@
                 android:layout_height="77dp"
                 android:layout_weight="1"
                 android:text="Guardar"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
+
+
+
+
+
 
 
     </LinearLayout>

@@ -137,4 +137,7 @@
     <string name="infD">Correr\n30/Octubre/19 8:00\n 30 minutos</string>
     <string name="calC">300 cal</string>
     <string name="calA">300 cal</string>
+
+    <string name="label_fecha">Fecha</string>
+
 </resources>
