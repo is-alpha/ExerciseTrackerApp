@@ -11,35 +11,6 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#A8C7CD"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnBck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:background="#A8C7CD"
-                android:text="@string/regresar" />
-
-            <TextView
-                android:id="@+id/titleAvgSection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/lblTitleRegistarC"
-                android:textSize="20sp" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
         <Space
             android:layout_width="match_parent"
             android:layout_height="36dp" />
@@ -60,7 +31,7 @@
                 android:textSize="19sp"/>
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerExercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -87,11 +58,13 @@
                 android:textSize="19sp"
                 android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spinnerexercise"
+            <EditText
+                android:id="@+id/editTextDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="date" />
 
 
         </LinearLayout>
@@ -116,7 +89,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/editTextCaloriasGastadas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -248,7 +221,7 @@
 
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/botonCancelar"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -257,7 +230,7 @@
                 />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/botonRegistrarCalQuemadas"
                 android:layout_width="wrap_content"
                 android:layout_height="77dp"
                 android:layout_weight="1"

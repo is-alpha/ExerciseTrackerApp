@@ -10,32 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#CDDC39"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:background="#008BC34A"
-                android:text="@string/regresar" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="start|center_vertical"
-                android:text="@string/label_MetasEjercicio"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-    <Space
+        <Space
         android:layout_width="match_parent"
         android:layout_height="18dp" />
 

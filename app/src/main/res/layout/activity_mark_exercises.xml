@@ -23,32 +23,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="650dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@android:color/holo_green_light"
-            android:text="@string/regresar" />
-
-        <TextView
-            android:id="@+id/textView54"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light"
-            android:text="           Regresar"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="80dp"
@@ -76,7 +50,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/botonCancelar"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/common_google_signin_btn_text_dark_default"
@@ -84,7 +58,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/botonRegistrarCalQuemadas"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/common_google_signin_btn_text_dark_default"
