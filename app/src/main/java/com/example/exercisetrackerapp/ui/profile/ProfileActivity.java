@@ -8,12 +8,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.ui.login.LoginActivity;
 
 public class ProfileActivity extends AppCompatActivity {
     private Button mRegresar;
     //private ImageView calendario;
     private DatePickerDialog picker;
     private TextView textViewFechaNac;
+    private TextView nombre;
+    private TextView correo;
+    private TextView genero;
+    private TextView altura;
+    private TextView peso;
+    private TextView ocupacion;
+    public static String nam="HOLAAAAA";
+    LoginActivity log;
     //private Button botonCalendario;
 
     @Override
@@ -22,13 +31,24 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_profile);
 
         mRegresar = (Button) findViewById(R.id.botonRegresarP);
+        nombre = (TextView) findViewById(R.id.nombre);
+        correo = (TextView) findViewById(R.id.email);
+        genero = (TextView) findViewById(R.id.genero);
+        altura = (TextView) findViewById(R.id.altura);
+        peso = (TextView) findViewById(R.id.peso);
+        ocupacion = (TextView) findViewById(R.id.trabajoValor);
         mRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+        nombre.setText("jlololo");
+       // nam = log.getCorreo();
+       // Toast.makeText(this,nam,Toast.LENGTH_LONG).show();
         /*
+
         botonCalendario = (Button) findViewById(R.id.botonCalendario);
         textViewFechaNac = (TextView) findViewById(R.id.textViewFechaNac);
         botonCalendario.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +70,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         */
+
+    }
+
+    public void despliega(){
+
 
     }
 }

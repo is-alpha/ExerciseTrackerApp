@@ -1,30 +1,34 @@
 package com.example.exercisetrackerapp;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class SideMenuActivity extends AppCompatActivity {
 
+    String email, uid;
+    String nombre;
     private AppBarConfiguration mAppBarConfiguration;
+    DatabaseReference databaseReference;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    // Write a message to the database
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,33 @@ public class SideMenuActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+        ///LEER DATOS DE BASE DE DATOS
 
+      /*  myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                nombre = dataSnapshot.getValue(String.class);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });*/
+        ///
+        ////Aggarrar el Usuario.
+        if (user != null) {
+             email = user.getEmail();
+
+        }
+        /// BUSQUEDA DEL USUARIO POR EMAIL
+        Query query = myRef.orderByChild("correo").equalTo(email);
+        ///
+        Toast.makeText(this,"Hola "+email,Toast.LENGTH_LONG).show();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

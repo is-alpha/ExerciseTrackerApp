@@ -1,11 +1,9 @@
 package com.example.exercisetrackerapp.ui.registro;
 
-import java.sql.Date;
-
 public class DatosRegistro {
     String id,nombre,correo,contrasena,vcontrasena,ocupacion;
     int fecha;
-    float altura,peso;
+    float altura,peso,hsueno,hextras,calQuemadas;
 
     public DatosRegistro(String id,String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, int fecha, float altura, float peso) {
         this.id = id;
@@ -17,6 +15,28 @@ public class DatosRegistro {
         this.fecha = fecha;
         this.altura = altura;
         this.peso = peso;
+
+    }
+    public DatosRegistro(String correo){
+        this.correo=correo;
+    }
+    public DatosRegistro() {
+    }
+
+    public DatosRegistro(float hsueno, float hextras) {
+        this.hsueno = hsueno;
+        this.hextras = hextras;
+    }
+    public DatosRegistro(float calQuemadas) {
+        this.calQuemadas = calQuemadas;
+    }
+
+    public float getCalQuemadas() {
+        return calQuemadas;
+    }
+
+    public void setCalQuemadas(float calQuemadas) {
+        this.calQuemadas = calQuemadas;
     }
 
     public String getId() {

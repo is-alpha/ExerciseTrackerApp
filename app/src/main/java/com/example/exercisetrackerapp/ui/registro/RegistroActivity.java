@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.ui.login.LoginActivity;
 import com.example.exercisetrackerapp.ui.profile.ProfileActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -108,7 +107,7 @@ public class RegistroActivity extends AppCompatActivity {
                 }
                 else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(RegistroActivity.this,"Usuario YA Registrado Ingrese Otro",Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistroActivity.this,"Usuario ya registrado ingrese otro",Toast.LENGTH_LONG).show();
                         return;
                     } else {
                         if (contrasena.length() <= 5) {
@@ -138,7 +137,10 @@ public class RegistroActivity extends AppCompatActivity {
         else {
             DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight);
             mDatabase.child("users").child(id).setValue(data);
-            launchProfile();
+            Intent intent = new Intent(this, ProfileActivity.class);
+            intent.putExtra(ProfileActivity.nam, correo);
+            startActivity(intent);
+            //launchProfile();
         }
 
 
@@ -158,6 +160,7 @@ public class RegistroActivity extends AppCompatActivity {
 
    private void launchProfile() {
        Intent intent = new Intent(this, ProfileActivity.class);
+       //intent.putExtra(name);
        startActivity(intent);
    }
 

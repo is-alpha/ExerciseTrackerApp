@@ -1,7 +1,6 @@
 package com.example.exercisetrackerapp.ui.burnedCalories;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,17 +14,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.data.model.Date;
-import com.example.exercisetrackerapp.ui.login.LoginActivity;
-import com.example.exercisetrackerapp.ui.profile.ProfileActivity;
-import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
-import com.example.exercisetrackerapp.ui.registro.RegistroActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,11 +33,12 @@ public class BurnedCaloriesActivity extends AppCompatActivity {
     // private DatabaseReference mDatabase;
     private EditText fechaInicio, caloriasQuemadas;
     private Spinner spinner;
-    String correo;
+    String email;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
+   ///CON ESTA REFERENCIA
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +49,12 @@ public class BurnedCaloriesActivity extends AppCompatActivity {
         //firebaseAuth = FirebaseAuth.getInstance();
 
         inicializarFirebase();
+       ////AQUI SE AGARRA EL EMAIL DEL USUARIO QUE INGRESO SESION
+        if (user != null) {
+            email = user.getEmail();
 
+        }
+        Toast.makeText(this,"Hola "+email,Toast.LENGTH_LONG).show();
         fechaInicio = (EditText) findViewById(R.id.editTextDate);
         caloriasQuemadas = (EditText) findViewById(R.id.editTextCaloriasGastadas);
 
