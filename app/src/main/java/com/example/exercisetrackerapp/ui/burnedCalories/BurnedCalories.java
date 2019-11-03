@@ -4,18 +4,28 @@ import com.example.exercisetrackerapp.data.model.Calorie;
 import com.example.exercisetrackerapp.data.model.Date;
 
 public class BurnedCalories extends Calorie {
-    String exercise;
+    String usuario, ejercicio;
 
-    public BurnedCalories(float cantCalorie, Date date,String exercise) {
-        super(cantCalorie, date);
-        this.exercise = exercise;
+    public BurnedCalories(String usuario, float cantCalorias, Date date,String ejercicio) {
+        super(cantCalorias,date);
+        this.usuario = usuario;
+        this.ejercicio = ejercicio;
     }
 
     public String getExercise() {
-        return exercise;
+        return ejercicio;
     }
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setExercise(String ejercicio) {
+        this.ejercicio = ejercicio;
     }
 
 }

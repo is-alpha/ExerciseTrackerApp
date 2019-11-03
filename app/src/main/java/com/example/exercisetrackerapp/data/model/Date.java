@@ -17,6 +17,12 @@ public class Date {
         this.second = second;
     }
 
+    public Date(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
     public int getMonth() {
         return month;
     }
