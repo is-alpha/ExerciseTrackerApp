@@ -141,4 +141,11 @@
 
     <string name="label_fecha">Fecha</string>
 
+
+    <string-array name="objetivos">
+        <item>Objetivo de tiempo</item>
+        <item>Objetivo de distancia</item>
+        <item>Objetivo de repeticiones</item>
+    </string-array>
+
 </resources>
