@@ -1,4 +1,4 @@
-package com.example.exercisetrackerapp.ui.exercises;
+package com.example.exercisetrackerapp.ui.exerciseRoutine;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -16,11 +16,11 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private Context mContext;
+    //private Context mContext;
     private List<Exercise> mData;
 
-    public RecyclerViewAdapter(Context mContext, List<Exercise> mData) {
-        this.mContext = mContext;
+    public RecyclerViewAdapter(List<Exercise> mData) {
+        //this.mContext = mContext;
         this.mData = mData;
     }
 
@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
 
-        LayoutInflater mInflater = LayoutInflater.from(mContext);
+        LayoutInflater mInflater = LayoutInflater.from(viewGroup.getContext());
         view = mInflater.inflate(R.layout.cardview_item_exercise, viewGroup, false);
 
         return new MyViewHolder(view);

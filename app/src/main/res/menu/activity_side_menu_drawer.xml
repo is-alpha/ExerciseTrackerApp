@@ -25,6 +25,10 @@
             android:icon="@drawable/achievements"
             android:title="@string/menu_achievements" />
         <item
+            android:id="@+id/nav_routine"
+            android:icon="@drawable/routine"
+            android:title="@string/menu_routine" />
+        <item
             android:id="@+id/nav_goals"
             android:icon="@drawable/goals"
             android:title="@string/menu_goals" />

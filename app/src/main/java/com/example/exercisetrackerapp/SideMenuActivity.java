@@ -77,7 +77,7 @@ public class SideMenuActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,R.id.nav_profile, R.id.nav_exercises, R.id.nav_results,
-                R.id.nav_achievements, R.id.nav_goals, R.id.nav_information)
+                R.id.nav_achievements, R.id.nav_routine, R.id.nav_goals, R.id.nav_information)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
