@@ -98,7 +98,7 @@ public class BurnedCaloriesActivity extends AppCompatActivity {
     }
 
     private void inicializarFirebase(){
-        FirebaseApp.initializeApp(this);
+        //FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
