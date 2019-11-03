@@ -8,6 +8,7 @@ public class Exercise {
     private Calorie calories;
     private Date time;
     private Image image;
+    private int Thumbnail;
 
     public Exercise(String name, Type type, Calorie calories, Date time, Image image) {
         this.name = name;
@@ -16,6 +17,17 @@ public class Exercise {
         this.time = time;
         this.image = image;
     }
+
+    public Exercise(String name, Type type, int thumbnail) {
+        this.name = name;
+        this.type = type;
+        this.calories = calories;
+        Thumbnail = thumbnail;
+    }
+
+    public int getThumbnail() { return Thumbnail; }
+
+    public void setThumbnail(int thumbnail) { Thumbnail = thumbnail; }
 
     public String getName() {
         return name;
