@@ -137,10 +137,10 @@ public class RegistroActivity extends AppCompatActivity {
         else {
             DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight);
             mDatabase.child("users").child(id).setValue(data);
-            Intent intent = new Intent(this, ProfileActivity.class);
+            /*Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra(ProfileActivity.nam, correo);
-            startActivity(intent);
-            //launchProfile();
+            startActivity(intent);*/
+            launchProfile();
         }
 
 

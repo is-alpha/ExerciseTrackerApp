@@ -1,14 +1,11 @@
 package com.example.exercisetrackerapp.ui.burnedCalories;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -113,6 +110,10 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
                 datePicker.show(getSupportFragmentManager(), "date picker");
             }
         });
+
+
+
+
         /*
         databaseReference.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
