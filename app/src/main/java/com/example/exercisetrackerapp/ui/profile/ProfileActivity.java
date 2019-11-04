@@ -6,9 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.login.LoginActivity;
+import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
     private Button mRegresar;
@@ -21,8 +32,14 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView altura;
     private TextView peso;
     private TextView ocupacion;
-    public static String nam="HOLAAAAA";
+    private TextView fecha;
+    public  String email,userID;
     LoginActivity log;
+    private FirebaseDatabase mFirebaseDatabase;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private  DatabaseReference myRef;
+    ArrayList<String> array  = new ArrayList<>();
+    DatosRegistro uInfo = new DatosRegistro();
     //private Button botonCalendario;
 
     @Override
@@ -30,13 +47,17 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_profile);
 
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
         mRegresar = (Button) findViewById(R.id.botonRegresarP);
-        nombre = (TextView) findViewById(R.id.nombre);
-        correo = (TextView) findViewById(R.id.email);
+        nombre = (TextView) findViewById(R.id.nombreUsuario);
+        correo = (TextView) findViewById(R.id.correo);
         genero = (TextView) findViewById(R.id.genero);
         altura = (TextView) findViewById(R.id.altura);
         peso = (TextView) findViewById(R.id.peso);
         ocupacion = (TextView) findViewById(R.id.trabajoValor);
+        fecha = (TextView) findViewById(R.id.editTextFechaNac);
         mRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +65,74 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        nombre.setText("jlololo");
+
+        if (user != null) {
+            email = user.getEmail();
+            userID = user.getUid();
+        }
+
+
+        //Empieza aqui chaval
+        myRef.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
+        //myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               // showData(dataSnapshot);
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+
+                    uInfo.setNombre(ds.child(userID).getValue(DatosRegistro.class).getNombre()); //set the name
+                    uInfo.setCorreo(ds.child(userID).getValue(DatosRegistro.class).getCorreo()); //set the emai
+                    uInfo.setOcupacion(ds.child(userID).getValue(DatosRegistro.class).getOcupacion());
+                    uInfo.setAltura(ds.child(userID).getValue(DatosRegistro.class).getAltura()); //set the phone_num
+                    uInfo.setPeso(ds.child(userID).getValue(DatosRegistro.class).getPeso()); //
+                    uInfo.setFecha(ds.child(userID).getValue(DatosRegistro.class).getFecha());
+
+
+                    ArrayList<String> array  = new ArrayList<>();
+                    array.add(uInfo.getNombre());
+                    array.add(uInfo.getCorreo());
+                    array.add(uInfo.getOcupacion());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        nombre.setText(uInfo.getNombre());
+        correo.setText(uInfo.getCorreo());
+        altura.setText(String.valueOf(uInfo.getAltura()));
+        peso.setText(String.valueOf(uInfo.getPeso()));
+        ocupacion.setText(uInfo.getOcupacion());
+        fecha.setText(String.valueOf(uInfo.getFecha()));
+
+
+
+
+
+/*
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    */
+        ///
+
+
+       // nombre.setText(email.toString());
+
+        Toast.makeText(this,"H "+email,Toast.LENGTH_LONG).show();
        // nam = log.getCorreo();
        // Toast.makeText(this,nam,Toast.LENGTH_LONG).show();
         /*
@@ -73,6 +161,23 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+//Medtodo opcional
+ /*   private void showData(DataSnapshot dataSnapshot) {
+        for(DataSnapshot ds : dataSnapshot.getChildren()){
+            DatosRegistro uInfo = new DatosRegistro();
+            uInfo.setNombre(ds.child(userID).getValue(DatosRegistro.class).getNombre()); //set the name
+            uInfo.setCorreo(ds.child(userID).getValue(DatosRegistro.class).getCorreo()); //set the emai
+            uInfo.setOcupacion(ds.child(userID).getValue(DatosRegistro.class).getOcupacion());
+            uInfo.setAltura(ds.child(userID).getValue(DatosRegistro.class).getAltura());
+            uInfo.setPeso(ds.child(userID).getValue(DatosRegistro.class).getPeso()); //
+
+            ArrayList<String> array  = new ArrayList<>();
+            array.add(uInfo.getNombre());
+            array.add(uInfo.getCorreo());
+            array.add(uInfo.getOcupacion());
+        }
+    }
+    */
     public void despliega(){
 
 
