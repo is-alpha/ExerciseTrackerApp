@@ -23,8 +23,8 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
                          ///REVISAR ESTE .XML PORQUE FALLAS//
-     //  setContentView(R.layout.activity_register_hours_sleep_manual);
-        setContentView(R.layout.activity_register_hours_sleep);
+       setContentView(R.layout.activity_register_hours_sleep_manual);
+       // setContentView(R.layout.activity_register_hours_sleep);
 
         horasSueno  = (TextView) findViewById(R.id.textViewLabelHorasD);
         horasSiestas  = (TextView) findViewById(R.id.textView_horasSiesta);

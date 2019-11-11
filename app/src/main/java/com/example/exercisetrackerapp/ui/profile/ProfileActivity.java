@@ -6,18 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.login.LoginActivity;
 import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -47,17 +43,18 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_profile);
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
+       // mFirebaseDatabase = FirebaseDatabase.getInstance();
+        //myRef = mFirebaseDatabase.getReference();
+        Bundle bundle = new Bundle();
 
         mRegresar = (Button) findViewById(R.id.botonRegresarP);
-        nombre = (TextView) findViewById(R.id.nombreUsuario);
+       /* nombre = (TextView) findViewById(R.id.nombreUsuario);
         correo = (TextView) findViewById(R.id.correo);
         genero = (TextView) findViewById(R.id.genero);
         altura = (TextView) findViewById(R.id.altura);
         peso = (TextView) findViewById(R.id.peso);
         ocupacion = (TextView) findViewById(R.id.trabajoValor);
-        fecha = (TextView) findViewById(R.id.editTextFechaNac);
+        fecha = (TextView) findViewById(R.id.editTextFechaNac);*/
         mRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
             userID = user.getUid();
         }
 
-
+/*
         //Empieza aqui chaval
         myRef.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
         //myRef.addValueEventListener(new ValueEventListener() {
@@ -82,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
 
                     uInfo.setNombre(ds.child(userID).getValue(DatosRegistro.class).getNombre()); //set the name
-                    uInfo.setCorreo(ds.child(userID).getValue(DatosRegistro.class).getCorreo()); //set the emai
+                   // uInfo.setCorreo(ds.child(userID).getValue(DatosRegistro.class).getCorreo()); //set the emai
                     uInfo.setOcupacion(ds.child(userID).getValue(DatosRegistro.class).getOcupacion());
                     uInfo.setAltura(ds.child(userID).getValue(DatosRegistro.class).getAltura()); //set the phone_num
                     uInfo.setPeso(ds.child(userID).getValue(DatosRegistro.class).getPeso()); //
@@ -101,15 +98,9 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
-        nombre.setText(uInfo.getNombre());
-        correo.setText(uInfo.getCorreo());
-        altura.setText(String.valueOf(uInfo.getAltura()));
-        peso.setText(String.valueOf(uInfo.getPeso()));
-        ocupacion.setText(uInfo.getOcupacion());
-        fecha.setText(String.valueOf(uInfo.getFecha()));
 
 
-
+*/
 
 
 /*
@@ -132,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
 
        // nombre.setText(email.toString());
 
-        Toast.makeText(this,"H "+email,Toast.LENGTH_LONG).show();
+      //  Toast.makeText(this,"H "+email,Toast.LENGTH_LONG).show();
        // nam = log.getCorreo();
        // Toast.makeText(this,nam,Toast.LENGTH_LONG).show();
         /*
@@ -178,8 +169,12 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
     */
-    public void despliega(){
+ public String agarraDatos(){
+    return "hoola";
+}
 
+    public ArrayList despliega(){
+    return array;
 
     }
 }

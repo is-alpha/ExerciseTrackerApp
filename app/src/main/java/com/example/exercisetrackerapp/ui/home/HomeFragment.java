@@ -58,7 +58,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-       /* ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
+
+        /*ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
         botonRegistroSuenoM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
