@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="30sp" />
 
-      <TextView
+    <!--  <TextView
             android:id="@+id/textView63"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,20 +59,23 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="##:##:##"
-            android:textSize="20sp" />
-
-    <!--    <LinearLayout
+            android:textSize="20sp" /> -->
+        
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <FrameLayout
-                android:id="@+id/stopwatch_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+            <fragment
+                android:id="@+id/stopwatchFrag"
+                android:name="com.example.exercisetrackerapp.ui.StopwatchFragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:layout="@layout/fragment_stopwatch" />
 
 
-        </LinearLayout> -->
+        </LinearLayout>
 
 
         <Space
@@ -106,7 +109,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
+           <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -131,7 +134,7 @@
                     android:layout_weight="0"
                     android:background="@android:color/holo_red_light"
                     android:text="Finalizar" />
-            </LinearLayout>
+            </LinearLayout> -->
 
         </LinearLayout>
 
