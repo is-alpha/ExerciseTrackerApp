@@ -149,4 +149,11 @@
         <item>Objetivo de repeticiones</item>
     </string-array>
 
+    <string name="iniciar">Iniciar</string>
+    <string name="detener">Pausar</string>
+    <string name="fin">Finalizar</string>
+
+
+
+
 </resources>
