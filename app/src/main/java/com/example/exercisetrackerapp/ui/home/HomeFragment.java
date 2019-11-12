@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
+import com.example.exercisetrackerapp.ui.location.MainActivityForOdometer;
 import com.example.exercisetrackerapp.ui.sleep.RegisterSleepManualActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,6 +59,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //PRUEBA DEL ODOMETRO CON BOTON DE SUENO 
+        ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
+        botonRegistroSuenoM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+        launchuOdometer();
+
+            }
+        });
+
 
         /*ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
         botonRegistroSuenoM.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +91,10 @@ public class HomeFragment extends Fragment {
 
     private void launchRegisterSleepManualActivity() {
         Intent intent = new Intent(getActivity(), RegisterSleepManualActivity.class);
+        startActivity(intent);
+    }
+    private void launchuOdometer() {
+        Intent intent = new Intent(getActivity(), MainActivityForOdometer.class);
         startActivity(intent);
     }
 }
