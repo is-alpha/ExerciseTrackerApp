@@ -68,7 +68,7 @@
 
             <fragment
                 android:id="@+id/stopwatchFrag"
-                android:name="com.example.exercisetrackerapp.ui.StopwatchFragment"
+                android:name="com.example.exercisetrackerapp.ui.exerciseRoutine.StopwatchFragment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

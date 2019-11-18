@@ -119,4 +119,6 @@ public class ExercisesFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
+
+
 }

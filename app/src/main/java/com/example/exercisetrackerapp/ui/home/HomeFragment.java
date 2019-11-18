@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
+import com.example.exercisetrackerapp.ui.exerciseRoutine.TrackExerciseActivity;
 import com.example.exercisetrackerapp.ui.location.MainActivityForOdometer;
 import com.example.exercisetrackerapp.ui.sleep.RegisterSleepManualActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -80,6 +81,14 @@ public class HomeFragment extends Fragment {
         });*/
 
 
+        ImageButton btntrackExercise=(ImageButton) root.findViewById(R.id.imageButton6);
+        btntrackExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchStopWatch();
+            }
+        });
+
 
         return root;
     }
@@ -95,6 +104,11 @@ public class HomeFragment extends Fragment {
     }
     private void launchuOdometer() {
         Intent intent = new Intent(getActivity(), MainActivityForOdometer.class);
+        startActivity(intent);
+    }
+
+    private void launchStopWatch() {
+        Intent intent = new Intent(getActivity(), TrackExerciseActivity.class);
         startActivity(intent);
     }
 }

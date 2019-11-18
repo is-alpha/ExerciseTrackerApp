@@ -40,6 +40,9 @@
         <activity
             android:name=".ui.sleep.RegisterSleepManualActivity"
             android:label="sleep Register" />
+        <activity
+            android:name=".ui.exerciseRoutine.TrackExerciseActivity"
+            android:label="track Exercise" />
     </application>
 
 </manifest>
