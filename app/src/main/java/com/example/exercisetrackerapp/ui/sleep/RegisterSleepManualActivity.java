@@ -16,6 +16,7 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
 
     TextView horasSueno,horasSiestas;
     int i=0,j=0;
+    String hor;
     Button sumar,restar,sumarext,restarext;
     public  String email,name;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -26,7 +27,7 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
        setContentView(R.layout.activity_register_hours_sleep_manual);
        // setContentView(R.layout.activity_register_hours_sleep);
 
-        horasSueno  = (TextView) findViewById(R.id.textViewLabelHorasD);
+        horasSueno  = (TextView) findViewById(R.id.textView_horasManual);
         horasSiestas  = (TextView) findViewById(R.id.textView_horasSiesta);
         sumar  = (Button) findViewById(R.id.boton_sumarHoras);
         restar  = (Button) findViewById(R.id.boton_restarHoras);
@@ -42,6 +43,8 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
                 if(i<=23 ){
                     i++;
                 }
+                hor = Integer.toString(i);
+                horasSueno.setText(hor);
             }
         });
 
@@ -50,28 +53,33 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
                 if(j<=23 ){
                     j++;
                 }
+
+                hor = Integer.toString(j);
+                horasSiestas.setText(hor);
             }
         });
         restar.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
-                if(i>=0 ){
-                    i++;
+                if(i>0 ){
+                    i--;
                 }
+                hor = Integer.toString(i);
+                horasSueno.setText(hor);
+
             }
         });
+
         restarext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(j>=0){
-                    j++;
+                if(j>0){
+                    j--;
                 }
+                hor = Integer.toString(j);
+                horasSiestas.setText(hor);
             }
         });
-        //
 
-        //
-        ponerHoras();
-        ponerHorasExtras();
-        getHorasSueno();
     }
     public void getHorasSueno(){
         float hsueno = Float.parseFloat(horasSueno.getText().toString());
@@ -79,13 +87,5 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
 
         DatosRegistro data = new DatosRegistro(hsueno,hextras);
         mDatabase.child("users").child(data.getId()).setValue(data);
-    }
-    public void ponerHoras(){
-        String str = String.valueOf(i);
-        horasSueno.setText(str);
-    }
-    public void ponerHorasExtras(){
-        String str = String.valueOf(j);
-        horasSiestas.setText(str);
     }
 }
