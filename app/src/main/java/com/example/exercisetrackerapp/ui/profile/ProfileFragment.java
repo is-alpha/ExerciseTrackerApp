@@ -1,6 +1,7 @@
 package com.example.exercisetrackerapp.ui.profile;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.ui.editProfile.EditPasswordActivity;
 import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -63,6 +66,7 @@ public class ProfileFragment extends Fragment {
         peso = (TextView) root.findViewById(R.id.peso);
         ocupacion = (TextView) root.findViewById(R.id.trabajoValor);
         fecha = (TextView) root.findViewById(R.id.editTextFechaNac);
+
 
         if (user != null) {
             email = user.getEmail();
@@ -127,6 +131,7 @@ public class ProfileFragment extends Fragment {
 
 
         ///
+
         return root;
     }
 
@@ -135,6 +140,8 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
 
     }
+
+
 
 
 }

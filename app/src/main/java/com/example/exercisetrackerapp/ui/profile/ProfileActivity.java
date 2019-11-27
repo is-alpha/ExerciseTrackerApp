@@ -1,6 +1,7 @@
 package com.example.exercisetrackerapp.ui.profile;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.ui.editProfile.EditPasswordActivity;
 import com.example.exercisetrackerapp.ui.login.LoginActivity;
 import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +21,9 @@ import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
     private Button mRegresar;
+
+    private Button mBtnEditPassword;
+
     //private ImageView calendario;
     private DatePickerDialog picker;
     private TextView textViewFechaNac;
@@ -55,6 +60,19 @@ public class ProfileActivity extends AppCompatActivity {
         peso = (TextView) findViewById(R.id.peso);
         ocupacion = (TextView) findViewById(R.id.trabajoValor);
         fecha = (TextView) findViewById(R.id.editTextFechaNac);*/
+
+        ////
+        mBtnEditPassword=(Button) findViewById(R.id.botonEditarPassword);
+        mBtnEditPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent= new Intent(ProfileActivity.this, EditPasswordActivity.class);
+                //startActivity(intent);
+                startActivity(new Intent(ProfileActivity.this, EditPasswordActivity.class));
+            //no funciona:(
+            }
+        });
+        ////
         mRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

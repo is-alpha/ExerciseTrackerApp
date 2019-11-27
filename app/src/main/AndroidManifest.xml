@@ -43,6 +43,10 @@
         <activity
             android:name=".ui.exerciseRoutine.TrackExerciseActivity"
             android:label="track Exercise" />
+
+        <activity
+            android:name=".ui.editProfile.EditPasswordActivity"
+            android:label="Editar contraseña"/>
     </application>
 
 </manifest>
