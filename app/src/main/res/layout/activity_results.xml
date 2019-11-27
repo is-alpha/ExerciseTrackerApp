@@ -5,62 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+        android:layout_height="match_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
 
             <Space
-                android:layout_width="30dp"
-                android:layout_height="match_parent" />
-
-            <TextView
-
-                android:id="@+id/subtitleAvgSection"
-                android:layout_width="254dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/lbl_Results"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="35sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageView23"
-                android:layout_width="0dp"
-                android:layout_height="66dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/grafica_results"
-                android:contentDescription="@string/todo" />
-
-            <Space
-                android:layout_width="50dp"
-                android:layout_height="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
 
-        </LinearLayout>
-
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-
-
-        <LinearLayout
+            <LinearLayout
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:background="#DEDEDC"
@@ -72,13 +34,13 @@
                     android:layout_height="match_parent" />
 
 
-            <ImageView
-                android:id="@+id/imageView00"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/burnedcalories"
-                android:contentDescription="@string/todo" />
+                <ImageView
+                    android:id="@+id/imageView00"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:contentDescription="@string/todo"
+                    app:srcCompat="@drawable/burnedcalories" />
 
 
                 <Button
@@ -88,164 +50,167 @@
                     android:layout_weight="0"
                     android:background="#DEDEDC"
                     android:text="@string/lbl_caloriasConsumidas"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:background="#DEDEDC"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#DEDEDC"
+                android:orientation="horizontal">
 
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+
+
+                <ImageView
+                    android:id="@+id/imageView01"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:contentDescription="@string/todo"
+                    app:srcCompat="@drawable/exercise3" />
+
+
+                <Button
+                    android:id="@+id/btnExerciseC"
+                    android:layout_width="299dp"
+                    android:layout_height="105dp"
+                    android:layout_weight="0"
+                    android:background="#DEDEDC"
+                    android:text="@string/calor_as_de_ejercicio"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
             <Space
-                android:layout_width="30dp"
-                android:layout_height="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
-
-            <ImageView
-                android:id="@+id/imageView01"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/exercise3"
-                android:contentDescription="@string/todo" />
-
-
-            <Button
-                android:id="@+id/btnExerciseC"
-                android:layout_width="299dp"
-                android:layout_height="105dp"
-                android:layout_weight="0"
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
                 android:background="#DEDEDC"
-                android:text="@string/calor_as_de_ejercicio"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:orientation="horizontal">
+
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:contentDescription="@string/todo"
+                    app:srcCompat="@drawable/caloriespng" />
+
+
+                <Button
+                    android:id="@+id/btnAverageC"
+                    android:layout_width="299dp"
+                    android:layout_height="105dp"
+                    android:layout_weight="0"
+                    android:background="#DEDEDC"
+                    android:text="@string/promedio_de_calor_as_gastadas"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#DEDEDC"
+                android:orientation="horizontal">
+
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:contentDescription="@string/todo"
+                    app:srcCompat="@drawable/weightloss" />
+
+
+                <Button
+                    android:id="@+id/btnWeight"
+                    android:layout_width="299dp"
+                    android:layout_height="105dp"
+                    android:layout_weight="0"
+                    android:background="#DEDEDC"
+                    android:text="@string/peso_perdido"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#DEDEDC"
+                android:orientation="horizontal">
+
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+
+
+                <ImageView
+                    android:id="@+id/imageView27"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:contentDescription="@string/todo"
+                    app:srcCompat="@drawable/imc" />
+
+
+                <Button
+                    android:id="@+id/btnIMC"
+                    android:layout_width="299dp"
+                    android:layout_height="105dp"
+                    android:layout_weight="0"
+                    android:background="#DEDEDC"
+                    android:text="@string/c_lculo_de_imc"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:background="#DEDEDC"
-            android:orientation="horizontal">
+    </ScrollView>
 
 
-            <Space
-                android:layout_width="30dp"
-                android:layout_height="match_parent" />
-
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/caloriespng"
-                android:contentDescription="@string/todo" />
-
-
-            <Button
-                android:id="@+id/btnAverageC"
-                android:layout_width="299dp"
-                android:layout_height="105dp"
-                android:layout_weight="0"
-                android:background="#DEDEDC"
-                android:text="@string/promedio_de_calor_as_gastadas"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:background="#DEDEDC"
-            android:orientation="horizontal">
-
-
-            <Space
-                android:layout_width="30dp"
-                android:layout_height="match_parent" />
-
-
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/weightloss"
-                android:contentDescription="@string/todo" />
-
-
-            <Button
-                android:id="@+id/btnWeight"
-                android:layout_width="299dp"
-                android:layout_height="105dp"
-                android:layout_weight="0"
-                android:background="#DEDEDC"
-                android:text="@string/peso_perdido"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:background="#DEDEDC"
-            android:orientation="horizontal">
-
-
-            <Space
-                android:layout_width="30dp"
-                android:layout_height="match_parent" />
-
-
-            <ImageView
-                android:id="@+id/imageView27"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/imc"
-                android:contentDescription="@string/todo" />
-
-
-            <Button
-                android:id="@+id/btnIMC"
-                android:layout_width="299dp"
-                android:layout_height="105dp"
-                android:layout_weight="0"
-                android:background="#DEDEDC"
-                android:text="@string/c_lculo_de_imc"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
