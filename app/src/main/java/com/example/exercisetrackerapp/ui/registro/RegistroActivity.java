@@ -77,6 +77,8 @@ public class RegistroActivity extends AppCompatActivity {
         String password = contrasena.getText().toString();
         String vcontrasena= validacion.getText().toString();
         String trabajo=ocupacion.getText().toString();
+        float hsueno = 0, calQuemadas = 0, calConsumidas = 0;
+
         String id = mDatabase.push().getKey();
        // int date = Integer.parseInt(fecha.getText().toString());
         float height = Float.parseFloat(altura.getText().toString());
@@ -114,7 +116,7 @@ public class RegistroActivity extends AppCompatActivity {
                             Toast.makeText(RegistroActivity.this, "La contraseña debe tener mas de 5 caracteres", Toast.LENGTH_LONG).show();
                             return ;
                         }
-                        if (!correo.contains("@gmail")) {
+                        if (!(correo.contains("@gmail") || (correo.contains("@uabc")) )) {
                             Toast.makeText(RegistroActivity.this, "Ingrese correo @gmail ", Toast.LENGTH_LONG).show();
                         return;
                         }
@@ -131,11 +133,11 @@ public class RegistroActivity extends AppCompatActivity {
         if (contrasena.length() <= 5) {
             return ;
         }
-        if (!correo.contains("@gmail")) {
+        if (!(correo.contains("@gmail") || (correo.contains("@uabc")) )) {
             return;
         }
         else {
-            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight);
+            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight,hsueno,calQuemadas,calConsumidas);
             mDatabase.child("users").child(id).setValue(data);
             /*Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra(ProfileActivity.nam, correo);

@@ -3,9 +3,9 @@ package com.example.exercisetrackerapp.ui.registro;
 public class DatosRegistro {
     String id,nombre,correo,contrasena,vcontrasena,ocupacion;
     int fecha;
-    float altura,peso,hsueno,hextras,calQuemadas;
+    float altura,peso,hsueno,hextras,calQuemadas,calConsumidas;
 
-    public DatosRegistro(String id,String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, int fecha, float altura, float peso) {
+    public DatosRegistro(String id,String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, int fecha, float altura, float peso,float hsueno,float calQuemadas,float calConsumidas) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -15,6 +15,9 @@ public class DatosRegistro {
         this.fecha = fecha;
         this.altura = altura;
         this.peso = peso;
+        this.hsueno = hsueno;
+        this.calQuemadas = calQuemadas;
+        this.calConsumidas = calConsumidas;
 
     }
     public DatosRegistro(String correo){
@@ -31,12 +34,28 @@ public class DatosRegistro {
         this.calQuemadas = calQuemadas;
     }
 
+    public float getHSueno() {
+        return hsueno;
+    }
+
+    public void setHSueno(float hSueno) {
+        this.hsueno = hsueno;
+    }
+
     public float getCalQuemadas() {
         return calQuemadas;
     }
 
     public void setCalQuemadas(float calQuemadas) {
         this.calQuemadas = calQuemadas;
+    }
+
+    public float getCalConsumidas() {
+        return calConsumidas;
+    }
+
+    public void setCalConsumidas(float calConsumidas) {
+        this.calConsumidas = calConsumidas;
     }
 
     public String getId() {

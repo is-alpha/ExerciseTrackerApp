@@ -153,5 +153,13 @@
     <string name="detener">Pausar</string>
     <string name="fin">Finalizar</string>
 
+    <!-- Strings para el registro de calorias-->
+    <string name="label_PreguntaCaloriasConsumidas">¿Cuántas calorías consumió?</string>
+    <string name="label_caloriasExtras">Calorías extras</string>
+    <string name="label_caloriasTotales">Calorías totales consumidas</string>
+    <string name="label_caloriasConsumidas">Calorías consumidas</string>
+    <string name="label_promedioCalorias">Promedio de calorías</string>
+    <string name="label_preguntaCalConsum">Cuántas calorías</string>
+
 
 </resources>

@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
 import com.example.exercisetrackerapp.ui.editProfile.EditPasswordActivity;
 import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +32,8 @@ public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
 
+    private Button mRegresar;
+    private Button mBtnEditPassword;
 
     private TextView textViewFechaNac;
     private TextView nombre;
@@ -66,6 +70,25 @@ public class ProfileFragment extends Fragment {
         peso = (TextView) root.findViewById(R.id.peso);
         ocupacion = (TextView) root.findViewById(R.id.trabajoValor);
         fecha = (TextView) root.findViewById(R.id.editTextFechaNac);
+
+
+        mRegresar =(Button) root.findViewById(R.id.botonRegresarP);
+        mRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+        mBtnEditPassword=(Button) root.findViewById(R.id.botonEditarPassword);
+        mBtnEditPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         if (user != null) {

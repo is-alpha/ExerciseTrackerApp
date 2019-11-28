@@ -89,14 +89,16 @@
 
         </LinearLayout>
 
-        <EditText
+        <TextView
             android:id="@+id/labelInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="false"
             android:ems="12"
             android:inputType="textPersonName"
             android:text="Información General"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <android.support.v7.widget.GridLayout
             android:layout_width="wrap_content"
@@ -166,14 +168,16 @@
 
         </android.support.v7.widget.GridLayout>
 
-        <EditText
+        <TextView
             android:id="@+id/labelInfo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="false"
             android:ems="12"
             android:inputType="textPersonName"
             android:text="Ocupación"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TableRow
             android:layout_width="match_parent"
