@@ -5,5 +5,6 @@ public enum Type {
     ABS,
     FOOTBALL,
     YOGA,
-    SWIMMING
+    SWIMMING,
+    BICYCLING
 }
