@@ -1,11 +1,11 @@
 package com.example.exercisetrackerapp.ui.registro;
 
 public class DatosRegistro {
-    String id,nombre,correo,contrasena,vcontrasena,ocupacion;
+    String id,nombre,correo,contrasena,vcontrasena,ocupacion,genero;
     int fecha;
     float altura,peso,hsueno,hextras,calQuemadas,calConsumidas;
 
-    public DatosRegistro(String id,String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, int fecha, float altura, float peso,float hsueno,float calQuemadas,float calConsumidas) {
+    public DatosRegistro(String id,String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, int fecha, float altura, float peso,float hsueno,float calQuemadas,float calConsumidas,String genero) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -18,6 +18,7 @@ public class DatosRegistro {
         this.hsueno = hsueno;
         this.calQuemadas = calQuemadas;
         this.calConsumidas = calConsumidas;
+        this.genero = genero;
 
     }
     public DatosRegistro(String correo){
@@ -64,6 +65,15 @@ public class DatosRegistro {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getNombre() {

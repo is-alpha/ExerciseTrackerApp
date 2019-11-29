@@ -22,12 +22,12 @@ public class OdometerService extends Service {
     private static Location lastLocation = null;
     public static final String PERMISSION_STRING
             = android.Manifest.permission.ACCESS_FINE_LOCATION;
-
     public class OdometerBinder extends Binder {
         OdometerService getOdometer() {
             return OdometerService.this;
         }
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -55,15 +55,15 @@ public class OdometerService extends Service {
                 == PackageManager.PERMISSION_GRANTED) {
             String provider = locManager.getBestProvider(new Criteria(), true);
             if (provider != null) {
-                locManager.requestLocationUpdates(provider,1000,1,listener);
+                locManager.requestLocationUpdates(provider, 1000, 1, listener);
             }
         }
     }
+
     @Override
     public IBinder onBind(Intent intent) {
         return binder;
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -77,8 +77,9 @@ public class OdometerService extends Service {
         }
     }
     public double getDistance() {
-        return this.distanceInMeters / 1609.344;
+        return this.distanceInMeters;
     }
 }
+
 
 

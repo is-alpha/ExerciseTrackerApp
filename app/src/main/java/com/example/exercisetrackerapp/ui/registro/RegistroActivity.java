@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -27,7 +26,8 @@ public class RegistroActivity extends AppCompatActivity {
     private Button mRegistrar;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;// Referencia a la base de Datos firebase
-    private EditText nombre,email,contrasena,validacion,fecha,altura,peso,ocupacion;
+    private EditText nombre,email,contrasena,validacion,fecha,altura,peso,ocupacion,genero;
+    private String gen;
     boolean i=false;
 
     @Override
@@ -47,6 +47,8 @@ public class RegistroActivity extends AppCompatActivity {
         altura = (EditText) findViewById(R.id.altura);
         peso = (EditText) findViewById(R.id.peso);
         ocupacion = (EditText) findViewById(R.id.editTextOcupacion);
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerGenero);
+        gen = spinner.getSelectedItem().toString();
         mBtRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,8 +66,9 @@ public class RegistroActivity extends AppCompatActivity {
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerGenero);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genero, R.layout.spinner_item);
+
+       /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genero, R.layout.spinner_item);
+        genero = adapter.getContext().toString();*/
 
     }
 
@@ -78,7 +81,7 @@ public class RegistroActivity extends AppCompatActivity {
         String vcontrasena= validacion.getText().toString();
         String trabajo=ocupacion.getText().toString();
         float hsueno = 0, calQuemadas = 0, calConsumidas = 0;
-
+        String gener = gen;
         String id = mDatabase.push().getKey();
        // int date = Integer.parseInt(fecha.getText().toString());
         float height = Float.parseFloat(altura.getText().toString());
@@ -137,7 +140,7 @@ public class RegistroActivity extends AppCompatActivity {
             return;
         }
         else {
-            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight,hsueno,calQuemadas,calConsumidas);
+            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight,hsueno,calQuemadas,calConsumidas,gener);
             mDatabase.child("users").child(id).setValue(data);
             /*Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra(ProfileActivity.nam, correo);

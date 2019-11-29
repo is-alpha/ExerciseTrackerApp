@@ -2,45 +2,51 @@ package com.example.exercisetrackerapp.ui.sleep;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterSleepManualActivity extends AppCompatActivity {
 
     TextView horasSueno,horasSiestas;
     int i=0,j=0;
     String hor;
-    Button sumar,restar,sumarext,restarext;
-    public  String email,name;
+    Button sumar,restar,sumarext,restarext,guardarHoras;
+    public  String email,name,emailAux,id;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private DatabaseReference mDatabase;// Referencia a la base de Datos firebase
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-                         ///REVISAR ESTE .XML PORQUE FALLAS//
-       setContentView(R.layout.activity_register_hours_sleep_manual);
-       // setContentView(R.layout.activity_register_hours_sleep);
 
-        horasSueno  = (TextView) findViewById(R.id.textView_horasManual);
-        horasSiestas  = (TextView) findViewById(R.id.textView_horasSiesta);
-        sumar  = (Button) findViewById(R.id.boton_sumarHoras);
-        restar  = (Button) findViewById(R.id.boton_restarHoras);
-        sumarext  = (Button) findViewById(R.id.boton_sumarSiesta);
-        restarext  = (Button) findViewById(R.id.boton_restarSiesta);
+        setContentView(R.layout.activity_register_hours_sleep_manual);
+        inicializarFirebase();
+
+        horasSueno = (TextView) findViewById(R.id.textView_horasManual);
+        horasSiestas = (TextView) findViewById(R.id.textView_horasSiesta);
+        sumar = (Button) findViewById(R.id.boton_sumarHoras);
+        restar = (Button) findViewById(R.id.boton_restarHoras);
+        sumarext = (Button) findViewById(R.id.boton_sumarSiesta);
+        restarext = (Button) findViewById(R.id.boton_restarSiesta);
+        guardarHoras = (Button) findViewById(R.id.botonGuardar_HorasSManual);
         if (user != null) {
             email = user.getEmail();
 
         }
 
+        id = databaseReference.push().getKey();
         sumar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(i<=23 ){
+                if (i <= 23) {
                     i++;
                 }
                 hor = Integer.toString(i);
@@ -50,7 +56,7 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
 
         sumarext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(j<=23 ){
+                if (j <= 23) {
                     j++;
                 }
 
@@ -61,7 +67,7 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
         restar.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                if(i>0 ){
+                if (i > 0) {
                     i--;
                 }
                 hor = Integer.toString(i);
@@ -72,7 +78,7 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
 
         restarext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(j>0){
+                if (j > 0) {
                     j--;
                 }
                 hor = Integer.toString(j);
@@ -80,12 +86,36 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
             }
         });
 
+        guardarHoras.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                getHorasSueno();
+            }
+        });
+
+
     }
     public void getHorasSueno(){
+        if(TextUtils.isEmpty(horasSueno.getText().toString())){
+            Toast.makeText(this,"Ingrese Horas de Sueno",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(horasSiestas.getText().toString())){
+            Toast.makeText(this,"Ingrese Horas de Siestas",Toast.LENGTH_LONG).show();
+            return;
+        }
         float hsueno = Float.parseFloat(horasSueno.getText().toString());
         float hextras = Float.parseFloat(horasSiestas.getText().toString());
 
-        DatosRegistro data = new DatosRegistro(hsueno,hextras);
-        mDatabase.child("users").child(data.getId()).setValue(data);
+            TimeSleep data = new TimeSleep(email, hsueno, hextras);
+            databaseReference.child("horSueno").child(id).setValue(data);
+            Toast.makeText(this, "Registro Exitoso! ", Toast.LENGTH_LONG).show();
+
     }
+    private void inicializarFirebase(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+
+
 }

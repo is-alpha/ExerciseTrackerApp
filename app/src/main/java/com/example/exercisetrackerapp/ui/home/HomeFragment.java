@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -26,8 +25,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 public class HomeFragment extends Fragment {
 
@@ -99,13 +96,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //PRUEBA DEL ODOMETRO CON BOTON DE SUENO 
-        ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
-        botonRegistroSuenoM.setOnClickListener(new View.OnClickListener() {
+        //boton para odometro
+        ImageButton botonOdometro = (ImageButton) root.findViewById(R.id.imageButton10);
+        botonOdometro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-        launchuOdometer();
+                launchuOdometer();
 
             }
         });
@@ -129,13 +126,13 @@ public class HomeFragment extends Fragment {
 
 
 
-        /*ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
+        ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
         botonRegistroSuenoM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchRegisterSleepManualActivity();
             }
-        });*/
+        });
 
 
         ImageButton btntrackExercise=(ImageButton) root.findViewById(R.id.imageButton6);

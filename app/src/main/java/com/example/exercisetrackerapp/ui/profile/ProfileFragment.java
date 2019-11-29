@@ -10,20 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
 import com.example.exercisetrackerapp.ui.editProfile.EditPasswordActivity;
 import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,13 +41,18 @@ public class ProfileFragment extends Fragment {
     private TextView peso;
     private TextView ocupacion;
     private TextView fecha;
-    private   String email,userID;
-    String nam;
+    private   String email,userID,emailAux,name, trabajo;
+    private float height, weight;
     private FirebaseDatabase mFirebaseDatabase;
     List<String> listaDatos;
     DatosRegistro uInfo;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+
     private DatabaseReference myRef = database.getReference("users");
     int i=0;
 
@@ -71,7 +74,7 @@ public class ProfileFragment extends Fragment {
         ocupacion = (TextView) root.findViewById(R.id.trabajoValor);
         fecha = (TextView) root.findViewById(R.id.editTextFechaNac);
 
-
+        inicializarFirebase();
         mRegresar =(Button) root.findViewById(R.id.botonRegresarP);
         mRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +98,30 @@ public class ProfileFragment extends Fragment {
             email = user.getEmail();
             userID = user.getUid();
         }
+
+        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    emailAux = areaSnapshot.child("correo").getValue().toString();
+                    if(emailAux.equals(email)){
+                        name = areaSnapshot.child("nombre").getValue().toString();
+                        nombre.setText(name);
+                        weight = Float.parseFloat(areaSnapshot.child("peso").getValue().toString());
+                        peso.setText(Float.toString(weight));
+                        height = Float.parseFloat(areaSnapshot.child("altura").getValue().toString());
+                        altura.setText(Float.toString(height));
+                        trabajo = areaSnapshot.child("ocupacion").getValue().toString();
+                        ocupacion.setText(trabajo);
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        /*
         myRef.orderByChild("correo").equalTo(email).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
@@ -107,7 +134,7 @@ public class ProfileFragment extends Fragment {
                 /*
                 String dato = dataSnapshot.getValue().toString();
                 listaDatos.add(dato);
-              nombre.setText(listaDatos.get(0));*/
+              nombre.setText(listaDatos.get(0));
 
 
             }
@@ -134,7 +161,7 @@ public class ProfileFragment extends Fragment {
 
             // ...
         });
-
+*/
         correo.setText(email);
 
        /* altura.setText(String.valueOf(uInfo.getAltura()));
@@ -165,6 +192,9 @@ public class ProfileFragment extends Fragment {
     }
 
 
-
+    private void inicializarFirebase(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
 
 }
