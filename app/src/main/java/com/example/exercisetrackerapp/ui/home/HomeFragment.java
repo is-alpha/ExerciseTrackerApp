@@ -12,12 +12,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.data.model.Weight;
 import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
 import com.example.exercisetrackerapp.ui.consumedCalories.ConsumedCalorieInfoActivity;
 import com.example.exercisetrackerapp.ui.consumedCalories.ConsumedCaloriesActivity;
 import com.example.exercisetrackerapp.ui.exerciseRoutine.TrackExerciseActivity;
 import com.example.exercisetrackerapp.ui.location.MainActivityForOdometer;
 import com.example.exercisetrackerapp.ui.sleep.RegisterSleepManualActivity;
+import com.example.exercisetrackerapp.ui.weight.WeightActivity;
+import com.example.exercisetrackerapp.ui.weight.WeightInfoActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +35,7 @@ public class HomeFragment extends Fragment {
     //Button botonCaloriasQuemadas;
     public  String email,name,calConsum,uid;
     private DatabaseReference mDatabase;
-    TextView textViewCalorias;
+    TextView textViewCalorias,textViewPeso;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -52,6 +55,8 @@ public class HomeFragment extends Fragment {
         }
 
         textViewCalorias = (TextView) root.findViewById(R.id.textViewCalorias);
+        textViewPeso = (TextView) root.findViewById(R.id.textViewPeso);
+
         mDatabase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -59,6 +64,7 @@ public class HomeFragment extends Fragment {
                     if(areaSnapshot.child("correo").getValue().toString().equals(email)){
                         calConsum = areaSnapshot.child("calConsumidas").getValue().toString();
                         textViewCalorias.setText(calConsum);
+                        textViewPeso.setText(areaSnapshot.child("peso").getValue().toString());
                     }
                 }
 
@@ -124,6 +130,22 @@ public class HomeFragment extends Fragment {
         });
 
 
+        ImageButton botonPesoEditar = (ImageButton) root.findViewById(R.id.botonPesoEditar);
+        botonPesoEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchPesoRegistry();
+            }
+        });
+
+        ImageButton botonPesoInfo = (ImageButton) root.findViewById(R.id.botonPesoInfo);
+        botonPesoInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchPesoInfo();
+            }
+        });
+
 
 
         ImageButton botonRegistroSuenoM = (ImageButton) root.findViewById(R.id.botonRegistroSuenoM);
@@ -166,6 +188,17 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(getActivity(), ConsumedCalorieInfoActivity.class);
         startActivity(intent);
     }
+
+    private void launchPesoRegistry() {
+        Intent intent = new Intent(getActivity(), WeightActivity.class);
+        startActivity(intent);
+    }
+
+    private void launchPesoInfo() {
+        Intent intent = new Intent(getActivity(), WeightInfoActivity.class);
+        startActivity(intent);
+    }
+
 
     private void launchRegisterSleepManualActivity() {
         Intent intent = new Intent(getActivity(), RegisterSleepManualActivity.class);

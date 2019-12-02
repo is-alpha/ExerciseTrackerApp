@@ -6,103 +6,116 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="343dp"
-        android:layout_height="526dp"
-        android:background="#B7ECE5"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="55dp"
-        tools:ignore="MissingConstraints">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView63"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#FFFCFC"
-            android:text="Efectos del ejercicio sobre la diabetes"
-            android:textColor="#2B2929"
-            android:textSize="24sp"
-            tools:layout_conversion_absoluteHeight="75dp"
-            tools:layout_editor_absoluteY="55dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_conversion_absoluteWidth="343dp" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B7ECE5"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="55dp">
 
-        <ImageView
-            android:id="@+id/imageView28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/diabetesyejercicio"
-            tools:layout_conversion_absoluteHeight="85dp"
-            tools:layout_editor_absoluteY="130dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_conversion_absoluteWidth="343dp" />
+            <TextView
+                android:id="@+id/textView63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFCFC"
+                android:gravity="center|center_vertical"
+                android:text="Efectos del ejercicio sobre la diabetes"
+                android:textColor="#2B2929"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_conversion_absoluteHeight="75dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="55dp" />
 
-        <TextView
-            android:id="@+id/textView69"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Muchas de las personas que tienen un mejor control de su diabetes son aquellas que realizan ejercicio físico de forma regular. Todo el mundo debería realizar algún tipo de actividad física, ya que los efectos no sólo mejoran el control glucémico sino que tienen efecto sobre otras funciones de nuestro cuerpo."
-            tools:layout_conversion_absoluteHeight="143dp"
-            tools:layout_editor_absoluteY="214dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_conversion_absoluteWidth="343dp" />
+            <ImageView
+                android:id="@+id/imageView28"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                app:srcCompat="@drawable/diabetesyejercicio"
+                tools:layout_conversion_absoluteHeight="85dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="130dp" />
 
-        <TextView
-            android:id="@+id/textView74"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Beneficios"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            tools:layout_conversion_absoluteHeight="27dp"
-            tools:layout_editor_absoluteY="357dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_conversion_absoluteWidth="343dp" />
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muchas de las personas que tienen un mejor control de su diabetes son aquellas que realizan ejercicio físico de forma regular. Todo el mundo debería realizar algún tipo de actividad física, ya que los efectos no sólo mejoran el control glucémico sino que tienen efecto sobre otras funciones de nuestro cuerpo."
+                tools:layout_conversion_absoluteHeight="143dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="214dp" />
 
-        <TextView
-            android:id="@+id/textView75"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="•Control glicémico: el ejercicio físico ha demostrado regular el metabolismo de los carbohidratos y la sensibilidad a la insulina."
-            tools:layout_conversion_absoluteHeight="67dp"
-            tools:layout_editor_absoluteY="385dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_conversion_absoluteWidth="343dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-        <TextView
-            android:id="@+id/textView76"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="•Hiperlipidemias: ha sido demostrado que el ejercicio físico regular ayuda a disminuir los niveles de colesterol"
-            tools:layout_conversion_absoluteHeight="72dp"
-            tools:layout_editor_absoluteY="452dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_conversion_absoluteWidth="343dp" />
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beneficios"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:layout_conversion_absoluteHeight="27dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="357dp" />
 
-        <TextView
-            android:id="@+id/textView77"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="•Hipertensión: El ejercicio físico disminuye  los niveles de tensión arterial en personas con diabetes."
-            tools:layout_conversion_absoluteHeight="57dp"
-            tools:layout_editor_absoluteY="524dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_conversion_absoluteWidth="343dp" />
+            <TextView
+                android:id="@+id/textView75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="•Control glicémico: el ejercicio físico ha demostrado regular el metabolismo de los carbohidratos y la sensibilidad a la insulina."
+                tools:layout_conversion_absoluteHeight="67dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="385dp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="•Hiperlipidemias: ha sido demostrado que el ejercicio físico regular ayuda a disminuir los niveles de colesterol"
+                tools:layout_conversion_absoluteHeight="72dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="452dp" />
 
-    <ImageView
-        android:id="@+id/imageView32"
-        android:layout_width="261dp"
-        android:layout_height="136dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.988"
-        app:srcCompat="@drawable/diabetesejercicio2" />
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="•Hipertensión: El ejercicio físico disminuye  los niveles de tensión arterial en personas con diabetes."
+                tools:layout_conversion_absoluteHeight="57dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="524dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <ImageView
+                android:id="@+id/imageView32"
+                android:layout_width="261dp"
+                android:layout_height="136dp"
+                app:srcCompat="@drawable/diabetesejercicio2" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

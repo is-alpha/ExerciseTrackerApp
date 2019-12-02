@@ -65,12 +65,15 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/personas_imc" />
 
-                <EditText
-                    android:id="@+id/editText3"
+                <TextView
+                    android:id="@+id/textViewIMC"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number" />
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

@@ -90,7 +90,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="20dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -139,12 +139,14 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/lb_wl3"
+                        android:id="@+id/textViewPesoInicial"
                         android:layout_width="108dp"
                         android:layout_height="108dp"
                         android:background="@drawable/circulo_azul_wl"
                         android:gravity="center"
-                        android:text="@string/kg" />
+                        android:text="@string/kg"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -167,12 +169,14 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/textViewPesoPerdido"
                         android:layout_width="113dp"
                         android:layout_height="111dp"
                         android:background="@drawable/criculo_rojo_wl"
                         android:gravity="center"
-                        android:text="@string/kg" />
+                        android:text="@string/kg"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -195,12 +199,14 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/textViewPesoMeta"
                         android:layout_width="108dp"
                         android:layout_height="108dp"
                         android:background="@drawable/circulo_verde_wl"
                         android:gravity="center"
-                        android:text="@string/kg" />
+                        android:text="@string/kg"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>

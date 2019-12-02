@@ -161,5 +161,7 @@
     <string name="label_promedioCalorias">Promedio de calorías</string>
     <string name="label_preguntaCalConsum">Cuántas calorías</string>
 
+    <!-- Strings para el registro de peso-->
+    <string name="label_PreguntaPeso">¿Cuál es su peso ideal?</string>
 
 </resources>
