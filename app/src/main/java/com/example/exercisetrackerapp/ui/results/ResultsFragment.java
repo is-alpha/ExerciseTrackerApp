@@ -75,6 +75,15 @@ public class ResultsFragment extends Fragment {
                 launchCalculateIMCActivity();
             }
         });
+
+        Button btnPerformance = (Button) root.findViewById(R.id.btnPerformance);
+        btnPerformance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchPerformanceActivity();
+            }
+        });
+
         return root;
     }
 
@@ -100,6 +109,11 @@ public class ResultsFragment extends Fragment {
 
     private void launchCalculateIMCActivity() {
         Intent intent = new Intent(getActivity(), CalculateIMCActivity.class);
+        startActivity(intent);
+    }
+
+    private void launchPerformanceActivity() {
+        Intent intent = new Intent(getActivity(), PerformanceActivity.class);
         startActivity(intent);
     }
 }

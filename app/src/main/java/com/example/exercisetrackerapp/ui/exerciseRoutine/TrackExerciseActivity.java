@@ -1,6 +1,5 @@
 package com.example.exercisetrackerapp.ui.exerciseRoutine;
 
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.example.exercisetrackerapp.R;

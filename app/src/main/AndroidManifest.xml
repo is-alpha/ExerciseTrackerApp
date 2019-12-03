@@ -62,6 +62,9 @@
         <activity
             android:name=".ui.results.CalculateIMCActivity"
             android:label="Calculo de IMC" />
+        <activity
+            android:name=".ui.results.PerformanceActivity"
+            android:label="Desempeño" />
 
         <activity
         android:name=".ui.editProfile.EditPasswordActivity"
@@ -91,6 +94,15 @@
             android:name=".ui.goals.GoalsRegisterActivity"
             android:label="Registrar Meta" />
 
+        <activity
+            android:name=".ui.editProfile.EditProfileDataActivity"
+            android:label="Editar Perfil"/>
+
+        <service android:name=".ui.messages.Motivation"
+            android:exported="false"/>
+
+        <service android:name=".ui.messages.Reminders"
+            android:exported="false"/>
 
     </application>
 

@@ -208,6 +208,42 @@
 
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#DEDEDC"
+                android:orientation="horizontal">
+
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+
+
+                <ImageView
+                    android:id="@+id/imageView28"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:contentDescription="@string/todo"
+                    app:srcCompat="@drawable/desempeno" />
+
+
+                <Button
+                    android:id="@+id/btnPerformance"
+                    android:layout_width="299dp"
+                    android:layout_height="105dp"
+                    android:layout_weight="0"
+                    android:background="#DEDEDC"
+                    android:text="@string/label_Desempeno"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
