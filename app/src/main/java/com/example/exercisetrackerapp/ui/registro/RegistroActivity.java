@@ -41,6 +41,7 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
     com.example.exercisetrackerapp.data.model.Date fechaN;
     Date fechaActual;
     boolean i=false;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +60,8 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
         altura = (EditText) findViewById(R.id.altura);
         peso = (EditText) findViewById(R.id.peso);
         ocupacion = (EditText) findViewById(R.id.editTextOcupacion);
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerGenero);
-        gen = spinner.getSelectedItem().toString();
+         spinner = (Spinner) findViewById(R.id.spinnerGenero);
+
         mBtRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +80,7 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
         mRegistrar = (Button) findViewById(R.id.botonRegistrarse);
         mRegistrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                gen = spinner.getSelectedItem().toString();
                 registro();
 
             }
