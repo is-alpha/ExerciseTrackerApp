@@ -1,4 +1,4 @@
-package com.example.exercisetrackerapp.ui.results;
+package com.example.exercisetrackerapp.ui.results.AverageCalories;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +16,29 @@ public class DateValidator {
     //Semana?
     public boolean isThisDateWithin1WeekRange(String dateToValidate, String dateFormat) {
 
-        return false;
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        sdf.setLenient(false);
+
+        try {
+            // if not valid, it will throw ParseException
+            Date date = sdf.parse(dateToValidate);
+
+            // current date before 1 month
+            Calendar currentDateBefore1Month  = Calendar.getInstance();
+            currentDateBefore1Month.add(Calendar.WEEK_OF_MONTH, -1);
+
+            if(date.after(currentDateBefore1Month.getTime())) {
+                //Date in range
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+            return false;
+        }
     }
 
     //Mes?
@@ -31,7 +53,7 @@ public class DateValidator {
 
             // current date before 1 month
             Calendar currentDateBefore1Month  = Calendar.getInstance();
-            currentDateBefore1Month .add(Calendar.MONTH, -1);
+            currentDateBefore1Month.add(Calendar.MONTH, -1);
 
             if(date.after(currentDateBefore1Month.getTime())) {
                 //Date in range

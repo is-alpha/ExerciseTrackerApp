@@ -1,6 +1,6 @@
 package com.example.exercisetrackerapp;
 
-import com.example.exercisetrackerapp.ui.results.DateValidator;
+import com.example.exercisetrackerapp.ui.results.AverageCalories.DateValidator;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.example.exercisetrackerapp.ui.results;
+package com.example.exercisetrackerapp.ui.results.AverageCalories;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +9,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCalories;
+import com.example.exercisetrackerapp.data.model.Calorie;
+import com.example.exercisetrackerapp.data.model.Date;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -30,12 +31,12 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
     //VARIABLES
     private Spinner spinner;
     private int range;
-    float peso, altura, total = 0, calorias, i = 1, edad;
+    float peso, altura, total = 0, calorias, edad;
     Calendar cale = Calendar.getInstance();
     int year = cale.get(Calendar.YEAR);
     String genero;
     TextView basal, cal;
-    ArrayList<BurnedCalories> burnedCalories = new ArrayList<BurnedCalories>() ;
+    ArrayList<Calorie> burnedCalories = new ArrayList<Calorie>() ;
 
     //GRAFICOS
     private LineChart lineChart;
@@ -60,9 +61,13 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
 
         inicializarFirebase();
         getCaloriesBurned();
+        getBasalCalories();
 
         //Obtener spinner seleccionado
         spinner = (Spinner) findViewById(R.id.spinnerExercise);
+
+        setBasalCalories();
+
         //Listener. Realizar cambios si se cambia el valor del spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -122,6 +127,13 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
     }
 
     void setBasalCalories(){
+        if(range==24)
+            basal.setText(Float.toString(total)); //cantidad de un solo dia
+        else
+            basal.setText(Float.toString(total*range)); //por cantidad de dias
+    }
+
+    void getBasalCalories(){
         databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -139,10 +151,6 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
                         } else {
                             total = (float) ((10 * peso) + (6.25 * altura * 100) - (5 * edad) - 161);
                         }
-                        if(range==24)
-                            basal.setText(Float.toString(total)); //cantidad de un solo dia
-                        else
-                            basal.setText(Float.toString(total*range)); //por cantidad de dias
                     }
                 }
             }
@@ -153,14 +161,40 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         });
     }
 
-    //Funcion que almacena todas las calorias quemadas de los ultimos dos años
-    private void getCaloriesBurned(){
-
+    //Funcion que almacena todas las calorias quemadas del ultimo año
+    private void getCaloriesBurned2(){
         //BurnedCalories(String usuario, float cantCalorias, Date date,String ejercicio)
 
         databaseReference.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+
+                    emailAux = areaSnapshot.child("usuario").getValue().toString();
+                    if (emailAux.equals(email)) {
+                        //int day, int month, int year
+                        //Date date = new Date();
+                        /*burnedCalories.add(new Calorie(
+                                Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString()),
+                                areaSnapshot.child("date").getValue())); */
+
+                        calorias +=  Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
+                        cal.setText(Float.toString(calorias));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+    }
+
+    private void getCaloriesBurned(){
+
+        databaseReference.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i=1;
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
                     if (emailAux.equals(email)) {
