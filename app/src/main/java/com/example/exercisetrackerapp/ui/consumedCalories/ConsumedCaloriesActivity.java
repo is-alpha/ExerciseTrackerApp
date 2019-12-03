@@ -29,7 +29,7 @@ public class ConsumedCaloriesActivity extends AppCompatActivity {
     Date fecha;
     int i=0,j=0;
     String cal;
-    Button sumarCal,restarCal,sumarExtra,restarExtra,botonCancelar_HorasSManual,botonGuardarConsCal;
+    Button sumarCal,restarCal,sumarExtra,restarExtra,botonCancelarCalorias,botonGuardarConsCal;
     String email="",uid,id,userID;
     int year, month,dayOfMonth;
 
@@ -49,7 +49,7 @@ public class ConsumedCaloriesActivity extends AppCompatActivity {
         restarCal  = (Button) findViewById(R.id.boton_restarCalorias);
         sumarExtra  = (Button) findViewById(R.id.boton_sumarCaloriasExtras);
         restarExtra  = (Button) findViewById(R.id.boton_restarCaloriasExtras);
-        botonCancelar_HorasSManual  = (Button) findViewById(R.id.botonCancelar_HorasSManual);
+        botonCancelarCalorias  = (Button) findViewById(R.id.botonCancelarCalorias);
         botonGuardarConsCal = (Button) findViewById(R.id.botonGuardarConsCal);
 
         calendar = Calendar.getInstance();
@@ -113,7 +113,7 @@ public class ConsumedCaloriesActivity extends AppCompatActivity {
             }
         });
 
-        botonCancelar_HorasSManual.setOnClickListener(new View.OnClickListener() {
+        botonCancelarCalorias.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                finish();
             }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.editProfile.EditPasswordActivity;
+import com.example.exercisetrackerapp.ui.editProfile.EditProfileDataActivity;
 import com.example.exercisetrackerapp.ui.registro.DatosRegistro;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +33,7 @@ public class ProfileFragment extends Fragment {
 
     private Button mRegresar;
     private Button mBtnEditPassword;
+    private Button mBtnEditData;
 
     private TextView textViewFechaNac;
     private TextView nombre;
@@ -89,6 +91,15 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EditPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mBtnEditData=(Button) root.findViewById(R.id.botonEditar);
+        mBtnEditData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditProfileDataActivity.class);
                 startActivity(intent);
             }
         });

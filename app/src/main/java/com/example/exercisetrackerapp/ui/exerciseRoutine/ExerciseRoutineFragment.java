@@ -69,6 +69,7 @@ public class ExerciseRoutineFragment extends Fragment implements DatePickerDialo
         this.container = container;
         // user sesion
         inicializarFirebase();
+
         if (user != null) {
             email = user.getEmail();
             uid = user.getUid();

@@ -20,6 +20,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
+
         </activity>
 
         <activity
@@ -30,6 +31,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
         </activity>
         <activity
@@ -62,6 +64,9 @@
         <activity
             android:name=".ui.results.CalculateIMCActivity"
             android:label="Calculo de IMC" />
+        <activity
+            android:name=".ui.results.PerformanceActivity"
+            android:label="Desempeño" />
 
         <activity
         android:name=".ui.editProfile.EditPasswordActivity"
@@ -87,11 +92,19 @@
             android:name=".ui.weight.WeightInfoActivity"
             android:label="Peso Perdido" />
 
-        <service android:name=".ui.messages.Reminders"
-            android:exported="false" />
+        <activity
+            android:name=".ui.goals.GoalsRegisterActivity"
+            android:label="Registrar Meta" />
+
+        <activity
+            android:name=".ui.editProfile.EditProfileDataActivity"
+            android:label="Editar Perfil"/>
 
         <service android:name=".ui.messages.Motivation"
-            android:exported="false" />
+            android:exported="false"/>
+
+        <service android:name=".ui.messages.Reminders"
+            android:exported="false"/>
 
     </application>
 
