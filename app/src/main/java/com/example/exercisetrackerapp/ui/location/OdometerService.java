@@ -23,7 +23,7 @@ public class OdometerService extends Service {
     public static final String PERMISSION_STRING
             = android.Manifest.permission.ACCESS_FINE_LOCATION;
     public class OdometerBinder extends Binder {
-        OdometerService getOdometer() {
+        public OdometerService getOdometer() {
             return OdometerService.this;
         }
     }
