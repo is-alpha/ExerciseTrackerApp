@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.data.model.Date;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,10 +34,17 @@ public class GoalsFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    List<String> listaNomEjercicios, listaFechaInicial, listaFechaFin, listaTiempo,listaCalorias,listaCumplida;
+    List<String> listaNomEjercicios,listaFechaInicial, listaFechaFin;;
+    //List <Date> listaFechaInicial, listaFechaFin;
+    List <Float> listaTiempo,listaCalorias;
+    List <Boolean> listaCumplida;
     String email="",uid,id,userID,emailAux;
     ListView listViewMetas;
-    String nombreEjercicio,fechaInicial,fechaFin,tiempo,calorias,cumplida;
+    String nombreEjercicio;
+    //Date fechaInicial,fechaFin;
+    String fechaInicial,fechaFin;
+    float tiempo,calorias;
+    boolean cumplida;
     Button botonAnadirMeta;
 
 
@@ -59,7 +67,7 @@ public class GoalsFragment extends Fragment {
 
         return root;
     }
-/*
+
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -70,25 +78,26 @@ public class GoalsFragment extends Fragment {
             uid = user.getUid();
         }
 
-
         databaseReference.child("metas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listaNomEjercicios = new ArrayList<String>();
                 listaFechaInicial = new ArrayList<String>();
                 listaFechaFin = new ArrayList<String>();
-                listaTiempo = new ArrayList<String>();
-                listaCalorias = new ArrayList<String>();
-                listaCumplida = new ArrayList<String>();
+                listaTiempo = new ArrayList<Float>();
+                listaCalorias = new ArrayList<Float>();
+                listaCumplida = new ArrayList<Boolean>();
 
                 //int i = 0;
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                    nombreEjercicio = areaSnapshot.child("exercise").getValue(String.class);
-                    fechaInicial = areaSnapshot.child("fechaIni").getValue(String.class);
-                    fechaFin = areaSnapshot.child("fechaFin").getValue(String.class);
-                    tiempo = areaSnapshot.child("tiempo").getValue(String.class);
-                    calorias = areaSnapshot.child("calorias").getValue(String.class);
-                    cumplida = areaSnapshot.child("cumplida").getValue(String.class);
+                    nombreEjercicio = areaSnapshot.child("exercise").getValue().toString();
+                    //fechaInicial = areaSnapshot.child("fechaIni").getValue(Date.class);
+                    fechaInicial = "INICIAL";
+                    fechaFin = "FINAL";
+                    //fechaFin = areaSnapshot.child("fechaFin").getValue(Date.class);
+                    tiempo = areaSnapshot.child("tiempo").getValue(Float.class);
+                    calorias = areaSnapshot.child("calorias").getValue(Float.class);
+                    cumplida = areaSnapshot.child("cumplida").getValue(Boolean.class);
 
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
                     if(emailAux.equals(email)){
@@ -109,9 +118,9 @@ public class GoalsFragment extends Fragment {
                     hm.put("exercise",listaNomEjercicios.get(i));
                     hm.put("fechaIni",listaFechaInicial.get(i));
                     hm.put("fechaFin",listaFechaFin.get(i));
-                    hm.put("tiempo",listaTiempo.get(i));
-                    hm.put("calorias",listaCalorias.get(i));
-                    hm.put("cumplida",listaCumplida.get(i));
+                    hm.put("tiempo",listaTiempo.get(i).toString());
+                    hm.put("calorias",listaCalorias.get(i).toString());
+                    hm.put("cumplida",listaCumplida.get(i).toString());
                     aList.add(hm);
                 }
                 // Keys used in Hashmap
@@ -129,11 +138,10 @@ public class GoalsFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-
         super.onViewCreated(view, savedInstanceState);
 
+    }
 
-    }*/
     private void inicializarFirebase(){
         //FirebaseApp.initializeApp();
         firebaseDatabase = FirebaseDatabase.getInstance();
