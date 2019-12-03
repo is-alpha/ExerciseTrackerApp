@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,9 +43,12 @@ public class SideMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_side_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*
-        textViewNombre = findViewById(R.id.textViewNombre);
-        textViewCorreo = findViewById(R.id.textViewCorreo);
+
+        NavigationView mNavigationView = findViewById(R.id.nav_view);
+        View headerView = mNavigationView.getHeaderView(0);
+        // get user name and email textViews
+        textViewNombre = headerView.findViewById(R.id.textViewNombre);
+        textViewCorreo = headerView.findViewById(R.id.textViewCorreo);
 
         if (user != null) {
             email = user.getEmail();
@@ -68,7 +72,7 @@ public class SideMenuActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
-        });*/
+        });
 
         //FloatingActionButton fab = findViewById(R.id.fab);
         /*fab.setOnClickListener(new View.OnClickListener() {
