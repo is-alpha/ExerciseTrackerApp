@@ -1,18 +1,23 @@
 package com.example.exercisetrackerapp.ui.registro;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.ui.profile.ProfileActivity;
+import com.example.exercisetrackerapp.SideMenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,13 +26,20 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RegistroActivity extends AppCompatActivity {
+import java.sql.Date;
+import java.text.DateFormat;
+import java.util.Calendar;
+
+public class RegistroActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private Button mBtRegresar;
     private Button mRegistrar;
+    private ImageButton cal;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;// Referencia a la base de Datos firebase
     private EditText nombre,email,contrasena,validacion,fecha,altura,peso,ocupacion,genero;
     private String gen;
+    com.example.exercisetrackerapp.data.model.Date fechaN;
+    Date fechaActual;
     boolean i=false;
 
     @Override
@@ -56,11 +68,18 @@ public class RegistroActivity extends AppCompatActivity {
             }
         });
 
+        cal = (ImageButton) findViewById(R.id.imageCal);
+        cal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
         mRegistrar = (Button) findViewById(R.id.botonRegistrarse);
         mRegistrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Do something in response to button click
-              //  launchProfile();
+
                 registro();
 
             }
@@ -72,7 +91,20 @@ public class RegistroActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
 
+        TextView textView = (TextView) findViewById(R.id.textViewFechaNac);
+        textView.setText(currentDateString);
+        fechaN = new com.example.exercisetrackerapp.data.model.Date(dayOfMonth,month,year);
+
+
+    }
     private void registro(){
 
         String  name = nombre.getText().toString();
@@ -82,6 +114,7 @@ public class RegistroActivity extends AppCompatActivity {
         String trabajo=ocupacion.getText().toString();
         float hsueno = 0, calQuemadas = 0, calConsumidas = 0;
         String gener = gen;
+        Date fecha;
         String id = mDatabase.push().getKey();
        // int date = Integer.parseInt(fecha.getText().toString());
         float height = Float.parseFloat(altura.getText().toString());
@@ -140,17 +173,11 @@ public class RegistroActivity extends AppCompatActivity {
             return;
         }
         else {
-            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, 10, height, weight,hsueno,calQuemadas,calConsumidas,gener);
+            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, fechaN, height, weight,hsueno,calQuemadas,calConsumidas,gener);
             mDatabase.child("users").child(id).setValue(data);
-            /*Intent intent = new Intent(this, ProfileActivity.class);
-            intent.putExtra(ProfileActivity.nam, correo);
-            startActivity(intent);*/
+
             launchProfile();
         }
-
-
-
-
     }
    /* Spinner spinner = (Spinner) findViewById(R.id.spinnerGenero);
     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genero, R.layout.spinner_item);
@@ -164,10 +191,11 @@ public class RegistroActivity extends AppCompatActivity {
 
 
    private void launchProfile() {
-       Intent intent = new Intent(this, ProfileActivity.class);
+       Intent intent = new Intent(this, SideMenuActivity.class);
        //intent.putExtra(name);
        startActivity(intent);
    }
+
 
 }
 

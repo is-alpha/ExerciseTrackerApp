@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
@@ -43,8 +44,11 @@ public class ProfileFragment extends Fragment {
     private TextView peso;
     private TextView ocupacion;
     private TextView fecha;
-    private   String email,userID,emailAux,name, trabajo;
+    private   String email,userID,emailAux,name, trabajo,gene;
     private float height, weight;
+    int edad;
+    Calendar cal= Calendar.getInstance();
+    int year= cal.get(Calendar.YEAR);
     private FirebaseDatabase mFirebaseDatabase;
     List<String> listaDatos;
     DatosRegistro uInfo;
@@ -124,6 +128,11 @@ public class ProfileFragment extends Fragment {
                         altura.setText(Float.toString(height));
                         trabajo = areaSnapshot.child("ocupacion").getValue().toString();
                         ocupacion.setText(trabajo);
+                        gene = areaSnapshot.child("genero").getValue().toString();
+                        genero.setText(gene);
+                        edad = Integer.parseInt(areaSnapshot.child("fecha").child("year").getValue().toString());
+                        edad = edad - year;
+                        fecha.setText(Integer.toString(edad));
                     }
                 }
 
@@ -132,66 +141,9 @@ public class ProfileFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        /*
-        myRef.orderByChild("correo").equalTo(email).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                listaDatos = new ArrayList<String>();
-                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                     nam = areaSnapshot.getValue().toString();
-                    nombre.setText(nam);
-                }
 
-                /*
-                String dato = dataSnapshot.getValue().toString();
-                listaDatos.add(dato);
-              nombre.setText(listaDatos.get(0));
-
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-            // ...
-        });
-*/
         correo.setText(email);
 
-       /* altura.setText(String.valueOf(uInfo.getAltura()));
-        peso.setText(String.valueOf(uInfo.getPeso()));
-        ocupacion.setText(uInfo.getOcupacion());
-        fecha.setText(String.valueOf(uInfo.getFecha()));*/
-
-        /*final TextView textView = root.findViewById(R.id.text_home);
-        profileViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
-        ///
-
-
-
-        ///
 
         return root;
     }

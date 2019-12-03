@@ -1,11 +1,13 @@
 package com.example.exercisetrackerapp.ui.registro;
 
+import com.example.exercisetrackerapp.data.model.Date;
+
 public class DatosRegistro {
     String id,nombre,correo,contrasena,vcontrasena,ocupacion,genero;
-    int fecha;
+    Date fecha;
     float altura,peso,hsueno,hextras,calQuemadas,calConsumidas;
 
-    public DatosRegistro(String id,String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, int fecha, float altura, float peso,float hsueno,float calQuemadas,float calConsumidas,String genero) {
+    public DatosRegistro(String id, String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, Date fecha, float altura, float peso, float hsueno, float calQuemadas, float calConsumidas, String genero) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -116,11 +118,11 @@ public class DatosRegistro {
         this.ocupacion = ocupacion;
     }
 
-    public int getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(int fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

@@ -123,11 +123,11 @@
                 android:scrollbarSize="4dp"
                 android:spinnerMode="dropdown" />
 
-            <ImageView
-                android:id="@+id/imageViewNacimiento"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:srcCompat="@drawable/pastel" />
+            <ImageButton
+                android:id="@+id/imageCal"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/calendar" />
 
             <TextView
                 android:id="@+id/textViewFechaNac"
