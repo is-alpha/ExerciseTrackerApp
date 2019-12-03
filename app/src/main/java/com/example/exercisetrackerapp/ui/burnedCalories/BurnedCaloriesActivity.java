@@ -60,7 +60,7 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
             //Toast.makeText(this, uid, Toast.LENGTH_LONG).show();
         }
 
-        id = databaseReference.push().getKey();
+
         fechaInicio = (TextView) findViewById(R.id.textViewDate);
         caloriasQuemadas = (EditText) findViewById(R.id.editTextCaloriasGastadas);
 
@@ -110,22 +110,6 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
             }
         });
 
-
-
-
-        /*
-        databaseReference.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                userID = dataSnapshot.child("id").getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        }
-        );*/
     }
 
     private void inicializarFirebase(){
@@ -154,9 +138,8 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
         String ejercicioSeleccionado = spinner.getSelectedItem().toString();
 
         if(validacion(sFechaInicio,sCaloriasQuemadas)==1) {
-            //Toast.makeText(this, "fecha: " + uid + " calorias: " + sCaloriasQuemadas + " ejercicio: " + ejercicioSeleccionado, Toast.LENGTH_LONG).show();
-            //Toast.makeText(this, userID, Toast.LENGTH_LONG).show();
 
+            id = databaseReference.push().getKey();
             BurnedCalories data = new BurnedCalories(email, Float.parseFloat(sCaloriasQuemadas), fecha, ejercicioSeleccionado);
             databaseReference.child("caloriasQuemadas").child(id).setValue(data);
             limpiarTextBox();
