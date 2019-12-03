@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class GoalMsg extends IntentService {
-    public static String mot0, mot1, mot2, mot3, mot4, mot5, mot6, mot7, mot8, mot9;
+    public static String mot0, mot1, mot2, mot3, mot4, mot5;
     public static final int not_id=1;
     DatabaseReference mDatabase;
 
@@ -27,16 +27,12 @@ public class GoalMsg extends IntentService {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    mot0= dataSnapshot.child("msg1").getValue().toString();
-                    mot1= dataSnapshot.child("msg2").getValue().toString();
-                    mot2= dataSnapshot.child("msg3").getValue().toString();
-                    mot3= dataSnapshot.child("msg4").getValue().toString();
-                    mot4= dataSnapshot.child("msg5").getValue().toString();
-                    mot5= dataSnapshot.child("msg6").getValue().toString();
-                    mot6= dataSnapshot.child("msg7").getValue().toString();
-                    mot7= dataSnapshot.child("msg8").getValue().toString();
-                    mot8= dataSnapshot.child("msg9").getValue().toString();
-                    mot9= dataSnapshot.child("msg10").getValue().toString();
+                    mot0= dataSnapshot.child("msgg1").getValue().toString();
+                    mot1= dataSnapshot.child("msgg2").getValue().toString();
+                    mot2= dataSnapshot.child("msgg3").getValue().toString();
+                    mot3= dataSnapshot.child("msgg4").getValue().toString();
+                    mot4= dataSnapshot.child("msgg5").getValue().toString();
+                    mot5= dataSnapshot.child("msgg6").getValue().toString();
                 }
 
             }
