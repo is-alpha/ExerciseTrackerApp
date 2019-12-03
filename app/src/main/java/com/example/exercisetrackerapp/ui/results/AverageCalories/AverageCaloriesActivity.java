@@ -1,5 +1,6 @@
 package com.example.exercisetrackerapp.ui.results.AverageCalories;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -44,8 +45,9 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
 
     //GRAFICOS
     private LineChart lineChart;
-    private LineDataSet lineDataSet;
+    private LineDataSet lineDataSet, lineDataSet2;
     private ArrayList<Entry> lineEntries = new ArrayList<Entry>();
+    private ArrayList<Entry> lineEntries2 = new ArrayList<Entry>();
 
     //BASE DE DATOS
     FirebaseDatabase firebaseDatabase;
@@ -116,11 +118,17 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         lineChart.getDescription().setEnabled(false);
         // Unimos los datos al data set
         lineDataSet = new LineDataSet(lineEntries, "Calorías gastadas");
+        lineDataSet2 = new LineDataSet(lineEntries2, "Metabolismo Basal");
+        lineDataSet2.setColor(Color.GREEN);
+        lineDataSet2.setCircleColorHole(Color.GREEN);
+        lineDataSet2.setCircleColor(Color.GREEN);
+
         // Asociamos al gráfico
         LineData lineData = new LineData();
-
         lineData.addDataSet(lineDataSet);
+        lineData.addDataSet(lineDataSet2);
         lineChart.setData(lineData);
+        lineChart.invalidate();
 
         // draw points over time
         lineChart.animateX(1500);
@@ -188,9 +196,8 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
 
         for(int i=0;i<range2;i++){
             if(calories[i]!=0){
-                //cnt++;
-                //Entry entry = new Entry();
                 lineEntries.get(i).setY(calories[i]);
+                lineEntries2.get(i).setY(totalMB);
             }
         }
 
@@ -241,12 +248,14 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
     private void cleanGraphic(){
         int range2;
         lineEntries = new ArrayList<Entry>();
+        lineEntries2 = new ArrayList<Entry>();
 
         if(range == 1) range2=24;
         else range2=range;
 
-        for(int i=0; i<=range2; i++) {
+        for(int i=0; i<range2; i++) {
             lineEntries.add(new Entry((float) i, (float)0));
+            lineEntries2.add(new Entry((float) i, (float)totalMB));
         }
     }
 
