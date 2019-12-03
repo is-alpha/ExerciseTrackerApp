@@ -37,7 +37,7 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
         restar = (Button) findViewById(R.id.boton_restarHoras);
         sumarext = (Button) findViewById(R.id.boton_sumarSiesta);
         restarext = (Button) findViewById(R.id.boton_restarSiesta);
-        guardarHoras = (Button) findViewById(R.id.botonGuardar_HorasSManual);
+        guardarHoras = (Button) findViewById(R.id.botonRegistrarSueno);
         if (user != null) {
             email = user.getEmail();
 
