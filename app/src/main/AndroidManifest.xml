@@ -65,8 +65,8 @@
             android:name=".ui.results.CalculateIMCActivity"
             android:label="Calculo de IMC" />
         <activity
-            android:name=".ui.goals.GoalsRegisterActivity"
-            android:label="Registrar Meta" />
+            android:name=".ui.results.PerformanceActivity"
+            android:label="Desempeño" />
 
         <activity
         android:name=".ui.editProfile.EditPasswordActivity"
