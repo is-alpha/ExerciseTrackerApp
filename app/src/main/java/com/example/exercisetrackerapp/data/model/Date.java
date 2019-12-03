@@ -23,6 +23,8 @@ public class Date {
         this.year = year;
     }
 
+    public String format(){ return ( day + "/" + month + "/" + year ); }
+
     public int getMonth() {
         return month;
     }

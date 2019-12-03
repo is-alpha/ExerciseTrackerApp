@@ -36,4 +36,20 @@ public class DateValidatorRangeTest {
     public void testDateWithinRange_4() {
         assertFalse(dateValidator.isThisDateWithin1MonthRange("21/1/2019", "dd/MM/yyyy"));
     }
+
+
+    @Test
+    public void testDateWithinRange_5() {
+        assertTrue(dateValidator.isThisDateWithin1WeekRange("29/11/2019", "dd/MM/yyyy"));
+    }
+
+    @Test
+    public void testDateWithinRange_6() {
+        assertFalse(dateValidator.isThisDateWithin1WeekRange("25/11/2019", "dd/MM/yyyy"));
+    }
+
+    @Test
+    public void testDateWithinRange_7() {
+        assertTrue(dateValidator.isThisDateWithin1WeekRange("2/12/2019", "dd/MM/yyyy"));
+    }
 }

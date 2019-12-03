@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -31,11 +32,11 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
     //VARIABLES
     private Spinner spinner;
     private int range;
-    float peso, altura, total = 0, calorias, edad;
+    float peso, altura, totalMB = 0, calorias, edad;
     Calendar cale = Calendar.getInstance();
     int year = cale.get(Calendar.YEAR);
     String genero;
-    TextView basal, cal;
+    TextView basal, cal, bCal;
     ArrayList<Calorie> burnedCalories = new ArrayList<Calorie>() ;
 
     //GRAFICOS
@@ -58,15 +59,14 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         }
         basal = (TextView) findViewById(R.id.numMBasal);
         cal = (TextView) findViewById(R.id.numKcal);
+        bCal = findViewById(R.id.totalCBurned);
 
         inicializarFirebase();
-        getCaloriesBurned();
         getBasalCalories();
+        getCaloriesBurned();
 
         //Obtener spinner seleccionado
         spinner = (Spinner) findViewById(R.id.spinnerExercise);
-
-        setBasalCalories();
 
         //Listener. Realizar cambios si se cambia el valor del spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -75,7 +75,9 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
                 range = getRange(spinner.getSelectedItem().toString());
                 setGraphic();
                 setBasalCalories();
-                //Toast.makeText(parentView.getContext(), String.valueOf(range) , Toast.LENGTH_LONG).show();
+
+                //int i = DateValidator.getCountOfDays("3/12/2019","dd/MM/yyyy");
+                //Toast.makeText(parentView.getContext(), String.valueOf(i) , Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -103,15 +105,7 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
 
         // Recolectamos el set de datos
         ArrayList<Entry> lineEntries = new ArrayList<Entry>();
-
-
-        // -----  MOMENTANEO  --------------------------
-
-        lineEntries.add(new Entry((float) 0, (float) 2));
-        lineEntries.add(new Entry((float) 1, (float) 0));
-
-        // -----  MOMENTANEO  --------------------------
-
+        cleanGraphic(lineEntries);
 
         // disable description text
         lineChart.getDescription().setEnabled(false);
@@ -128,9 +122,9 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
 
     void setBasalCalories(){
         if(range==24)
-            basal.setText(Float.toString(total)); //cantidad de un solo dia
+            basal.setText(Float.toString(totalMB)); //cantidad de un solo dia
         else
-            basal.setText(Float.toString(total*range)); //por cantidad de dias
+            basal.setText(Float.toString(totalMB *range)); //por cantidad de dias
     }
 
     void getBasalCalories(){
@@ -147,10 +141,11 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
                         edad = edad - year;
 
                         if (genero.equals("Masculino")) {
-                            total = (float) ((10 * peso) + (6.25 * altura * 100) - (5 * edad) + 5);
+                            totalMB = (float) ((10 * peso) + (6.25 * altura * 100) - (5 * edad) + 5);
                         } else {
-                            total = (float) ((10 * peso) + (6.25 * altura * 100) - (5 * edad) - 161);
+                            totalMB = (float) ((10 * peso) + (6.25 * altura * 100) - (5 * edad) - 161);
                         }
+                        setBasalCalories();
                     }
                 }
             }
@@ -163,19 +158,26 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
 
     //Funcion que almacena todas las calorias quemadas del ultimo año
     private void getCaloriesBurned2(){
-        //BurnedCalories(String usuario, float cantCalorias, Date date,String ejercicio)
-
+        //getCountOfDays(String date, String dateFormat)
         databaseReference.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                Date date;
+                Calorie calorie;
+                StringBuilder fecha;
 
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
                     if (emailAux.equals(email)) {
+                        //Calorie(float cantCalorie, Date date)
                         //int day, int month, int year
-                        //Date date = new Date();
-                        /*burnedCalories.add(new Calorie(
-                                Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString()),
+
+                        fecha = new StringBuilder();
+                        fecha.append(areaSnapshot.child("fechaIni").child("day").getValue(Integer.class));
+                        fecha.append("/");
+
+                        //date = new Date();
+                        /*Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString()),
                                 areaSnapshot.child("date").getValue())); */
 
                         calorias +=  Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
@@ -189,6 +191,12 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         });
     }
 
+    private void cleanGraphic(ArrayList<Entry> lineEntries){
+        for(int i=0; i<=range; i++) {
+            lineEntries.add(new Entry((float) i, (float)0));
+        }
+    }
+
     private void getCaloriesBurned(){
 
         databaseReference.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -200,7 +208,9 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
                     if (emailAux.equals(email)) {
                         calorias = calorias + Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
                         calorias = calorias / i;
-                        cal.setText(Float.toString(calorias));
+
+                        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                        cal.setText(decimalFormat.format(calorias));
                         i++;
                     }
                 }
