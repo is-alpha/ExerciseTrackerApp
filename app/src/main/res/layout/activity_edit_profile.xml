@@ -28,13 +28,58 @@
                 android:text="@string/prompt_nombre" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/editName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="Nombre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Trabajo" />
+
+            <EditText
+                android:id="@+id/editTrabajo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Trabajo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/prompt_altura" />
+
+            <EditText
+                android:id="@+id/editAltura"
+                android:layout_width="203dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Altura" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -43,44 +88,67 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView72"
+                android:id="@+id/textView88"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Peso" />
 
             <EditText
-                android:id="@+id/editText6"
-                android:layout_width="wrap_content"
+                android:id="@+id/editPeso"
+                android:layout_width="197dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="Peso" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="58dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView71"
+                android:id="@+id/textView89"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Trabajo" />
+                android:text="@string/prompt_Genero" />
+
+            <Spinner
+                android:id="@+id/spinnerGenero"
+                android:layout_width="211dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:dropDownWidth="wrap_content"
+                android:entries="@array/genero"
+                android:scrollbarSize="4dp"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView90"
+                android:layout_width="230dp"
+                android:layout_height="112dp"
+                android:layout_weight="1"
+                android:text="Correo de confirmación" />
 
             <EditText
-                android:id="@+id/editText4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/correoC"
+                android:layout_width="match_parent"
+                android:layout_height="123dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
-
+                android:text="Correo" />
         </LinearLayout>
+
 
         <Button
             android:id="@+id/editarButton"
