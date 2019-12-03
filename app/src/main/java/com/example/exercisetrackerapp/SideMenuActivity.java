@@ -1,11 +1,13 @@
 package com.example.exercisetrackerapp;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.navigation.NavController;
@@ -15,13 +17,16 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class SideMenuActivity extends AppCompatActivity {
 
-    String email, uid;
+    String email, uid,userID,emailAux;
     String nombre;
     private AppBarConfiguration mAppBarConfiguration;
     DatabaseReference databaseReference;
@@ -29,6 +34,7 @@ public class SideMenuActivity extends AppCompatActivity {
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("users");
+    TextView textViewNombre, textViewCorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,34 @@ public class SideMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_side_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /*
+        textViewNombre = findViewById(R.id.textViewNombre);
+        textViewCorreo = findViewById(R.id.textViewCorreo);
+
+        if (user != null) {
+            email = user.getEmail();
+            userID = user.getUid();
+        }
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
+
+        myRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    emailAux = areaSnapshot.child("correo").getValue().toString();
+                    if(emailAux.equals(email)){
+                        textViewNombre.setText(areaSnapshot.child("nombre").getValue().toString());
+                        textViewCorreo.setText(emailAux);
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });*/
+
         //FloatingActionButton fab = findViewById(R.id.fab);
         /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,5 +132,6 @@ public class SideMenuActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 
 }

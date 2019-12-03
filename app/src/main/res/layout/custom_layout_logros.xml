@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#08000000"
+            android:background="#25F57F17"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -162,7 +162,7 @@
                     android:id="@+id/botonCheck"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@android:drawable/checkbox_off_background" />
+                    android:background="@android:drawable/checkbox_on_background" />
             </LinearLayout>
 
         </LinearLayout>

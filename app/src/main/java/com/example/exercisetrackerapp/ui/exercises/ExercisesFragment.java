@@ -143,9 +143,6 @@ public class ExercisesFragment extends Fragment {
                                         }
                                     });
 
-
-
-
                                     /*
                                     switch(listaNomEjercicios.get(position)){
                                         case "Abdominales": launchSpecificExerciseTracker(); break;

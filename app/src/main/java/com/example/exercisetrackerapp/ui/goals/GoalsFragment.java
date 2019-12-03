@@ -116,7 +116,7 @@ public class GoalsFragment extends Fragment {
                     cumplida = areaSnapshot.child("cumplida").getValue(Boolean.class);
 
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
-                    if(emailAux.equals(email)){
+                    if(emailAux.equals(email) && cumplida == false){
                         listaNomEjercicios.add(nombreEjercicio);
                         listaFechaInicial.add(fechaInicial);
                         listaFechaFin.add(fechaFin);
