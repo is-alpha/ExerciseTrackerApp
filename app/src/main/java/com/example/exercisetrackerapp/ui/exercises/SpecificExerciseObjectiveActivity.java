@@ -189,7 +189,7 @@ public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
                             if(emailAux.equals(email)){
                                 switch(objetivo) {
                                     case "Objetivo de tiempo": obj = areaSnapshot.getRef().child("objTiempo"); break;
-                                    case "Objetivo de distancia": obj = areaSnapshot.getRef().child("objTiempo"); break;
+                                    case "Objetivo de distancia": obj = areaSnapshot.getRef().child("objDistancia"); break;
                                     case "Objetivo de repeticiones": obj = areaSnapshot.getRef().child("objRep"); break;
 
                                 }
@@ -211,81 +211,6 @@ public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
             }
         });
 
-
-        /*
-
-        textViewFechaCalorias = (TextView) findViewById(R.id.textViewFechaCalorias);
-        caloriasManual  = (TextView) findViewById(R.id.editText_caloriasManual);
-        caloriasManualExtra  = (TextView) findViewById(R.id.editText_caloriasManualExtra);
-        sumarCal  = (Button) findViewById(R.id.boton_sumarCalorias);
-        restarCal  = (Button) findViewById(R.id.boton_restarCalorias);
-        sumarExtra  = (Button) findViewById(R.id.boton_sumarCaloriasExtras);
-        restarExtra  = (Button) findViewById(R.id.boton_restarCaloriasExtras);
-        botonCancelarCalorias  = (Button) findViewById(R.id.botonCancelarCalorias);
-        botonGuardarConsCal = (Button) findViewById(R.id.botonGuardarConsCal);
-
-        calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
-        date = dateFormat.format(calendar.getTime());
-        textViewFechaCalorias.setText(date);
-
-
-
-        id = databaseReference.push().getKey();
-
-        botonGuardarConsCal.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                registrarCaloriasManual();
-            }
-        });
-
-        sumarCal.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                i = Integer.parseInt(caloriasManual.getText().toString());
-                i+=50;
-                cal = Integer.toString(i);
-                caloriasManual.setText(cal);
-            }
-        });
-
-        sumarExtra.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                j = Integer.parseInt(caloriasManualExtra.getText().toString());
-                j+=50;
-                cal = Integer.toString(j);
-                caloriasManualExtra.setText(cal);
-            }
-        });
-        imageButtonRestar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                i = Integer.parseInt(caloriasManual.getText().toString());
-                if(i>50){
-                    i-=50;
-                }
-                cal = Integer.toString(i);
-                caloriasManual.setText(cal);
-
-            }
-        });
-
-        restarExtra.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                j = Integer.parseInt(caloriasManualExtra.getText().toString());
-                if(j>50){
-                    j-=50;
-                }
-                cal = Integer.toString(j);
-                caloriasManualExtra.setText(cal);
-            }
-        });
-
-        botonCancelarCalorias.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        */
-
     }
 
     private void launchStopWatch() {
@@ -293,25 +218,7 @@ public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*
-    private void registrarEjercicioActual(){
 
-        String sFechaInicio = textViewFechaCalorias.getText().toString();
-        String sCaloriasConsumidas = caloriasManual.getText().toString();
-        String sCaloriasConsumidasExtra = caloriasManualExtra.getText().toString();
-
-        Calendar c = Calendar.getInstance();;
-        fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
-        if(validacion(sFechaInicio,sCaloriasConsumidas,sCaloriasConsumidasExtra)==1) {
-
-            ConsumedCalories data = new ConsumedCalories(email, Integer.parseInt(sCaloriasConsumidas), Integer.parseInt(sCaloriasConsumidasExtra), fecha);
-            databaseReference.child("calConsumidas").child(id).setValue(data);
-            Toast.makeText(this, "Registro Exitoso! ", Toast.LENGTH_LONG).show();
-            finish();
-        }
-
-    }
-    */
     private void inicializarFirebase(){
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();

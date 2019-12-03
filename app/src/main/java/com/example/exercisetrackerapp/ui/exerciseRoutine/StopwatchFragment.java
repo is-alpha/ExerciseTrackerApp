@@ -2,19 +2,39 @@ package com.example.exercisetrackerapp.ui.exerciseRoutine;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.data.model.Date;
+import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCalories;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 import java.util.Locale;
 
 public class StopwatchFragment extends Fragment implements View.OnClickListener{
     private int seconds=0;
     private boolean isRunning;
     private boolean wasRunning;
+    String email,emailAux,uid,ejercicio,id;
+    float calorias, distancia,minutos;
+    int repeticiones;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -24,6 +44,8 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
             isRunning = savedInstanceState.getBoolean("running");
             wasRunning = savedInstanceState.getBoolean("wasRunning");
         }
+
+
     }
 
     @Override
@@ -72,9 +94,10 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
     }
 
     private void onClickEnd(){
-
         isRunning=false;
+        registrarCaloriasQuemadas();
         seconds=0;
+
     }
 
     public void runTimer(View view){
@@ -117,6 +140,58 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
         }
 
     }
+
+
+    private void registrarCaloriasQuemadas(){
+
+        inicializarFirebase();
+
+        ////AQUI SE AGARRA EL EMAIL DEL USUARIO QUE INGRESO SESION
+        if (user != null) {
+            email = user.getEmail();
+            uid = user.getUid();
+        }
+
+        databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    emailAux = areaSnapshot.child("usuario").getValue().toString();
+                    minutos = (seconds%3600)/60;
+                    calorias =  areaSnapshot.child("calorias").getValue(Float.class);
+                    if(emailAux.equals(email)){
+                        ejercicio = areaSnapshot.child("exercise").getValue().toString();
+                        switch(ejercicio) {
+                            case "Abdominales": calorias = calorias*minutos; break;
+                            case "Caminadora": calorias = calorias*minutos; break;
+                            case "Caminar": calorias = calorias*minutos;break;
+                            case "Ciclismo": calorias = calorias*minutos; break;
+                            case "Correr": calorias = calorias*minutos; break;
+                            case "Fútbol": calorias = calorias*minutos; break;
+                            case "Pesas": calorias = calorias*minutos; break;
+
+                        }
+                        id = databaseReference.push().getKey();
+                        Calendar c = Calendar.getInstance();
+                        Date fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
+                        BurnedCalories data = new BurnedCalories(email, calorias, fecha, ejercicio);
+                        databaseReference.child("caloriasQuemadas").child(id).setValue(data);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+
+    }
+
+    private void inicializarFirebase(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+
 
 
 }

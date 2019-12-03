@@ -124,8 +124,10 @@ public class ExercisesFragment extends Fragment {
                                                 if(emailAux.equals(email)){
                                                     ejercicioActual = true;
 
-                                                    DatabaseReference ejercicio = areaSnapshot.getRef().child("exercise");
-                                                    ejercicio.setValue(listaNomEjercicios.get(position));
+                                                    DatabaseReference ejercicio = areaSnapshot.getRef();
+                                                    ActualExercise data = new ActualExercise(email,listaNomEjercicios.get(position),0,0,0);
+                                                    ejercicio.setValue(data);
+
 
                                                 }
                                             }
