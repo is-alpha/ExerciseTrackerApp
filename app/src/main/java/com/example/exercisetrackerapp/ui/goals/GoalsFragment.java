@@ -34,10 +34,12 @@ public class GoalsFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    List<String> listaNomEjercicios,listaFechaInicial, listaFechaFin;;
+    List<String> listaNomEjercicios,listaFechaInicial, listaFechaFin;
+    StringBuilder fecha = new StringBuilder();
     //List <Date> listaFechaInicial, listaFechaFin;
     List <Float> listaTiempo,listaCalorias;
     List <Boolean> listaCumplida;
+    List <Integer> listaImagenes;
     String email="",uid,id,userID,emailAux;
     ListView listViewMetas;
     String nombreEjercicio;
@@ -46,6 +48,7 @@ public class GoalsFragment extends Fragment {
     float tiempo,calorias;
     boolean cumplida;
     Button botonAnadirMeta;
+    int idImage;
 
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -87,14 +90,27 @@ public class GoalsFragment extends Fragment {
                 listaTiempo = new ArrayList<Float>();
                 listaCalorias = new ArrayList<Float>();
                 listaCumplida = new ArrayList<Boolean>();
+                listaImagenes = new ArrayList<Integer>();
 
                 //int i = 0;
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     nombreEjercicio = areaSnapshot.child("exercise").getValue().toString();
-                    //fechaInicial = areaSnapshot.child("fechaIni").getValue(Date.class);
-                    fechaInicial = "INICIAL";
-                    fechaFin = "FINAL";
-                    //fechaFin = areaSnapshot.child("fechaFin").getValue(Date.class);
+                    fecha = new StringBuilder();
+                    fecha.append(areaSnapshot.child("fechaIni").child("day").getValue(Integer.class));
+                    fecha.append("/");
+                    fecha.append(areaSnapshot.child("fechaIni").child("month").getValue(Integer.class));
+                    fecha.append("/");
+                    fecha.append(areaSnapshot.child("fechaIni").child("year").getValue(Integer.class));
+                    fechaInicial = fecha.toString();
+
+                    fecha = new StringBuilder();
+                    fecha.append(areaSnapshot.child("fechaFin").child("day").getValue(Integer.class));
+                    fecha.append("/");
+                    fecha.append(areaSnapshot.child("fechaFin").child("month").getValue(Integer.class));
+                    fecha.append("/");
+                    fecha.append(areaSnapshot.child("fechaFin").child("year").getValue(Integer.class));
+                    fechaFin = fecha.toString();
+
                     tiempo = areaSnapshot.child("tiempo").getValue(Float.class);
                     calorias = areaSnapshot.child("calorias").getValue(Float.class);
                     cumplida = areaSnapshot.child("cumplida").getValue(Boolean.class);
@@ -107,6 +123,19 @@ public class GoalsFragment extends Fragment {
                         listaTiempo.add(tiempo);
                         listaCalorias.add(calorias);
                         listaCumplida.add(cumplida);
+
+                        switch(nombreEjercicio) {
+                            case "Abdominales": idImage = R.drawable.img_abdominales; break;
+                            case "Caminadora": idImage = R.drawable.img_caminadora; break;
+                            case "Caminar": idImage = R.drawable.img_caminar; break;
+                            case "Ciclismo": idImage = R.drawable.img_ciclismo; break;
+                            case "Correr": idImage = R.drawable.img_correr; break;
+                            case "Futbol": idImage = R.drawable.img_futbol; break;
+                            case "Pesas": idImage = R.drawable.img_pesas; break;
+
+                        }
+
+                        listaImagenes.add(idImage);
                     }
 
                 }
@@ -121,12 +150,15 @@ public class GoalsFragment extends Fragment {
                     hm.put("tiempo",listaTiempo.get(i).toString());
                     hm.put("calorias",listaCalorias.get(i).toString());
                     hm.put("cumplida",listaCumplida.get(i).toString());
+                    hm.put("image",listaImagenes.get(i).toString());
                     aList.add(hm);
                 }
+
+
                 // Keys used in Hashmap
-                String[] from = {"exercise","fechaIni","fechaFin","tiempo","calorias","cumplida"};
+                String[] from = {"image","exercise","fechaIni","fechaFin","tiempo","calorias"};
                 // Ids of views in listview_layout
-                int[] to = {R.id.textViewEjercicio,R.id.textViewFechaInicial,R.id.textViewFechaFin,R.id.textViewTiempo, R.id.textViewCalorias, R.id.textViewCumplida};
+                int[] to = {R.id.imageViewEjercicio,R.id.textViewEjercicio,R.id.textViewFechaInicial,R.id.textViewFechaFin,R.id.textViewTiempo, R.id.textViewCalorias};
 
                 // Instantiating an adapter to store each items
                 // R.layout.listview_layout defines the layout of each item
