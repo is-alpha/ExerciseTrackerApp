@@ -33,7 +33,7 @@ public class PerformanceActivity extends AppCompatActivity {
     Calendar cale = Calendar.getInstance();
     int year = cale.get(Calendar.YEAR);
     String genero;
-    TextView basal, cal;
+    TextView basal, cal,totalg;
     ArrayList<Calorie> burnedCalories = new ArrayList<Calorie>() ;
     private LineChart lineChart;
     private LineDataSet lineDataSet;
@@ -51,6 +51,7 @@ public class PerformanceActivity extends AppCompatActivity {
         }
         basal = (TextView) findViewById(R.id.textView7);
         cal = (TextView) findViewById(R.id.textView14);
+        totalg = (TextView)findViewById(R.id.textViewxf);
 
         inicializarFirebase();
         getCaloriesBurned();
@@ -60,7 +61,7 @@ public class PerformanceActivity extends AppCompatActivity {
 
         setBasalCalories();
         setAverage();
-
+        setTotal();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -68,6 +69,7 @@ public class PerformanceActivity extends AppCompatActivity {
                 setGraphic();
                 setBasalCalories();
                 setAverage();
+                setTotal();
             }
 
             @Override
@@ -124,6 +126,12 @@ public class PerformanceActivity extends AppCompatActivity {
         else
             cal.setText((Float.toString(calorias/range)));
 
+    }
+    void setTotal(){
+        if(range==24)
+            totalg.setText((Float.toString(total + calorias)));
+        else
+            totalg.setText((Float.toString((total*range)+(calorias/range))));
     }
 
     void getBasalCalories(){
