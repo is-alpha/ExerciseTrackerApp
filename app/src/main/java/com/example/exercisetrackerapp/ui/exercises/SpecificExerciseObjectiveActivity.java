@@ -6,8 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,23 +33,26 @@ import java.util.Calendar;
 
 public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
 
-    private TextView textViewEjercicio;
+    private TextView textViewEjercicio,textViewObjetivo;
     ImageView imageViewImagen;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
+    DatabaseReference obj;
     Date fecha;
     int i=0,j=0;
-    String cal;
     Button sumarCal,restarCal,sumarExtra,restarExtra,botonCancelarCalorias,botonGuardarConsCal;
-    String email="",uid,id,userID,emailAux;
+    String email="",uid,id,userID,emailAux,objetivo, mArray[];
     int year, month,dayOfMonth,idImage;
+
+    Spinner mySpinner;
 
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Button botonTrackExercise;
+    ImageButton imageButtonRestar, imageButtonSumar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +68,9 @@ public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
 
         textViewEjercicio = (TextView) findViewById(R.id.textViewEjercicio);
         imageViewImagen  = (ImageView) findViewById(R.id.imageViewImagen);
-
-
+        textViewObjetivo = (TextView) findViewById(R.id.textViewObjetivo);
+        imageButtonRestar = (ImageButton)  findViewById(R.id.imageButtonRestar);
+        imageButtonSumar = (ImageButton) findViewById(R.id.imageButtonSumar);
 
         databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -92,7 +99,111 @@ public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        /*
+
+        mySpinner = (Spinner) findViewById(R.id.spinnerObjetivo);
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Object item = parent.getItemAtPosition(pos);
+
+                mArray = getResources().getStringArray(R.array.objetivos);
+                objetivo = mySpinner.getSelectedItem().toString();
+                /*
+                databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                            emailAux = areaSnapshot.child("usuario").getValue().toString();
+                            if(emailAux.equals(email)){
+                                switch(objetivo) {
+                                    case "Objetivo de tiempo": textViewObjetivo.setText(areaSnapshot.child("objTiempo").getValue().toString()); break;
+                                    case "Objetivo de distancia": textViewObjetivo.setText(areaSnapshot.child("objDistancia").getValue().toString()); break;
+                                    case "Objetivo de repeticiones": textViewObjetivo.setText(areaSnapshot.child("objRep").getValue().toString()); break;
+
+                                }
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });*/
+                /*
+                switch(objetivo) {
+                    case "Objetivo de tiempo": textViewObjetivo.setText("TIEMPO"); break;
+                    case "Objetivo de distancia": textViewObjetivo.setText("DISTANCIA"); break;
+                    case "Objetivo de repeticiones": textViewObjetivo.setText("REPETICIONES"); break;
+
+                }*/
+
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        imageButtonRestar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                i = Integer.parseInt(textViewObjetivo.getText().toString());
+                if(i>0){
+                    i-=1;
+                }
+                textViewObjetivo.setText(Integer.toString(i));
+
+                databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                            emailAux = areaSnapshot.child("usuario").getValue().toString();
+                            if(emailAux.equals(email)){
+                                switch(objetivo) {
+                                    case "Objetivo de tiempo": obj = areaSnapshot.getRef().child("objTiempo"); break;
+                                    case "Objetivo de distancia": obj = areaSnapshot.getRef().child("objDistancia"); break;
+                                    case "Objetivo de repeticiones": obj = areaSnapshot.getRef().child("objRep"); break;
+
+                                }
+                                obj.setValue(textViewObjetivo.getText().toString());
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+
+            }
+        });
+
+        imageButtonSumar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                i = Integer.parseInt(textViewObjetivo.getText().toString());
+                i++;
+                /*if(i>0){
+                    i-=1;
+                }*/
+                textViewObjetivo.setText(Integer.toString(i));
+
+                databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                            emailAux = areaSnapshot.child("usuario").getValue().toString();
+                            if(emailAux.equals(email)){
+                                switch(objetivo) {
+                                    case "Objetivo de tiempo": obj = areaSnapshot.getRef().child("objTiempo"); break;
+                                    case "Objetivo de distancia": obj = areaSnapshot.getRef().child("objTiempo"); break;
+                                    case "Objetivo de repeticiones": obj = areaSnapshot.getRef().child("objRep"); break;
+
+                                }
+                                obj.setValue(textViewObjetivo.getText().toString());
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+            }
+        });
+
         botonTrackExercise = (Button) findViewById(R.id.botonTrackExercise);
         botonTrackExercise.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -100,6 +211,8 @@ public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
             }
         });
 
+
+        /*
 
         textViewFechaCalorias = (TextView) findViewById(R.id.textViewFechaCalorias);
         caloriasManual  = (TextView) findViewById(R.id.editText_caloriasManual);
@@ -143,7 +256,7 @@ public class SpecificExerciseObjectiveActivity extends AppCompatActivity {
                 caloriasManualExtra.setText(cal);
             }
         });
-        restarCal.setOnClickListener(new View.OnClickListener() {
+        imageButtonRestar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 i = Integer.parseInt(caloriasManual.getText().toString());
                 if(i>50){

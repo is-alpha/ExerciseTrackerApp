@@ -131,7 +131,7 @@ public class ExercisesFragment extends Fragment {
                                             }
                                             if(!ejercicioActual) {
                                                 id = databaseReference.push().getKey();
-                                                ActualExercise data = new ActualExercise(email,listaNomEjercicios.get(position));
+                                                ActualExercise data = new ActualExercise(email,listaNomEjercicios.get(position),0,0,0);
                                                 databaseReference.child("ejercicioActual").child(id).setValue(data);
                                             }
                                             launchSpecificExerciseTracker();
