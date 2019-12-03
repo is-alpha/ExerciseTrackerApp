@@ -87,6 +87,12 @@
             android:name=".ui.weight.WeightInfoActivity"
             android:label="Peso Perdido" />
 
+        <service android:name=".ui.messages.Reminders"
+            android:exported="false" />
+
+        <service android:name=".ui.messages.Motivation"
+            android:exported="false" />
+
     </application>
 
 </manifest>
