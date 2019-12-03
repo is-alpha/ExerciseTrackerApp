@@ -69,7 +69,7 @@
     </string-array>
 
     <string-array name="periodoTiempo">
-        <item>24hrs</item>
+        <item>Hoy</item>
         <item>Semana</item>
         <item>Mes</item>
         <item>Año</item>
