@@ -7,6 +7,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -15,15 +19,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AverageCaloriesActivity  extends AppCompatActivity {
 
     private Spinner spinner;
-/*
+
     private LineChart lineChart;
     private LineDataSet lineDataSet;
-    */
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -99,7 +104,7 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
 
         spinner = (Spinner) findViewById(R.id.spinnerExercise);
 
-       /* // Enlazamos al XML
+        // Enlazamos al XML
         lineChart = this.findViewById(R.id.lineChart);
 
         // Recolectamos el set de datos
@@ -115,7 +120,7 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         // Asociamos al gráfico
         LineData lineData = new LineData();
         lineData.addDataSet(lineDataSet);
-        lineChart.setData(lineData);*/
+        lineChart.setData(lineData);
     }
     private void inicializarFirebase () {
         firebaseDatabase = FirebaseDatabase.getInstance();
