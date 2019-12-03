@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.navigation.NavType;
+
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.data.model.Calorie;
 import com.example.exercisetrackerapp.data.model.Date;
@@ -25,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class AverageCaloriesActivity  extends AppCompatActivity {
@@ -32,16 +35,17 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
     //VARIABLES
     private Spinner spinner;
     private int range;
-    float peso, altura, totalMB = 0, calorias, edad;
+    float peso, altura, totalMB = 0,calorias, edad, totalCalories, promCalories;
     Calendar cale = Calendar.getInstance();
     int year = cale.get(Calendar.YEAR);
     String genero;
-    TextView basal, cal, bCal;
+    TextView basal, promCal, totalBCal;
     ArrayList<Calorie> burnedCalories = new ArrayList<Calorie>() ;
 
     //GRAFICOS
     private LineChart lineChart;
     private LineDataSet lineDataSet;
+    private ArrayList<Entry> lineEntries = new ArrayList<Entry>();
 
     //BASE DE DATOS
     FirebaseDatabase firebaseDatabase;
@@ -58,8 +62,8 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
             email = user.getEmail();
         }
         basal = (TextView) findViewById(R.id.numMBasal);
-        cal = (TextView) findViewById(R.id.numKcal);
-        bCal = findViewById(R.id.totalCBurned);
+        promCal = (TextView) findViewById(R.id.numKcal);
+        totalBCal = findViewById(R.id.totalCBurned);
 
         inicializarFirebase();
         getBasalCalories();
@@ -73,9 +77,10 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 range = getRange(spinner.getSelectedItem().toString());
+                //getCaloriesBurned();
                 setGraphic();
                 setBasalCalories();
-
+                //setCalories();
                 //int i = DateValidator.getCountOfDays("3/12/2019","dd/MM/yyyy");
                 //Toast.makeText(parentView.getContext(), String.valueOf(i) , Toast.LENGTH_LONG).show();
             }
@@ -88,7 +93,7 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
     private int getRange(String period) {
         switch (period) {
             case "Hoy":
-                return 24;
+                return 1;
             case "Semana":
                 return 7;
             case "Mes":
@@ -104,8 +109,8 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         lineChart = this.findViewById(R.id.lineChart);
 
         // Recolectamos el set de datos
-        ArrayList<Entry> lineEntries = new ArrayList<Entry>();
-        cleanGraphic(lineEntries);
+        cleanGraphic();
+        setCalories();
 
         // disable description text
         lineChart.getDescription().setEnabled(false);
@@ -113,6 +118,7 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         lineDataSet = new LineDataSet(lineEntries, "Calorías gastadas");
         // Asociamos al gráfico
         LineData lineData = new LineData();
+
         lineData.addDataSet(lineDataSet);
         lineChart.setData(lineData);
 
@@ -121,10 +127,11 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
     }
 
     void setBasalCalories(){
-        if(range==24)
-            basal.setText(Float.toString(totalMB)); //cantidad de un solo dia
-        else
-            basal.setText(Float.toString(totalMB *range)); //por cantidad de dias
+        basal.setText(Float.toString(this.getNumBasalCalories()));
+    }
+
+    private float getNumBasalCalories(){
+            return (totalMB *range); //por cantidad de dias
     }
 
     void getBasalCalories(){
@@ -149,39 +156,79 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
 
+    private void setCalories(){
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        int auxInt, range2=range;//,cnt=0;
+        if(range==1) range2=24;
+        float [] calories = new float [range2];
+        Arrays.fill(calories, 0);
+
+        totalCalories = 0;
+
+        for(Calorie calorie: burnedCalories){
+            auxInt = DateValidator.getCountOfDays(calorie.getDate().format(), "dd/MM/yyyy");
+
+            if( auxInt < range ){
+                if(range!=1){
+                    totalCalories += calorie.getCantCalorie();
+                    calories[auxInt]+=calorie.getCantCalorie();
+                }
+                else{
+                    totalCalories += calorie.getCantCalorie();
+                    calories[calorie.getDate().getHour()]+=calorie.getCantCalorie();
+                }
+            }
+        }
+
+        for(int i=0;i<range2;i++){
+            if(calories[i]!=0){
+                //cnt++;
+                //Entry entry = new Entry();
+                lineEntries.get(i).setY(calories[i]);
+            }
+        }
+
+        //promedio por dia incluyendo metabolismo basal
+        promCal.setText(decimalFormat.format((totalCalories+getNumBasalCalories())/range));
+        totalBCal.setText(decimalFormat.format(totalCalories+getNumBasalCalories()));
+    }
+
     //Funcion que almacena todas las calorias quemadas del ultimo año
-    private void getCaloriesBurned2(){
+    private void getCaloriesBurned(){
         //getCountOfDays(String date, String dateFormat)
         databaseReference.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Date date;
                 Calorie calorie;
-                StringBuilder fecha;
 
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
                     if (emailAux.equals(email)) {
-                        //Calorie(float cantCalorie, Date date)
-                        //int day, int month, int year
 
-                        fecha = new StringBuilder();
-                        fecha.append(areaSnapshot.child("fechaIni").child("day").getValue(Integer.class));
-                        fecha.append("/");
+                        date = new Date(areaSnapshot.child("date").child("day").getValue(Integer.class),
+                                areaSnapshot.child("date").child("month").getValue(Integer.class),
+                                areaSnapshot.child("date").child("year").getValue(Integer.class));
 
-                        //date = new Date();
-                        /*Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString()),
-                                areaSnapshot.child("date").getValue())); */
+                        date.setHour(areaSnapshot.child("date").child("hour").getValue(Integer.class));
 
-                        calorias +=  Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
-                        cal.setText(Float.toString(calorias));
+                        //Guardar ocurrencias del último año
+                        if( DateValidator.getCountOfDays(date.format(),"dd/MM/yyyy") <= 365) {
+                            calorie = new Calorie(Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString()),
+                                    date);
+
+                            burnedCalories.add(calorie);
+                            calorias += Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
+                        }
+
+                        //setCalories();
+                        setGraphic();
                     }
                 }
             }
@@ -191,34 +238,16 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         });
     }
 
-    private void cleanGraphic(ArrayList<Entry> lineEntries){
-        for(int i=0; i<=range; i++) {
+    private void cleanGraphic(){
+        int range2;
+        lineEntries = new ArrayList<Entry>();
+
+        if(range == 1) range2=24;
+        else range2=range;
+
+        for(int i=0; i<=range2; i++) {
             lineEntries.add(new Entry((float) i, (float)0));
         }
-    }
-
-    private void getCaloriesBurned(){
-
-        databaseReference.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int i=1;
-                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                    emailAux = areaSnapshot.child("usuario").getValue().toString();
-                    if (emailAux.equals(email)) {
-                        calorias = calorias + Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
-                        calorias = calorias / i;
-
-                        DecimalFormat decimalFormat = new DecimalFormat("#.00");
-                        cal.setText(decimalFormat.format(calorias));
-                        i++;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
-        });
     }
 
     private void inicializarFirebase() {
