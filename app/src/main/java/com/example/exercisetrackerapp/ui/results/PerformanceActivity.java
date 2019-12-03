@@ -29,18 +29,20 @@ public class PerformanceActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private int range;
-    float peso, altura, total = 0, calorias, edad;
+    float peso, altura, total = 0, calorias, edad, calgoals, timegoals, timeprom;
     Calendar cale = Calendar.getInstance();
     int year = cale.get(Calendar.YEAR);
     String genero;
-    TextView basal, cal,totalg;
+    TextView basal, cal,totalg,calgoalstxt,timegoalstxt, promtimeg;
     ArrayList<Calorie> burnedCalories = new ArrayList<Calorie>() ;
     private LineChart lineChart;
     private LineDataSet lineDataSet;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String email, emailAux;
+    String email, emailAux, exerciseAux;
+    ArrayList<String> exercises= new ArrayList<String>();
+    ArrayList<String> exercisesAct= new ArrayList<String>();;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,16 +54,28 @@ public class PerformanceActivity extends AppCompatActivity {
         basal = (TextView) findViewById(R.id.textView7);
         cal = (TextView) findViewById(R.id.textView14);
         totalg = (TextView)findViewById(R.id.textViewxf);
+        calgoalstxt= (TextView) findViewById(R.id.textViewxfg);
+        timegoalstxt=(TextView)findViewById(R.id.textViewex0);
+        promtimeg=(TextView)findViewById(R.id.textViewexprom0);
 
         inicializarFirebase();
         getCaloriesBurned();
         getBasalCalories();
+        getCaloriesGoals();
+        getTimeGoals();
+        getPromTimeGoals();
+        getActualExercise();
+        getGoalExercise();
 
         spinner = (Spinner) findViewById(R.id.spinnerExercise);
 
         setBasalCalories();
         setAverage();
         setTotal();
+        setCaloriesGoals();
+        setTimeGoals();
+        setPromTimeGoals();
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -70,6 +84,9 @@ public class PerformanceActivity extends AppCompatActivity {
                 setBasalCalories();
                 setAverage();
                 setTotal();
+                setCaloriesGoals();
+                setTimeGoals();
+                setTimeGoals();
             }
 
             @Override
@@ -134,7 +151,25 @@ public class PerformanceActivity extends AppCompatActivity {
             totalg.setText((Float.toString((total*range)+(calorias/range))));
     }
 
-    void getBasalCalories(){
+    void setPromTimeGoals(){
+        if(range==24)
+            promtimeg.setText((Float.toString(timeprom)));
+        else
+            promtimeg.setText((Float.toString(timeprom/range)));
+    }
+
+    void setCaloriesGoals(){
+
+        calgoalstxt.setText((Float.toString(calgoals)));
+    }
+
+    void setTimeGoals(){
+
+        timegoalstxt.setText((Float.toString(timegoals)));
+
+    }
+
+    private void getBasalCalories(){
         databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -162,6 +197,75 @@ public class PerformanceActivity extends AppCompatActivity {
         });
     }
 
+    private void getPromTimeGoals(){
+
+        databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i=1;
+                for(DataSnapshot areaSnapshot: dataSnapshot.getChildren()) {
+                    emailAux = areaSnapshot.child("usuario").getValue().toString();
+                    for (int j = 0; j < exercises.size(); j++) {
+                        for(int h=0; h < exercisesAct.size(); h++) {
+                            if (emailAux.equals(email) && exercises.get(j).equals(exercisesAct.get(h))) {
+                                timeprom = timeprom + Float.parseFloat(areaSnapshot.child("objTiempo").getValue().toString());
+                                timeprom = timeprom / i;
+                                i++;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getGoalExercise(){
+        databaseReference.child("metas").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot areaSnapshot: dataSnapshot.getChildren()){
+                    emailAux=areaSnapshot.child("usuario").getValue().toString();
+                    if(emailAux.equals(email)){
+                        String exercise = areaSnapshot.child("exercise").getValue().toString();
+                        exercises.add(exercise);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getActualExercise(){
+        databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot areaSnapshot: dataSnapshot.getChildren()){
+                    emailAux=areaSnapshot.child("usuario").getValue().toString();
+                    if(emailAux.equals(email)){
+                        String exercise = areaSnapshot.child("exercise").getValue().toString();
+                        exercisesAct.add(exercise);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     private void getCaloriesBurned(){
 
@@ -182,6 +286,48 @@ public class PerformanceActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
+    }
+
+    private void getCaloriesGoals(){
+        databaseReference.child("metas").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot areaSnapshot: dataSnapshot.getChildren()){
+                    emailAux=areaSnapshot.child("usuario").getValue().toString();
+                    if(emailAux.equals(email)){
+                        calgoals=calgoals + Float.parseFloat(areaSnapshot.child("calorias").getValue().toString());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getTimeGoals(){
+        databaseReference.child("metas").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot areaSnapshot: dataSnapshot.getChildren()){
+                    emailAux=areaSnapshot.child("usuario").getValue().toString();
+                    if(emailAux.equals(email)){
+                        timegoals=timegoals + Float.parseFloat(areaSnapshot.child("tiempo").getValue().toString());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void inicializarFirebase() {
