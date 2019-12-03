@@ -1,7 +1,5 @@
 package com.example.exercisetrackerapp.ui.exerciseRoutine;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +10,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.data.model.Date;
@@ -43,6 +41,7 @@ public class TrackExerciseActivity extends AppCompatActivity{
     DatabaseReference obj;
     Date fecha;
     int i=0,j=0;
+    double distance = 0.0;
     String email="",uid,id,userID,emailAux,objetivo, mArray[];
     int year, month,dayOfMonth,idImage;
 
@@ -113,6 +112,8 @@ public class TrackExerciseActivity extends AppCompatActivity{
             }
         });
 
+
+
     }
 
     private void inicializarFirebase(){
@@ -130,7 +131,7 @@ public class TrackExerciseActivity extends AppCompatActivity{
                     bindService(intent, connection, Context.BIND_AUTO_CREATE);
                 } else {
 //Create a notification builder
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                 /*   NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                             .setSmallIcon(android.R.drawable.ic_menu_compass)
                             .setContentTitle(getResources().getString(R.string.app_name))
                             //.setContentText(getResources().getString(R.string.permission_denied))
@@ -145,7 +146,8 @@ public class TrackExerciseActivity extends AppCompatActivity{
 //Issue the notification
                     NotificationManager notificationManager =
                             (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager.notify(NOTIFICATION_ID, builder.build());
+                    notificationManager.notify(NOTIFICATION_ID, builder.build());*/
+                    Toast.makeText(this,"No podrá utilizar servicio de distancia",Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -175,12 +177,17 @@ public class TrackExerciseActivity extends AppCompatActivity{
     private void displayDistance() {
         final TextView distanceView = (TextView)findViewById(R.id.distancia);
         final Handler handler = new Handler();
+
         handler.post(new Runnable() {
             @Override
             public void run() {
-                double distance = 0.0;
+
                 if (bound && odometer != null) {
                     distance = odometer.getDistance();
+                }
+                else{
+                    String distanceStr = "no se puede actualizar";
+                    distanceView.setText(distanceStr);
                 }
                 String distanceStr = String.format(Locale.getDefault(),
                         "%1$,.2f m", distance);
