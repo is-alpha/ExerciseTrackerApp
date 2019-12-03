@@ -97,7 +97,7 @@
 
                     <TextView
                         android:id="@+id/numKcal"
-                        android:layout_width="match_parent"
+                        android:layout_width="90dp"
                         android:gravity="center"
                         android:layout_height="40dp"
                         android:text="#####"
@@ -151,11 +151,20 @@
                 <TextView
                     android:id="@+id/numMBasal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:text="##"
+                    android:text="####"
                     android:textColor="#000"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="60dp"
+                    android:gravity="center"
+                    android:text="@string/kcal"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -183,9 +192,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="##"
+                    android:text="####"
                     android:textColor="#000"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="60dp"
+                    android:gravity="center"
+                    android:text="@string/kcal"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp" />
+
             </LinearLayout>
 
             <Space
