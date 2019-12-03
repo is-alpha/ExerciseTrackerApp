@@ -20,6 +20,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
+
         </activity>
 
         <activity
@@ -30,6 +31,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
         </activity>
         <activity
@@ -86,6 +88,11 @@
         <activity
             android:name=".ui.weight.WeightInfoActivity"
             android:label="Peso Perdido" />
+
+        <activity
+            android:name=".ui.goals.GoalsRegisterActivity"
+            android:label="Registrar Meta" />
+
 
         <activity
             android:name=".ui.editProfile.EditProfileDataActivity"

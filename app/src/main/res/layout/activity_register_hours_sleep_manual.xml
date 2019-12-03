@@ -164,18 +164,19 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/botonCancelar_HorasSManual"
+                    android:id="@+id/botonCancelarSueno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/label_Cancelar" />
+                    android:text="@string/cancelar" />
 
                 <Button
-                    android:id="@+id/botonGuardar_HorasSManual"
+                    android:id="@+id/botonRegistrarSueno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/label_Guardar" />
+                    android:text="@string/guardar" />
+
             </LinearLayout>
         </LinearLayout>
 
