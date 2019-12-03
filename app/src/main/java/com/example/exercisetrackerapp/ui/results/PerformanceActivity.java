@@ -209,7 +209,7 @@ public class PerformanceActivity extends AppCompatActivity {
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
                     if (emailAux.equals(email)) {
-                        timeprom = timeprom + Float.parseFloat(areaSnapshot.child("objTiempo").getValue().toString());
+                        timeprom = timeprom + 10;//Float.parseFloat(areaSnapshot.child("objTiempo").getValue().toString());
                         timeprom = timeprom / i;
                         i++;
                     }
