@@ -87,6 +87,10 @@
             android:name=".ui.weight.WeightInfoActivity"
             android:label="Peso Perdido" />
 
+        <activity
+            android:name=".ui.editProfile.EditProfileDataActivity"
+            android:label="Editar Perfil"/>
+
     </application>
 
 </manifest>
