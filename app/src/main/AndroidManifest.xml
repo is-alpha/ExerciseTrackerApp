@@ -56,7 +56,7 @@
             android:name=".ui.results.CalorieCountExerciseActivity"
             android:label="Calorías de Ejercicio" />
         <activity
-            android:name=".ui.results.AverageCaloriesActivity"
+            android:name=".ui.results.AverageCalories.AverageCaloriesActivity"
             android:label="Promedio de Calorías Gastadas" />
         <activity
             android:name=".ui.results.WeightLossActivity"
