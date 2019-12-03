@@ -18,6 +18,8 @@ import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
 import com.example.exercisetrackerapp.ui.editProfile.EditProfileDataActivity;
 import com.example.exercisetrackerapp.ui.exerciseRoutine.TrackExerciseActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +39,10 @@ public class ExercisesFragment extends Fragment {
     List<String> listaNomEjercicios;
     List<String> listaImagenEjercicios;
     ListView listView;
+    String emailAux,email,uid,id;
+    boolean ejercicioActual = false;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +58,11 @@ public class ExercisesFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+
+        if (user != null) {
+            email = user.getEmail();
+            uid = user.getUid();
+        }
 
         databaseReference.child("ejercicio").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -104,16 +115,48 @@ public class ExercisesFragment extends Fragment {
                                 @Override
                                 public void onClick(View view) {
 
+                                    ejercicioActual = false;
+                                    databaseReference.child("ejercicioActual").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                                                emailAux = areaSnapshot.child("usuario").getValue().toString();
+                                                if(emailAux.equals(email)){
+                                                    ejercicioActual = true;
+
+                                                    DatabaseReference ejercicio = areaSnapshot.getRef().child("exercise");
+                                                    ejercicio.setValue(listaNomEjercicios.get(position));
+
+                                                }
+                                            }
+                                            if(!ejercicioActual) {
+                                                id = databaseReference.push().getKey();
+                                                ActualExercise data = new ActualExercise(email,listaNomEjercicios.get(position));
+                                                databaseReference.child("ejercicioActual").child(id).setValue(data);
+                                            }
+                                            launchSpecificExerciseTracker();
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        }
+                                    });
+
+
+
+
+                                    /*
                                     switch(listaNomEjercicios.get(position)){
-                                        case "Abdominales": launchSpecificExerciseManual(); break;
-                                        case "Caminadora":  launchSpecificExerciseManual(); break;
+                                        case "Abdominales": launchSpecificExerciseTracker(); break;
+                                        case "Caminadora":  launchSpecificExerciseTracker(); break;
                                         case "Caminar": launchSpecificExerciseTracker(); break;
                                         case "Ciclismo": launchSpecificExerciseTracker(); break;
                                         case "Correr": launchSpecificExerciseTracker(); break;
-                                        case "Fútbol": launchSpecificExerciseManual(); break;
-                                        case "Pesas": launchSpecificExerciseManual(); break;
+                                        case "Fútbol": launchSpecificExerciseTracker(); break;
+                                        case "Pesas": launchSpecificExerciseTracker(); break;
 
-                                    }
+                                    }*/
+
+
                                 }
                             });
                         return v;
@@ -138,13 +181,13 @@ public class ExercisesFragment extends Fragment {
         databaseReference = firebaseDatabase.getReference();
     }
 
-
+    /*
     private void launchSpecificExerciseManual() {
         //OTRA PANTALLA
         Intent intent = new Intent(getActivity(), BurnedCaloriesActivity.class);
         startActivity(intent);
     }
-
+    */
     private void launchSpecificExerciseTracker() {
         Intent intent = new Intent(getActivity(), SpecificExerciseObjectiveActivity.class);
         startActivity(intent);
