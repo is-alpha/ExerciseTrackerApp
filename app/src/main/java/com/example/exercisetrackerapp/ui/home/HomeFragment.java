@@ -19,6 +19,7 @@ import com.example.exercisetrackerapp.ui.consumedCalories.ConsumedCaloriesActivi
 import com.example.exercisetrackerapp.ui.exerciseRoutine.TrackExerciseActivity;
 import com.example.exercisetrackerapp.ui.location.MainActivityForOdometer;
 import com.example.exercisetrackerapp.ui.sleep.RegisterSleepManualActivity;
+import com.example.exercisetrackerapp.ui.sleep.SleepInfoActivity;
 import com.example.exercisetrackerapp.ui.weight.WeightActivity;
 import com.example.exercisetrackerapp.ui.weight.WeightInfoActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,13 +30,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    //Button botonCaloriasQuemadas;
-    public  String email,name,calConsum,uid;
+    public  String email,name,calConsum,uid,emailAux;
+    float calorias;
     private DatabaseReference mDatabase;
-    TextView textViewCalorias,textViewPeso;
+    TextView textViewCalorias,textViewPeso,textViewHorasSueno,textViewCaloriasQuemadas;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -56,6 +59,10 @@ public class HomeFragment extends Fragment {
 
         textViewCalorias = (TextView) root.findViewById(R.id.textViewCalorias);
         textViewPeso = (TextView) root.findViewById(R.id.textViewPeso);
+        textViewHorasSueno = (TextView) root.findViewById(R.id.textViewHorasSueno);
+        textViewCaloriasQuemadas = (TextView) root.findViewById(R.id.textViewCaloriasQuemadas);
+
+        getCaloriesBurned();
 
         mDatabase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -65,6 +72,7 @@ public class HomeFragment extends Fragment {
                         calConsum = areaSnapshot.child("calConsumidas").getValue().toString();
                         textViewCalorias.setText(calConsum);
                         textViewPeso.setText(areaSnapshot.child("peso").getValue().toString());
+                        textViewHorasSueno.setText(areaSnapshot.child("hsueno").getValue().toString());
                     }
                 }
 
@@ -165,6 +173,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        ImageButton botonSuenoInfo = (ImageButton) root.findViewById(R.id.botonSuenoInfo);
+        botonSuenoInfo .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchSleepInfoActivity();
+            }
+        });
 
         return root;
     }
@@ -200,10 +215,16 @@ public class HomeFragment extends Fragment {
     }
 
 
+    private void launchSleepInfoActivity() {
+        Intent intent = new Intent(getActivity(), SleepInfoActivity.class);
+        startActivity(intent);
+    }
+
     private void launchRegisterSleepManualActivity() {
         Intent intent = new Intent(getActivity(), RegisterSleepManualActivity.class);
         startActivity(intent);
     }
+
     private void launchuOdometer() {
         Intent intent = new Intent(getActivity(), MainActivityForOdometer.class);
         startActivity(intent);
@@ -212,5 +233,29 @@ public class HomeFragment extends Fragment {
     private void launchStopWatch() {
         Intent intent = new Intent(getActivity(), TrackExerciseActivity.class);
         startActivity(intent);
+    }
+
+    private void getCaloriesBurned(){
+
+        mDatabase.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i=1;
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    emailAux = areaSnapshot.child("usuario").getValue().toString();
+                    if (emailAux.equals(email)) {
+                        calorias = calorias + Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
+                        calorias = calorias / i;
+
+                        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                        textViewCaloriasQuemadas.setText(decimalFormat.format(calorias));
+                        i++;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
     }
 }

@@ -111,6 +111,11 @@
             android:name=".ui.exercises.SpecificExerciseObjectiveActivity"
             android:label="Track Exercise"/>
 
+        <activity
+            android:name=".ui.sleep.SleepInfoActivity"
+            android:label="Horas de sueño"/>
+
+
 
     </application>
 
