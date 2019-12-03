@@ -104,6 +104,12 @@
         <service android:name=".ui.messages.Reminders"
             android:exported="false"/>
 
+
+        <activity
+            android:name=".ui.exercises.SpecificExerciseObjectiveActivity"
+            android:label="Track Exercise"/>
+
+
     </application>
 
 </manifest>

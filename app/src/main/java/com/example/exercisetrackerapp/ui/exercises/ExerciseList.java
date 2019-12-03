@@ -69,7 +69,7 @@ public class ExerciseList extends ListFragment {
         String[] from = { "ej"};
 
         // Ids of views in listview_layout
-        int[] to = { R.id.textVnomEjercicio};
+        int[] to = { R.id.botonVnomEjercicio};
 
         // Instantiating an adapter to store each items
         // R.layout.listview_layout defines the layout of each item

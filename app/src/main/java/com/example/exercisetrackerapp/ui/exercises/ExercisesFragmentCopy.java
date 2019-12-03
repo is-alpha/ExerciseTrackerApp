@@ -1,7 +1,6 @@
 package com.example.exercisetrackerapp.ui.exercises;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,15 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
-import com.example.exercisetrackerapp.ui.editProfile.EditProfileDataActivity;
-import com.example.exercisetrackerapp.ui.exerciseRoutine.TrackExerciseActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ExercisesFragment extends Fragment {
+public class ExercisesFragmentCopy extends Fragment {
 
     private ExercisesViewModel exercisesViewModel;
 
@@ -77,6 +71,7 @@ public class ExercisesFragment extends Fragment {
                         R.drawable.img_ciclismo,
                         R.drawable.img_correr,
                         R.drawable.img_futbol,
+                        R.drawable.img_natacion,
                         R.drawable.img_pesas,
                 };
 
@@ -94,32 +89,7 @@ public class ExercisesFragment extends Fragment {
 
                 // Instantiating an adapter to store each items
                 // R.layout.listview_layout defines the layout of each item
-                SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.customlayout, from, to){
-
-                    @Override
-                    public View getView (final int position, View convertView, ViewGroup parent){
-                        View v = super.getView(position, convertView, parent);
-                        Button b=(Button)v.findViewById(R.id.botonVnomEjercicio);
-                            b.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-
-                                    switch(listaNomEjercicios.get(position)){
-                                        case "Abdominales": launchSpecificExerciseManual(); break;
-                                        case "Caminadora":  launchSpecificExerciseManual(); break;
-                                        case "Caminar": launchSpecificExerciseTracker(); break;
-                                        case "Ciclismo": launchSpecificExerciseTracker(); break;
-                                        case "Correr": launchSpecificExerciseTracker(); break;
-                                        case "Fútbol": launchSpecificExerciseManual(); break;
-                                        case "Pesas": launchSpecificExerciseManual(); break;
-
-                                    }
-                                }
-                            });
-                        return v;
-                    }
-
-                };
+                SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.customlayout, from, to);
                 listView = view.findViewById(R.id.ListViewEj);
                 listView.setAdapter(adapter);
             }
@@ -138,16 +108,5 @@ public class ExercisesFragment extends Fragment {
         databaseReference = firebaseDatabase.getReference();
     }
 
-
-    private void launchSpecificExerciseManual() {
-        //OTRA PANTALLA
-        Intent intent = new Intent(getActivity(), BurnedCaloriesActivity.class);
-        startActivity(intent);
-    }
-
-    private void launchSpecificExerciseTracker() {
-        Intent intent = new Intent(getActivity(), SpecificExerciseObjectiveActivity.class);
-        startActivity(intent);
-    }
 
 }

@@ -130,7 +130,7 @@ public class GoalsFragment extends Fragment {
                             case "Caminar": idImage = R.drawable.img_caminar; break;
                             case "Ciclismo": idImage = R.drawable.img_ciclismo; break;
                             case "Correr": idImage = R.drawable.img_correr; break;
-                            case "Futbol": idImage = R.drawable.img_futbol; break;
+                            case "Fútbol": idImage = R.drawable.img_futbol; break;
                             case "Pesas": idImage = R.drawable.img_pesas; break;
 
                         }

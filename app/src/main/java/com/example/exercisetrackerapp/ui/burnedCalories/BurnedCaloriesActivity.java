@@ -61,7 +61,6 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
         }
 
         id = databaseReference.push().getKey();
-        Toast.makeText(this,"Hola "+email,Toast.LENGTH_LONG).show();
         fechaInicio = (TextView) findViewById(R.id.textViewDate);
         caloriasQuemadas = (EditText) findViewById(R.id.editTextCaloriasGastadas);
 
