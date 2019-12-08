@@ -9,8 +9,6 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.navigation.NavType;
-
 import com.example.exercisetrackerapp.R;
 import com.example.exercisetrackerapp.data.model.Calorie;
 import com.example.exercisetrackerapp.data.model.Date;
@@ -197,8 +195,12 @@ public class AverageCaloriesActivity  extends AppCompatActivity {
         for(int i=0;i<range2;i++){
             if(calories[i]!=0){
                 lineEntries.get(i).setY(calories[i]);
-                lineEntries2.get(i).setY(totalMB);
             }
+
+            if(range!=1)
+                lineEntries2.get(i).setY(totalMB);
+            else
+                lineEntries2.get(i).setY(totalMB/24);
         }
 
         //promedio por dia incluyendo metabolismo basal
