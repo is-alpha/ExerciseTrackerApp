@@ -34,7 +34,7 @@ import java.util.List;
 public class BurnedCaloriesActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private Button mBtCancelar;
     private Button mRegistrar;
-    private EditText caloriasQuemadas;
+    private EditText caloriasQuemadas,editTextTiempo;
     private TextView fechaInicio;
     private Spinner spinner;
     String email="",uid,id,userID;
@@ -63,6 +63,7 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
 
         fechaInicio = (TextView) findViewById(R.id.textViewDate);
         caloriasQuemadas = (EditText) findViewById(R.id.editTextCaloriasGastadas);
+        editTextTiempo = (EditText) findViewById(R.id.editTextTiempo);
 
         mBtCancelar = (Button) findViewById(R.id.botonCancelar);
         mBtCancelar.setOnClickListener(new View.OnClickListener() {
@@ -136,11 +137,13 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
         String sFechaInicio = fechaInicio.getText().toString();
         String sCaloriasQuemadas = caloriasQuemadas.getText().toString();
         String ejercicioSeleccionado = spinner.getSelectedItem().toString();
+        String sTiempo = editTextTiempo.getText().toString();
+
 
         if(validacion(sFechaInicio,sCaloriasQuemadas)==1) {
 
             id = databaseReference.push().getKey();
-            BurnedCalories data = new BurnedCalories(email, Float.parseFloat(sCaloriasQuemadas), fecha, ejercicioSeleccionado);
+            BurnedCalories data = new BurnedCalories(email, Float.parseFloat(sCaloriasQuemadas), fecha, ejercicioSeleccionado,Integer.parseInt(sTiempo));
             databaseReference.child("caloriasQuemadas").child(id).setValue(data);
             limpiarTextBox();
             Toast.makeText(this, "Registro Exitoso! ", Toast.LENGTH_LONG).show();

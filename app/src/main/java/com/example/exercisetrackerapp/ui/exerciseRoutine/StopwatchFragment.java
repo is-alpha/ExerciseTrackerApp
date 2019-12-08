@@ -142,7 +142,7 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
 
 
 
-
+    /*
     private void registrarCaloriasQuemadas(){
 
         inicializarFirebase();
@@ -175,7 +175,7 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
                        // id = databaseReference.push().getKey();
                         Calendar c = Calendar.getInstance();
                         Date fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
-                        BurnedCalories data = new BurnedCalories(email, calorias, fecha, ejercicio);
+                        BurnedCalories data = new BurnedCalories(email, calorias, fecha, ejercicio,minutos);
                         databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
                     }
                 }
@@ -186,7 +186,7 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
         });
 
 
-    }
+    }*/
     public void calculoCalorias(){
         inicializarFirebase();
 
@@ -206,7 +206,7 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
         }
 
         if(ejercicio.equals("Caminar")){
-            BurnedCalories data = new BurnedCalories(email, (minutes*200)/30,  fecha,ejercicio);
+            BurnedCalories data = new BurnedCalories(email, (minutes*200)/30,  fecha,ejercicio,minutes);
             databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
         }
         /*

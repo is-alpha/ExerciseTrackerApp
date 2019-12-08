@@ -139,7 +139,7 @@
                     android:layout_height="25dp" />
 
                 <TextView
-                    android:id="@+id/textViewTiempo"
+                    android:id="@+id/labelTiempoEj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
