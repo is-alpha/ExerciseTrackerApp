@@ -18,6 +18,7 @@ import com.example.exercisetrackerapp.ui.consumedCalories.ConsumedCalorieInfoAct
 import com.example.exercisetrackerapp.ui.consumedCalories.ConsumedCaloriesActivity;
 import com.example.exercisetrackerapp.ui.exerciseRoutine.TrackExerciseActivity;
 import com.example.exercisetrackerapp.ui.location.MainActivityForOdometer;
+import com.example.exercisetrackerapp.ui.results.WeightLossActivity;
 import com.example.exercisetrackerapp.ui.sleep.RegisterSleepManualActivity;
 import com.example.exercisetrackerapp.ui.sleep.SleepInfoActivity;
 import com.example.exercisetrackerapp.ui.weight.WeightActivity;
@@ -210,7 +211,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void launchPesoInfo() {
-        Intent intent = new Intent(getActivity(), WeightInfoActivity.class);
+        Intent intent = new Intent(getActivity(), WeightLossActivity.class);
         startActivity(intent);
     }
 
