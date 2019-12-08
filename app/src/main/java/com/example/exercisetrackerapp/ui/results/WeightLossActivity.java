@@ -43,6 +43,10 @@ public class WeightLossActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight_loss);
 
+        textViewPesoInicial  = (TextView) findViewById(R.id.textViewPesoInicial);
+        textViewPesoMeta  = (TextView) findViewById(R.id.textViewPesoMeta);
+        textViewPesoPerdido  = (TextView) findViewById(R.id.textViewPesoPerdido);
+
         inicializarFirebase();
 
         databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -52,7 +56,7 @@ public class WeightLossActivity extends AppCompatActivity {
                     emailAux = areaSnapshot.child("correo").getValue().toString();
                     if(emailAux.equals(email)){
                         peso = areaSnapshot.child("peso").getValue().toString();
-                        //textViewPesoInicial.setText(peso);
+                        textViewPesoInicial.setText(peso);
                     }
                 }
             }
@@ -68,7 +72,7 @@ public class WeightLossActivity extends AppCompatActivity {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
                     if(emailAux.equals(email)){
                         peso = areaSnapshot.child("pesoIdeal").getValue().toString();
-                        //textViewPesoMeta.setText(peso);
+                        textViewPesoMeta.setText(peso);
                     }
                 }
             }
@@ -76,9 +80,6 @@ public class WeightLossActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-
-
-
 
         setGraphic();
     }
