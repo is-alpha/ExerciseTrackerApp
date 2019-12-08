@@ -112,8 +112,8 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
 
     private void onClickEnd(){
         isRunning=false;
-        //registrarCaloriasQuemadas();
-        calculoCalorias();
+        registrarCaloriasQuemadas();
+        //calculoCalorias();
         seconds=0;
 
     }
@@ -142,7 +142,7 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
 
 
 
-    /*
+
     private void registrarCaloriasQuemadas(){
 
         inicializarFirebase();
@@ -158,46 +158,60 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
-                    minutos = (seconds%3600)/60;
-                    calorias =  areaSnapshot.child("calorias").getValue(Float.class);
                     if(emailAux.equals(email)){
-                        ejercicio = areaSnapshot.child("exercise").getValue().toString();
-                        switch(ejercicio) {
-                            case "Abdominales": calorias = calorias*minutos; break;
-                            case "Caminadora": calorias = calorias*minutos; break;
-                            case "Caminar": calorias = calorias*minutos;break;
-                            case "Ciclismo": calorias = calorias*minutos; break;
-                            case "Correr": calorias = calorias*minutos; break;
-                            case "Fútbol": calorias = calorias*minutos; break;
-                            case "Pesas": calorias = calorias*minutos; break;
+
+                        switch(areaSnapshot.child("exercise").getValue().toString()) {
+
+                            case "Caminar": ejercicio="Caminar"; break;
+                            case "Ciclismo": ejercicio="Ciclismo"; break;
+                            case "Correr": ejercicio="Correr"; break;
+
 
                         }
-                       // id = databaseReference.push().getKey();
-                        Calendar c = Calendar.getInstance();
-                        Date fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
-                        BurnedCalories data = new BurnedCalories(email, calorias, fecha, ejercicio,minutos);
-                        databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
                     }
                 }
+
+                int minutes=(seconds%3600)/60;
+                Date fecha;
+                Calendar c = Calendar.getInstance();
+                // ejercicio="Caminar";
+                fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
+                ////AQUI SE AGARRA EL EMAIL DEL USUARIO QUE INGRESO SESION
+                if (user != null) {
+                    email = user.getEmail();
+                    uid = user.getUid();
+                }
+
+                if(ejercicio.equals("Caminar")){
+                    BurnedCalories data = new BurnedCalories(email, (minutes*200)/30,  fecha,ejercicio,minutes);
+                   databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
+                }
+
+                if(ejercicio.equals("Correr")){
+                    BurnedCalories data = new BurnedCalories(email, (minutes*325)/30,  fecha,ejercicio,minutes);
+                    databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
+                }
+                if(ejercicio.equals("Ciclismo")){
+                    BurnedCalories data = new BurnedCalories(email, (minutes*450)/30, fecha,ejercicio,minutes);
+                    databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
+
+                }
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
 
-
-    }*/
+    }
     public void calculoCalorias(){
         inicializarFirebase();
 
-
-
-
-        inicializarFirebase();
         int minutes=(seconds%3600)/60;
         Date fecha;
         Calendar c = Calendar.getInstance();
-        ejercicio="Caminar";
+         ejercicio="Correr";
         fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
         ////AQUI SE AGARRA EL EMAIL DEL USUARIO QUE INGRESO SESION
         if (user != null) {
@@ -205,23 +219,21 @@ public class StopwatchFragment extends Fragment implements View.OnClickListener{
             uid = user.getUid();
         }
 
-        if(ejercicio.equals("Caminar")){
+  /*      if(ejercicio.equals("Caminar")){
             BurnedCalories data = new BurnedCalories(email, (minutes*200)/30,  fecha,ejercicio,minutes);
             databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
         }
-        /*
-        if(ejercicio.equals("Correr")){
-            BurnedCalories data = new BurnedCalories(email, (minutes*325)/30,  fecha,ejercicio);
-            databaseReference.child("caloriasQuemadas").child(id).setValue(data);
-        }
-        if(ejercicio.equals("Ciclismo")){
-            BurnedCalories data = new BurnedCalories(email, (minutes*450)/30, fecha,ejercicio);
-            databaseReference.child("caloriasQuemadas").child(id).setValue(data);
-
-        }
 */
+        if(ejercicio.equals("Correr")){
+            BurnedCalories data = new BurnedCalories(email, (minutes*325)/30,  fecha,ejercicio,minutes);
+            databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
+        }
+        /*if(ejercicio.equals("Ciclismo")){
+            BurnedCalories data = new BurnedCalories(email, (minutes*450)/30, fecha,ejercicio,minutes);
+            databaseReference.child("caloriasQuemadas").child(uid).setValue(data);
 
-        //
+        }*/
+
     }
     private void inicializarFirebase(){
         firebaseDatabase = FirebaseDatabase.getInstance();

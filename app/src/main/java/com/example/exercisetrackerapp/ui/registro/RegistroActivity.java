@@ -38,6 +38,7 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
     private DatabaseReference mDatabase;// Referencia a la base de Datos firebase
     private EditText nombre,email,contrasena,validacion,fecha,altura,peso,ocupacion,genero;
     private String gen;
+    String currentDateString;
     com.example.exercisetrackerapp.data.model.Date fechaN;
     Date fechaActual;
     boolean i=false;
@@ -98,7 +99,7 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+         currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
 
         TextView textView = (TextView) findViewById(R.id.textViewFechaNac);
         textView.setText(currentDateString);
@@ -117,21 +118,47 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
         String gener = gen;
         Date fecha;
         String id = mDatabase.push().getKey();
+        String p=peso.getText().toString();
+        String a=altura.getText().toString();
+        float height;
+        float weight;
        // int date = Integer.parseInt(fecha.getText().toString());
-        float height = Float.parseFloat(altura.getText().toString());
-        float weight=Float.parseFloat(peso.getText().toString());
-        if(TextUtils.isEmpty(correo)){
+
+        if(TextUtils.isEmpty(name)){
+            Toast.makeText(this,"Ingrese nombre",Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(TextUtils.isEmpty(correo)){
             Toast.makeText(this,"Ingrese correo",Toast.LENGTH_LONG).show();
             return;
         }
-        if(TextUtils.isEmpty(password)){
+        else if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Ingrese contraseña",Toast.LENGTH_LONG).show();
             return;
         }
-        if(TextUtils.isEmpty(vcontrasena)){
+        else if(TextUtils.isEmpty(vcontrasena)){
             Toast.makeText(this,"Valide contraseña",Toast.LENGTH_LONG).show();
             return;
         }
+        else if(TextUtils.isEmpty(a)){
+            Toast.makeText(this,"Ingrese altura",Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(TextUtils.isEmpty(p)){
+            Toast.makeText(this,"Ingrese peso",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        else if(TextUtils.isEmpty(trabajo)){
+            Toast.makeText(this,"Ingrese ocupacion",Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(TextUtils.isEmpty(currentDateString)){
+            Toast.makeText(this,"Ingrese fecha de nacimiento",Toast.LENGTH_LONG).show();
+            return;
+        }
+        height = Float.parseFloat(a);
+        weight=Float.parseFloat(p);
         firebaseAuth.createUserWithEmailAndPassword(correo,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -170,7 +197,7 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
         if (contrasena.length() <= 5) {
             return ;
         }
-        if (!(correo.contains("@gmail") || (correo.contains("@uabc")) )) {
+        else if (!(correo.contains("@gmail") || (correo.contains("@uabc")) )) {
             return;
         }
         else {
