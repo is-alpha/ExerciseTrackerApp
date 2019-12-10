@@ -5,9 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.data.model.Date;
+import com.example.exercisetrackerapp.ui.results.AverageCalories.DateValidator;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -29,17 +32,19 @@ public class CalorieComparisonActivity extends AppCompatActivity {
     private TextView caloriasquemadas;
     private TextView caloriasconsumidas;
     private float calConsum=0,calQuema=0;
-    int i;
-    private   String email,userID,emailAux;
+    int i,range;
+    private String email,userID,emailAux;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ArrayList<Float>burnedcalories=new ArrayList<Float>();
     ArrayList<Float>consumecalories=new ArrayList<Float>();
+    private Spinner spinner;
 
     ArrayList<Entry> lineEntries = new ArrayList<Entry>();
     ArrayList<Entry> lineEntries2 = new ArrayList<Entry>();
-
+    Date date;
+    boolean registroEnc = false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,30 @@ public class CalorieComparisonActivity extends AppCompatActivity {
             userID = user.getUid();
         }
 
+        caloriasconsumidas = this.findViewById(R.id.textView11);
+        caloriasquemadas= this.findViewById(R.id.textView13);
+
+        lineChart = this.findViewById(R.id.lineChart);
+        lineChart2= this.findViewById(R.id.grafica2);
+
+        spinner = (Spinner) findViewById(R.id.spinnerExercise);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                range = getRange(spinner.getSelectedItem().toString());
+                setGraphics();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {}
+        });
+
+
+
+    }
+
+    private void setGraphics(){
+        registroEnc = false;
         databaseReference.child("calConsumidas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -59,25 +88,39 @@ public class CalorieComparisonActivity extends AppCompatActivity {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
 
                     if(emailAux.equals(email)){
-                        calConsum = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
-                        calConsum = calConsum + Float.parseFloat(areaSnapshot.child("calExtra").getValue().toString());
-                         consumecalories.add(calConsum);
 
+                        /*date = new Date(areaSnapshot.child("date").child("day").getValue(Integer.class),
+                                areaSnapshot.child("date").child("month").getValue(Integer.class),
+                                areaSnapshot.child("date").child("year").getValue(Integer.class));
+
+                        date.setHour(areaSnapshot.child("date").child("hour").getValue(Integer.class));
+
+                        if( DateValidator.getCountOfDays(date.format(),"dd/MM/yyyy") <= range) {
+                         */   calConsum = 0;
+                            calConsum = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
+                            calConsum = calConsum + Float.parseFloat(areaSnapshot.child("calExtra").getValue().toString());
+                            consumecalories.add(calConsum);
+                        //}
+                        registroEnc = true;
                     }
 
                 }
-                calConsum=0;
-                for ( i = 0; i<consumecalories.size(); i++){
-                    lineEntries2.add(new Entry((float)i,consumecalories.get(i)));
-                    calConsum = calConsum + consumecalories.get(i);
+
+                if(registroEnc) {
+                    calConsum=0;
+                    for ( i = 0; i<consumecalories.size(); i++){
+                        lineEntries2.add(new Entry((float)i,consumecalories.get(i)));
+                        calConsum = calConsum + consumecalories.get(i);
+                    }
+
+                    caloriasconsumidas.setText(Float.toString(calConsum));
+
+                    lineDataSet2= new LineDataSet(lineEntries2, "Calorias Consumidas");
+                    LineData lineData2 = new LineData();
+                    lineData2.addDataSet(lineDataSet2);
+                    lineChart2.setData(lineData2);
                 }
 
-                lineDataSet2= new LineDataSet(lineEntries2, "Calorias Consumidas");
-                LineData lineData2 = new LineData();
-                lineData2.addDataSet(lineDataSet2);
-                lineChart2.setData(lineData2);
-
-                caloriasconsumidas.setText(Float.toString(calConsum));
 
             }
             @Override
@@ -85,6 +128,7 @@ public class CalorieComparisonActivity extends AppCompatActivity {
             }
         });
 
+        registroEnc = false;
         databaseReference.child("caloriasQuemadas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,22 +136,33 @@ public class CalorieComparisonActivity extends AppCompatActivity {
                     emailAux = areaSnapshot.child("usuario").getValue().toString();
 
                     if(emailAux.equals(email)){
-                        calQuema = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
+                       /* date = new Date(areaSnapshot.child("date").child("day").getValue(Integer.class),
+                                areaSnapshot.child("date").child("month").getValue(Integer.class),
+                                areaSnapshot.child("date").child("year").getValue(Integer.class));
 
-                        burnedcalories.add(calQuema);
+
+
+                        if( DateValidator.getCountOfDays(date.format(),"dd/MM/yyyy") < range) {
+                         */ calQuema = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
+                            burnedcalories.add(calQuema);
+                        //}
+                        registroEnc = true;
                     }
                 }
-                    calQuema=0;
-                for ( i = 0; i<burnedcalories.size(); i++){
-                    lineEntries.add(new Entry((float)i,burnedcalories.get(i)));
-                    calQuema = calQuema + burnedcalories.get(i);
-                }
+
+                if(registroEnc) {
+                    calQuema = 0;
+                    for (i = 0; i < burnedcalories.size(); i++) {
+                        lineEntries.add(new Entry((float) i, burnedcalories.get(i)));
+                        calQuema = calQuema + burnedcalories.get(i);
+                    }
 
                     lineDataSet = new LineDataSet(lineEntries, "Calorias Quemadas");
                     LineData lineData = new LineData();
                     lineData.addDataSet(lineDataSet);
                     lineChart.setData(lineData);
                     caloriasquemadas.setText(Float.toString(calQuema));
+                }
 
             }
             @Override
@@ -115,20 +170,21 @@ public class CalorieComparisonActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-        caloriasconsumidas = this.findViewById(R.id.textView11);
-        caloriasquemadas= this.findViewById(R.id.textView13);
-
-        lineChart = this.findViewById(R.id.lineChart);
-        lineChart2= this.findViewById(R.id.grafica2);
-
-
     }
 
-
+    private int getRange(String period) {
+        switch (period) {
+            case "Hoy":
+                return 24;
+            case "Semana":
+                return 7;
+            case "Mes":
+                return 30;
+            case "Año":
+                return 365;
+        }
+        return 0;
+    }
 
     private void inicializarFirebase(){
 
