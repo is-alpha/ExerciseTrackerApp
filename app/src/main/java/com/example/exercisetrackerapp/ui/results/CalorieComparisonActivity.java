@@ -92,14 +92,12 @@ public class CalorieComparisonActivity extends AppCompatActivity {
                         /*date = new Date(areaSnapshot.child("date").child("day").getValue(Integer.class),
                                 areaSnapshot.child("date").child("month").getValue(Integer.class),
                                 areaSnapshot.child("date").child("year").getValue(Integer.class));
-
                         date.setHour(areaSnapshot.child("date").child("hour").getValue(Integer.class));
-
                         if( DateValidator.getCountOfDays(date.format(),"dd/MM/yyyy") <= range) {
                          */   calConsum = 0;
-                            calConsum = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
-                            calConsum = calConsum + Float.parseFloat(areaSnapshot.child("calExtra").getValue().toString());
-                            consumecalories.add(calConsum);
+                        calConsum = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
+                        calConsum = calConsum + Float.parseFloat(areaSnapshot.child("calExtra").getValue().toString());
+                        consumecalories.add(calConsum);
                         //}
                         registroEnc = true;
                     }
@@ -139,12 +137,9 @@ public class CalorieComparisonActivity extends AppCompatActivity {
                        /* date = new Date(areaSnapshot.child("date").child("day").getValue(Integer.class),
                                 areaSnapshot.child("date").child("month").getValue(Integer.class),
                                 areaSnapshot.child("date").child("year").getValue(Integer.class));
-
-
-
                         if( DateValidator.getCountOfDays(date.format(),"dd/MM/yyyy") < range) {
                          */ calQuema = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
-                            burnedcalories.add(calQuema);
+                        burnedcalories.add(calQuema);
                         //}
                         registroEnc = true;
                     }
