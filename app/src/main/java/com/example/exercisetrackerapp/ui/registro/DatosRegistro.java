@@ -4,8 +4,8 @@ import com.example.exercisetrackerapp.data.model.Date;
 
 public class DatosRegistro {
     String id,nombre,correo,contrasena,vcontrasena,ocupacion,genero;
-    Date fecha;
-    float altura,peso,hsueno,hextras,calQuemadas,calConsumidas;
+    Date fecha, creacionCuenta;
+    float altura,peso,hsueno,hextras,calQuemadas,calConsumidas, pesoInicial;
 
     public DatosRegistro(String id, String nombre, String correo, String contrasena, String vcontrasena, String ocupacion, Date fecha, float altura, float peso, float hsueno, float calQuemadas, float calConsumidas, String genero) {
         this.id = id;
@@ -21,8 +21,30 @@ public class DatosRegistro {
         this.calQuemadas = calQuemadas;
         this.calConsumidas = calConsumidas;
         this.genero = genero;
-
     }
+
+    public DatosRegistro(String id, String nombre, String correo, String contrasena,
+                         String ocupacion, Date fecha, float altura, float peso, float hsueno,
+                         float calQuemadas, float calConsumidas, String genero, Date creacionCuenta,
+                         float pesoInicial) {
+
+        this.id = id;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.ocupacion = ocupacion;
+        this.fecha = fecha;
+        this.altura = altura;
+        this.peso = peso;
+        this.hsueno = hsueno;
+        this.calQuemadas = calQuemadas;
+        this.calConsumidas = calConsumidas;
+        this.genero = genero;
+
+        this.pesoInicial = pesoInicial;
+        this.creacionCuenta = creacionCuenta;
+    }
+
     public DatosRegistro(String correo){
         this.correo=correo;
     }
@@ -140,5 +162,21 @@ public class DatosRegistro {
 
     public void setPeso(float peso) {
         this.peso = peso;
+    }
+
+    public Date getCreacionCuenta() {
+        return creacionCuenta;
+    }
+
+    public void setCreacionCuenta(Date creacionCuenta) {
+        this.creacionCuenta = creacionCuenta;
+    }
+
+    public float getPesoInicial() {
+        return pesoInicial;
+    }
+
+    public void setPesoInicial(float pesoInicial) {
+        this.pesoInicial = pesoInicial;
     }
 }

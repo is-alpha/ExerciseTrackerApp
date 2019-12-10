@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class RegistroActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private Button mBtRegresar;
@@ -61,7 +62,7 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
         altura = (EditText) findViewById(R.id.altura);
         peso = (EditText) findViewById(R.id.peso);
         ocupacion = (EditText) findViewById(R.id.editTextOcupacion);
-         spinner = (Spinner) findViewById(R.id.spinnerGenero);
+        spinner = (Spinner) findViewById(R.id.spinnerGenero);
 
         mBtRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,9 +105,8 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
         TextView textView = (TextView) findViewById(R.id.textViewFechaNac);
         textView.setText(currentDateString);
         fechaN = new com.example.exercisetrackerapp.data.model.Date(dayOfMonth,month,year);
-
-
     }
+
     private void registro(){
 
         String  name = nombre.getText().toString();
@@ -201,7 +201,15 @@ public class RegistroActivity extends AppCompatActivity implements DatePickerDia
             return;
         }
         else {
-            DatosRegistro data = new DatosRegistro(id, name, correo, password, vcontrasena, trabajo, fechaN, height, weight,hsueno,calQuemadas,calConsumidas,gener);
+            //java.util.Date date = new java.util.Date();
+            //LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            //com.example.exercisetrackerapp.data.model.Date creacionCuenta = new com.example.exercisetrackerapp.data.model.Date(localDate.getDayOfMonth(),localDate.getMonthValue(),localDate.getYear());
+
+            Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+            //cal.setTime(date);
+            com.example.exercisetrackerapp.data.model.Date creacionCuenta = new com.example.exercisetrackerapp.data.model.Date( cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH)+1, cal.get(Calendar.YEAR));
+
+            DatosRegistro data = new DatosRegistro(id, name, correo, password, trabajo, fechaN, height, weight,hsueno,calQuemadas,calConsumidas,gener,creacionCuenta,weight);
             mDatabase.child("users").child(id).setValue(data);
 
             launchProfile();
