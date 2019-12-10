@@ -72,6 +72,16 @@ public class Date {
     public void setSecond(int second) {
         this.second = second;
     }
+
+    @Override
+    public String toString() {
+        return (
+                " " + month +
+                " " + day +
+                " " + year +
+                " " + hour
+        );
+    }
 }
 
 

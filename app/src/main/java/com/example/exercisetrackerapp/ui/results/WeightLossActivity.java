@@ -132,6 +132,7 @@ public class WeightLossActivity extends AppCompatActivity {
     private void setWeight(){
         for(int i=0; i<range; i++) {
             lineEntries.set(i, new Entry((float) i, Float.valueOf(pesoInicial)));
+            //lineEntries.get(i).setY(Float.valueOf(pesoInicial));
         }
     }
 }

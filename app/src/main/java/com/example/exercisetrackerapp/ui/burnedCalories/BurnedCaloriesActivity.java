@@ -128,7 +128,7 @@ public class BurnedCaloriesActivity extends AppCompatActivity implements DatePic
 
         TextView textView = (TextView) findViewById(R.id.textViewDate);
         textView.setText(currentDateString);
-        fecha = new Date(dayOfMonth,month,year);
+        fecha = new Date(dayOfMonth,month+1,year);
 
     }
 

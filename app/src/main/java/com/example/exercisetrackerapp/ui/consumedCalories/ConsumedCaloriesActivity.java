@@ -126,7 +126,7 @@ public class ConsumedCaloriesActivity extends AppCompatActivity {
         String sCaloriasConsumidasExtra = caloriasManualExtra.getText().toString();
 
         Calendar c = Calendar.getInstance();;
-        fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
+        fecha = new Date(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH)+1,c.get(Calendar.YEAR));
         if(validacion(sFechaInicio,sCaloriasConsumidas,sCaloriasConsumidasExtra)==1) {
 
             ConsumedCalories data = new ConsumedCalories(email, Integer.parseInt(sCaloriasConsumidas), Integer.parseInt(sCaloriasConsumidasExtra), fecha);
@@ -134,7 +134,6 @@ public class ConsumedCaloriesActivity extends AppCompatActivity {
             Toast.makeText(this, "Registro Exitoso! ", Toast.LENGTH_LONG).show();
             finish();
         }
-
     }
 
     private int validacion(String sFechaInicio,String sCaloriasConsumidas,String sCaloriasConsumidasExtra){
