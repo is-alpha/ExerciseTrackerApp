@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/circulo_con_verde"
                     android:gravity="center"
-                    android:text="@string/hint_CantidadKCal" />
+                    android:text="0" />
 
             </LinearLayout>
 

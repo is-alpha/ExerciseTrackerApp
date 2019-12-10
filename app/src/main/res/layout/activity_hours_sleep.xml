@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="@string/hint_HoraSueno"
+                android:text="0"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -101,8 +102,8 @@
 
                         <Button
                             android:id="@+id/botonEditarHoras"
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:background="@android:drawable/ic_menu_edit" />
                     </LinearLayout>
 

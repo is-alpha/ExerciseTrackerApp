@@ -1,5 +1,6 @@
 package com.example.exercisetrackerapp.ui.sleep;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exercisetrackerapp.R;
+import com.example.exercisetrackerapp.SideMenuActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -110,12 +112,15 @@ public class RegisterSleepManualActivity extends AppCompatActivity {
             TimeSleep data = new TimeSleep(email, hsueno, hextras);
             databaseReference.child("horSueno").child(id).setValue(data);
             Toast.makeText(this, "Registro Exitoso! ", Toast.LENGTH_LONG).show();
-
+            launchSideMenuActivity();
     }
     private void inicializarFirebase(){
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
 
-
+    private void launchSideMenuActivity() {
+        Intent intent = new Intent(this, SideMenuActivity.class);
+        startActivity(intent);
+    }
 }

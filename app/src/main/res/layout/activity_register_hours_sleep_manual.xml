@@ -21,14 +21,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewFechaSueno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/hint_FechaSueno"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/textViewHorasDormir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

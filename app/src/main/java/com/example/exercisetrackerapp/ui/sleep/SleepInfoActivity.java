@@ -24,7 +24,7 @@ import java.util.Calendar;
 
 public class SleepInfoActivity extends AppCompatActivity {
 
-    private Button editarCaloriasConsumidas,botonEditarHoras;
+    private Button botonEditarHoras;
     private TextView textViewFecha,textViewHorasSDiarias,textViewPromedioHoras,textViewCantidadCalorias,textViewHorasSueno;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -109,7 +109,7 @@ public class SleepInfoActivity extends AppCompatActivity {
     }
 
     private void launchSuenoRegisterActivity() {
-        Intent intent = new Intent(this, RegisterSleepManualActivity.class);
+        Intent intent = new Intent(this, RegisterSleepActivity.class);
         startActivity(intent);
     }
 

@@ -61,7 +61,7 @@ public class CalorieComparisonActivity extends AppCompatActivity {
                     if(emailAux.equals(email)){
                         calConsum = Float.parseFloat(areaSnapshot.child("cantCalorie").getValue().toString());
                         calConsum = calConsum + Float.parseFloat(areaSnapshot.child("calExtra").getValue().toString());
-                       consumecalories.add(calConsum);
+                         consumecalories.add(calConsum);
 
                     }
 
