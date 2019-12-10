@@ -26,7 +26,7 @@ public class WeightLossActivity extends AppCompatActivity {
     private static int range = 365; //UN AÑO
 
     private TextView textViewPesoInicial,textViewPesoMeta,textViewPesoPerdido;
-    public String email="",uid,id,userID, peso="-1",emailAux;
+    public String email="",uid,id,userID, pesoInicial = "0", peso="0",emailAux;
 
     //GRAFICO
     private LineChart lineChart;
@@ -55,8 +55,8 @@ public class WeightLossActivity extends AppCompatActivity {
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     emailAux = areaSnapshot.child("correo").getValue().toString();
                     if(emailAux.equals(email)){
-                        peso = areaSnapshot.child("peso").getValue().toString();
-                        textViewPesoInicial.setText(peso);
+                        pesoInicial = areaSnapshot.child("peso").getValue().toString();
+                        textViewPesoInicial.setText(pesoInicial);
                     }
                 }
             }
@@ -100,7 +100,7 @@ public class WeightLossActivity extends AppCompatActivity {
 
         // Recolectamos el set de datos
         cleanGraphic();
-        //setWeight();
+        setWeight();
 
         // disable description text
         lineChart.getDescription().setEnabled(false);
@@ -131,7 +131,7 @@ public class WeightLossActivity extends AppCompatActivity {
 
     private void setWeight(){
         for(int i=0; i<range; i++) {
-            lineEntries.add(new Entry((float) i, (float)i));
+            lineEntries.set(i, new Entry((float) i, Float.valueOf(pesoInicial)));
         }
     }
 }

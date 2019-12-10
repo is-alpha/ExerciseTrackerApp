@@ -4,7 +4,9 @@ public enum Type {
     RUNNING,
     ABS,
     FOOTBALL,
-    YOGA,
+    CAMINADORA,
     SWIMMING,
+    CAMINAR,
+    PESAS,
     BICYCLING
 }

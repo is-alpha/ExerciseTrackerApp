@@ -81,19 +81,15 @@ public class ExerciseRoutineFragment extends Fragment implements DatePickerDialo
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         // Data from recycler view
+
         lstExercise = new ArrayList<>();
-        lstExercise.add(new Exercise("Correr", Type.RUNNING,R.drawable.correr));
-        lstExercise.add(new Exercise("Fútbol", Type.FOOTBALL,R.drawable.futbol));
-        lstExercise.add(new Exercise("Natación", Type.SWIMMING,R.drawable.natacion));
-        lstExercise.add(new Exercise("Abdominales", Type.ABS,R.drawable.img_abdominales));
-        lstExercise.add(new Exercise("Yoga", Type.YOGA,R.drawable.yoga));
-        lstExercise.add(new Exercise("Ciclismo", Type.BICYCLING,R.drawable.bicicleta));
-        lstExercise.add(new Exercise("Correr", Type.RUNNING,R.drawable.correr));
-        lstExercise.add(new Exercise("Fútbol", Type.FOOTBALL,R.drawable.futbol));
-        lstExercise.add(new Exercise("Natación", Type.SWIMMING,R.drawable.natacion));
-        lstExercise.add(new Exercise("Abdominales", Type.ABS,R.drawable.img_abdominales));
-        lstExercise.add(new Exercise("Yoga", Type.YOGA,R.drawable.yoga));
-        lstExercise.add(new Exercise("Ciclismo", Type.BICYCLING,R.drawable.bicicleta));
+        lstExercise.add(new Exercise("Abdominales", Type.ABS,R.drawable.img_abdominales2));
+        lstExercise.add(new Exercise("Caminadora", Type.CAMINADORA,R.drawable.img_caminadora2));
+        lstExercise.add(new Exercise("Caminar", Type.CAMINAR,R.drawable.img_caminar2));
+        lstExercise.add(new Exercise("Ciclismo", Type.BICYCLING,R.drawable.img_ciclismo2));
+        lstExercise.add(new Exercise("Correr", Type.RUNNING,R.drawable.img_correr2));
+        lstExercise.add(new Exercise("Fútbol", Type.FOOTBALL,R.drawable.img_futbol2));
+        lstExercise.add(new Exercise("Natación", Type.PESAS,R.drawable.img_pesas2));
 
         // 3. create an adapter
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(lstExercise, adapterInterface);
@@ -131,9 +127,9 @@ public class ExerciseRoutineFragment extends Fragment implements DatePickerDialo
         TextView textView = (TextView) getView().findViewById(idtext);
         textView.setText(currentDateString);
         if(idDate==1)
-            date1 = new Date(dayOfMonth,month,year);
+            date1 = new Date(dayOfMonth,month+1,year);
         else
-            date2 = new Date(dayOfMonth,month,year);
+            date2 = new Date(dayOfMonth,month+1,year);
     }
 
     @Override
