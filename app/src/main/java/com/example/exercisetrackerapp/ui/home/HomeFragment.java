@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.exercisetrackerapp.R;
-import com.example.exercisetrackerapp.data.model.Weight;
 import com.example.exercisetrackerapp.ui.burnedCalories.BurnedCaloriesActivity;
 import com.example.exercisetrackerapp.ui.consumedCalories.ConsumedCalorieInfoActivity;
 import com.example.exercisetrackerapp.ui.consumedCalories.ConsumedCaloriesActivity;
@@ -22,7 +21,6 @@ import com.example.exercisetrackerapp.ui.results.WeightLossActivity;
 import com.example.exercisetrackerapp.ui.sleep.RegisterSleepManualActivity;
 import com.example.exercisetrackerapp.ui.sleep.SleepInfoActivity;
 import com.example.exercisetrackerapp.ui.weight.WeightActivity;
-import com.example.exercisetrackerapp.ui.weight.WeightInfoActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -117,7 +115,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                launchuOdometer();
+                //launchuOdometer();
 
             }
         });
