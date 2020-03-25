@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "807964825664",
-    "firebase_url": "https://exercisetrackerapp-d08e9.firebaseio.com",
-    "project_id": "exercisetrackerapp-d08e9",
-    "storage_bucket": "exercisetrackerapp-d08e9.appspot.com"
+    "project_number": "892175918434",
+    "firebase_url": "https://imagn-is.firebaseio.com",
+    "project_id": "imagn-is",
+    "storage_bucket": "imagn-is.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:807964825664:android:39b31d77f697708607e7a5",
+        "mobilesdk_app_id": "1:892175918434:android:b1d04f528a0d66341e383b",
         "android_client_info": {
           "package_name": "com.example.exercisetrackerapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "807964825664-3pijbo490kb21etqfcl1lg82dih38m7l.apps.googleusercontent.com",
+          "client_id": "892175918434-9lkhonsohghh5ht5r7ootfo7lukm7055.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.exercisetrackerapp",
-            "certificate_hash": "e1c6f6444eae22d0fd304f9ab0cdf3775d77651e"
+            "certificate_hash": "31a069fd81aae6eeab5ae90f86b537f59eb23f6b"
           }
         },
         {
-          "client_id": "807964825664-mnm697n6gimkb73mangd18r99qvhdqrs.apps.googleusercontent.com",
+          "client_id": "892175918434-4ob3tm6cqum9huamd3gh42ncqc1gndlk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDdMNbM-HKnNBkoroP-sV1NzrTGJcKnru0"
+          "current_key": "AIzaSyAwG74wepmLLn864zVVg823SeZA3MVLQWY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "807964825664-mnm697n6gimkb73mangd18r99qvhdqrs.apps.googleusercontent.com",
+              "client_id": "892175918434-4ob3tm6cqum9huamd3gh42ncqc1gndlk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
